@@ -69,21 +69,22 @@ function techcamp_event_fields() {
 		'id'   => 'end_date',
 		'name' => __( 'End Date', 'techcamp' ),
 		'type' => 'text_date_timestamp',
-		'desc' => 'Click to select date'
+		'desc' => 'Click to select date if different than start date'
 	) );
 
 	$event_box->add_field( array(
-		'id'   => 'city',
-		'name' => __( 'Location City', 'techcamp' ),
-		'type' => 'text'
+		'id'   => 'address',
+		'name' => __( 'Address', 'techcamp' ),
+		'type' => 'text',
+		'desc' => 'Enter the city in which the TechCamp is held. Do not include the country.'
 	) );
 
 	$event_box->add_field( array(
-		'id'       => 'country',
-		'name'     => __( 'Location Country', 'techcamp' ),
+		'id'       => 'country_field',
+		'name'     => __( 'Country', 'techcamp' ),
 		'type'     => 'taxonomy_select',
 		'taxonomy' => 'country',
-		'desc'     => 'The country in which the TechCamp is held',
+		'desc'     => 'Select the country in which the TechCamp is held.',
 		'remove_default' => true
 	) );
 

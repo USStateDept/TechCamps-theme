@@ -1,0 +1,255 @@
+/**
+  * Cross-browser styles for consistent form elements.
+  *
+  * @requires 'styles/plugins/_select.scss'
+  */
+
+/*------------------------------------*\
+  #FORMS
+\*------------------------------------*/
+
+input,
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=url],
+input[type=date],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local],
+input[type=week],
+input[type=month]
+textarea {
+  background-color: #ffffff;
+  border: $border;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: $placeholder-color;
+  font-size: em(14);
+  padding: $form-input-padding;
+  width: 100%;
+}
+
+input[type=text][disabled],
+input[type=email][disabled],
+input[type=number][disabled],
+input[type=password][disabled],
+input[type=search][disabled],
+input[type=tel][disabled],
+input[type=url][disabled],
+input[type=date][disabled],
+input[type=time][disabled],
+input[type=datetime][disabled],
+input[type=datetime-local][disabled],
+input[type=week][disabled],
+input[type=month][disabled],
+textarea[disabled] {
+  background: $disabled-bg;
+  border: 1px solid $disabled-border;
+  opacity: 1;
+}
+
+input[type=text][disabled]::-webkit-input-placeholder,
+input[type=email][disabled]::-webkit-input-placeholder,
+input[type=number][disabled]::-webkit-input-placeholder,
+input[type=password][disabled]::-webkit-input-placeholder,
+input[type=search][disabled]::-webkit-input-placeholder,
+input[type=tel][disabled]::-webkit-input-placeholder,
+input[type=url][disabled]::-webkit-input-placeholder,
+textarea[disabled]::-webkit-input-placeholder {
+  color: $disabled-font-color;
+  opacity: 1;
+}
+
+input[type=text][disabled]:-moz-placeholder,
+input[type=email][disabled]:-moz-placeholder,
+input[type=number][disabled]:-moz-placeholder,
+input[type=password][disabled]:-moz-placeholder,
+input[type=search][disabled]:-moz-placeholder,
+input[type=tel][disabled]:-moz-placeholder,
+input[type=url][disabled]:-moz-placeholder,
+textarea[disabled]:-moz-placeholder {
+  color: $disabled-font-color;
+  opacity: 1;
+}
+
+input[type=text][disabled]::-moz-placeholder,
+input[type=email][disabled]::-moz-placeholder,
+input[type=number][disabled]::-moz-placeholder,
+input[type=password][disabled]::-moz-placeholder,
+input[type=search][disabled]::-moz-placeholder,
+input[type=tel][disabled]::-moz-placeholder,
+input[type=url][disabled]::-moz-placeholder,
+textarea[disabled]::-moz-placeholder {
+  color: $disabled-font-color;
+  opacity: 1;
+}
+
+input[type=text][disabled]:-ms-input-placeholder,
+input[type=email][disabled]:-ms-input-placeholder,
+input[type=number][disabled]:-ms-input-placeholder,
+input[type=password][disabled]:-ms-input-placeholder,
+input[type=search][disabled]:-ms-input-placeholder,
+input[type=tel][disabled]:-ms-input-placeholder,
+input[type=url][disabled]:-ms-input-placeholder,
+textarea[disabled]:-ms-input-placeholder {
+  color: $disabled-font-color;
+  opacity: 1;
+}
+
+input[type=text]::-webkit-input-placeholder,
+input[type=email]::-webkit-input-placeholder,
+input[type=number]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder,
+input[type=search]::-webkit-input-placeholder,
+input[type=tel]::-webkit-input-placeholder,
+input[type=url]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: $placeholder-color;
+  opacity: 1;
+}
+
+input[type=text]:-moz-placeholder,
+input[type=email]:-moz-placeholder,
+input[type=number]:-moz-placeholder,
+input[type=password]:-moz-placeholder,
+input[type=search]:-moz-placeholder,
+input[type=tel]:-moz-placeholder,
+input[type=url]:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: $placeholder-color;
+  opacity: 1;
+}
+
+input[type=text]::-moz-placeholder,
+input[type=email]::-moz-placeholder,
+input[type=number]::-moz-placeholder,
+input[type=password]::-moz-placeholder,
+input[type=search]::-moz-placeholder,
+input[type=tel]::-moz-placeholder,
+input[type=url]::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: $placeholder-color;
+  opacity: 1;
+}
+
+input[type=text]:-ms-input-placeholder,
+input[type=email]:-ms-input-placeholder,
+input[type=number]:-ms-input-placeholder,
+input[type=password]:-ms-input-placeholder,
+input[type=search]:-ms-input-placeholder,
+input[type=tel]:-ms-input-placeholder,
+input[type=url]:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: $placeholder-color;
+}
+
+input[type="checkbox"],
+input[type="image"],
+input[type="radio"] {
+  width: auto;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid darken($border-color, 50%);
+  outline: none;
+}
+
+::-moz-placeholder {
+  color: $placeholder-color;
+  opacity: 1;
+}
+
+::-webkit-input-placeholder {
+  color: $placeholder-color;
+}
+
+
+a,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+textarea:focus,
+.button,
+.button-alt {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition:    all 0.1s ease-in-out;
+  -ms-transition:     all 0.1s ease-in-out;
+  -o-transition:      all 0.1s ease-in-out;
+  transition:         all 0.1s ease-in-out;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.button,
+.button-alt {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: $button-bg;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: $button-font-color;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
+  padding: em(10) em(15);
+  width: auto;
+}
+
+button:hover,
+input:hover[type="button"],
+input:hover[type="reset"],
+input:hover[type="submit"],
+.button:hover {
+  color: $button-font-color;
+  text-decoration: none;
+}
+
+.button-alt:hover {
+  color: $button-font-color-alt;
+}
+
+button[disabled],
+input[type=button][disabled],
+input[type=submit][disabled],
+input[type=reset][disabled],
+.button.disabled,
+.button-alt.disabled {
+  background: transparent;
+  border: 0;
+  color: gray;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button {
+  display: none;
+}
+
+.search-form {
+  overflow: hidden;
+}
+
+.search-form input[type="search"] {
+  background: white url(images/dist/icon-search.png) no-repeat right;
+  background-size: 36px 16px;
+  color: $placeholder-color;
+  margin-bottom: 10px;
+  padding: $form-input-padding;
+  width: 100%;
+}
+
+html[dir="rtl"] .search-form input[type="search"] {
+  background-position: 16px 50%;
+}
+
+@import '../plugins/select';

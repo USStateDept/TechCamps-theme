@@ -1,0 +1,117 @@
+// Mobile-first breakpoints
+@mixin bp($point) {
+	@media ( 'min-width:' + $point ) {
+		@content;
+	}
+}
+
+// Make an element visually hidden, but accessible
+@mixin element-invisible {
+	// scss-lint:disable ImportantRule
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+// Turn off the element-invisible effect
+@mixin element-invisible-off {
+	// scss-lint:disable ImportantRule
+	position: static !important;
+	clip: auto;
+	height: auto;
+	width: auto;
+	overflow: auto;
+}
+
+// Make an element visually hidden by default, but visible when focused
+@mixin element-focusable {
+	@include element-invisible;
+	&:active,
+	&:focus {
+		@include element-invisible-off;
+	}
+}
+
+// Basic clearfix
+@mixin clearfix() {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+// Basic vertical align
+@mixin vertical-align() {
+	position:relative;
+	top:50%;
+	transform:translateY(-50%);
+}
+
+// Basic icon setup
+@mixin icon-styles() {
+	font-family: 'techcamp-icons' !important; // prevent issues with browser extensions that change fonts
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased; // better rendering
+	-moz-osx-font-smoothing: grayscale; // better rendering
+}
+
+// Icon codes matched to readable names
+@mixin icon-code( $icon: '' ) {
+	@if $icon == facebook {
+		content: "\e901";
+	} @else if $icon == twitter {
+		content: "\e900";
+	} @else if $icon == youtube {
+		content: "\f16a";
+	} @else if $icon == medium {
+		content: "\e904";
+	} @else if $icon == storify {
+		content: "\e905";
+	} @else if $icon == calendar {
+		content: "\e908";
+	} @else if $icon == related {
+		content: "\e906";
+	} @else if $icon == tag {
+		content: "\e907";
+	} @else if $icon == contact {
+		content: "\e902";
+	} @else if $icon == search {
+		content: "\e903";
+	} @else if $icon != '' {
+		content: $icon;
+	}
+}
+
+// Display an icon when the whole element is the icon
+@mixin icon-font( $icon: '' ) {
+	@include icon-styles;
+	&:before {
+		@include icon-code( $icon );
+	}
+}
+
+// Display an icon when you just want the icon before a populated element
+@mixin icon( $icon: '' ) {
+	&:before {
+		@include icon-styles;
+		@include icon-code( $icon );
+		vertical-align:middle;
+	}
+}
+
+@mixin icon-before( $icon: '' ) {
+	@include icon( $icon );
+	&:before {
+		padding-right:0.5rem;
+		font-size:2.1rem;
+		color:#fff;
+	}
+}

@@ -66,17 +66,18 @@ function techcamp_outcome_fields() {
 	) );
 
 	$outcome_box->add_field( array(
-		'id'   => 'city',
-		'name' => __( 'Location City', 'techcamp' ),
-		'type' => 'text'
+		'id'   => 'address',
+		'name' => __( 'Address', 'techcamp' ),
+		'type' => 'text',
+		'desc' => 'Enter the city in which the Outcome is held. Do not include the country.'
 	) );
 
 	$outcome_box->add_field( array(
 		'id'       => 'country',
-		'name'     => __( 'Location Country', 'techcamp' ),
+		'name'     => __( 'Country', 'techcamp' ),
 		'type'     => 'taxonomy_select',
 		'taxonomy' => 'country',
-		'desc'     => 'The country in which the Outcome is held',
+		'desc'     => 'Select the country in which the Outcome is held.',
 		'remove_default' => true
 	) );
 

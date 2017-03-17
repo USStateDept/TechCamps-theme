@@ -1,0 +1,17 @@
+/*------------------------------------*\
+  #SITE-HEADER
+\*------------------------------------*/
+
+.site-header {
+  display: inline-block;
+  float: left;
+  margin: 0.75em 0;
+  width: 75%;
+
+  @include bp($laptop) {
+    display: block;
+    float: none;
+    margin: 0;
+    width: auto;
+  }
+}

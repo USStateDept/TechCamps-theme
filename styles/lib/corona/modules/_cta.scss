@@ -1,0 +1,55 @@
+/*------------------------------------*\
+  #CALL-TO-ACTION
+\*------------------------------------*/
+
+.cta-container {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 45%;
+  position: relative;
+
+  @include bp($laptop) {
+    margin-top: 0;
+  }
+}
+
+.cta-gradient {
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+
+  @include bp($tablet) {
+    background: linear-gradient(0deg, rgb(0, 0, 0), transparent 60%, transparent);
+  }
+}
+
+.cta-text {
+  bottom: 0;
+  color: white;
+  padding: 0 2em;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+
+  p {
+    font-size: em(18, 16);
+    line-height: 1.1em;
+    margin-bottom: 1em;
+  }
+
+  @include bp($tablet) {
+    font-size: em(24, 16);
+  }
+
+}
+
+.button.cta-button {
+  font-size: em(18, 24);
+  font-weight: bold;
+  padding: em(15) em(20);
+  text-transform: uppercase;
+  width: auto;
+}

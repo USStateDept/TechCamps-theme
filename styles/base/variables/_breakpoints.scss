@@ -1,0 +1,11 @@
+//
+// Breakpoints
+//
+// Naming sizes after devices is imperfect, but it's an easy shorthand.
+//
+
+// $thin:
+// $medium:
+$wide: 1300px;
+
+$wide-and-up: min-width $wide;

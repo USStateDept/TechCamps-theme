@@ -1,0 +1,21 @@
+/**
+	* Adding support for language written in a Right To Left (RTL) direction is easy -
+	* it's just a matter of overwriting all the horizontal positioning attributes
+	* of your CSS stylesheet in a separate stylesheet file named rtl.css.
+  * Cross-browser styles for consistent form elements.
+  *
+  * @see https://codex.wordpress.org/Right_to_Left_Language_Support
+	*
+	* @requires 'styles/_variables.scss'
+	* @requires 'styles/_mixins.scss'
+	* @requires 'styles/layouts/_sidebar-content.scss'
+  */
+
+/*
+.rtl {
+	body {
+		direction: rtl;
+		unicode-bidi: embed;
+	}
+}
+*/

@@ -10,7 +10,7 @@
  */
 function techcamp_taxonomies() {
 
-	register_taxonomy( 'topic', array( 'event', 'outcome', 'resource' ), array(
+	register_taxonomy( 'topic', array( 'event', 'outcome', 'resource', 'post' ), array(
 		'labels' => array(
 			'name'                       => 'Topics',
 			'singular_name'              => 'Topic',
@@ -39,7 +39,7 @@ function techcamp_taxonomies() {
 		'rewrite'           => array( 'slug' => 'topics' )
 	) );
 
-	register_taxonomy( 'country', array( 'event' ), array(
+	register_taxonomy( 'country', array( 'event', 'outcome' ), array(
 		'labels' => array(
 			'name'                       => 'Countries',
 			'singular_name'              => 'Country',

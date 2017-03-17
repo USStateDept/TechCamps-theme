@@ -1,0 +1,77 @@
+.top-bar {
+	@include clearfix;
+	background:$navy-dark;
+	font-size:1.4rem;
+
+	li {
+		vertical-align:middle;
+		display:inline-block;
+		padding:0;
+	}
+
+	a {
+		color:#fff;
+		text-decoration:none;
+		font-weight:400;
+		text-transform:uppercase;
+		letter-spacing:0.13rem;
+		display:block;
+		&:hover,
+		&:focus {
+			color:$bright-blue;
+		}
+	}
+
+	.container--top-bar {
+		@include grid-container;
+	}
+
+	&__social {
+		@include grid-column( 6 );
+	}
+
+	&__utility {
+		@include grid-column( 6 );
+		text-align:right;
+		a {
+			padding:1.4rem 2.4rem;
+		}
+	}
+
+}
+
+.top-search {
+	display:inline-block;
+	vertical-align:middle;
+
+	&__form {
+		display:none;
+		&.toggled {
+			display:block;
+		}
+	}
+
+	&__toggle {
+		@include icon-before( 'search' );
+		&:hover:before,
+		&:focus:before {
+			color:$bright-blue;
+		}
+	}
+
+}
+
+.utility-menu {
+	display:inline-block;
+
+	.contact {
+		a {
+			@include icon-before( 'contact' );
+			&:hover:before,
+			&:focus:before {
+				color:$bright-blue;
+			}
+		}
+	}
+
+}

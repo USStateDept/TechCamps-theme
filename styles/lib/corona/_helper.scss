@@ -1,0 +1,77 @@
+/*------------------------------------*\
+  #ALIGNMENT
+\*------------------------------------*/
+
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+
+/*------------------------------------*\
+  #TEXT-FORMATTING
+\*------------------------------------*/
+
+.caps {
+	text-transform: uppercase;
+}
+
+.small {
+	font-size: 0.65em;
+}
+
+
+
+
+/*------------------------------------*\
+  #CLEARING
+\*------------------------------------*/
+
+.author-box:before,
+.clearfix:before,
+.entry:before,
+.entry-content:before,
+.nav-primary:before,
+.nav-secondary:before,
+.pagination:before,
+.site-container:before,
+.site-footer:before,
+.site-header:before,
+.site-inner:before,
+.wrap:before {
+	content: " ";
+	display: table;
+}
+
+.author-box:after,
+.clearfix:after,
+.entry:after,
+.entry-content:after,
+.nav-primary:after,
+.nav-secondary:after,
+.pagination:after,
+.site-container:after,
+.site-footer:after,
+.site-header:after,
+.site-inner:after,
+.wrap:after {
+	clear: both;
+	content: " ";
+	display: table;
+}

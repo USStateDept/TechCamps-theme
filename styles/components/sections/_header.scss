@@ -1,0 +1,49 @@
+.container--header {
+	@include grid-container;
+}
+
+.site-header {
+	@include grid-column( 4 );
+}
+
+.nav-container {
+	@include grid-column( 8 );
+}
+
+.site-title {
+	margin:1.9rem 0;
+	a {
+		display:inline-block;
+	}
+	img {
+		max-width:298px;
+		height:auto;
+	}
+}
+
+.nav-primary {
+	text-align:right;
+
+	ul {
+		display:block;
+		float:right;
+	}
+
+	a {
+		color:$navy;
+		text-transform:uppercase;
+		font-weight:700;
+		padding:4rem 2.4rem 0.6rem;
+		letter-spacing:0.03rem;
+		transition:color 0.1s, background 0.2s, padding 0.4s;
+	}
+
+	.current-menu-item a,
+	a:hover,
+	a:focus {
+		background:$navy-dark;
+		color:#fff;
+		padding-bottom:4rem;
+	}
+
+}
