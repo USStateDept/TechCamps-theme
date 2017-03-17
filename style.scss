@@ -1,0 +1,56 @@
+/*!
+Theme Name: TechCamp
+Description: A child theme of Corona built for TechCamp.
+Version: 1.0
+Text Domain: techcamp
+Template: corona
+*/
+
+// run the reset before anything else
+@import 'styles/base/reset';
+
+// corona styles
+// added here instead of enqueued from the parent so that they can be modified
+@import 'styles/lib/corona/variables';
+@import 'styles/lib/corona/mixins';
+@import 'styles/lib/corona/base';
+@import 'styles/lib/corona/modules/tables';
+@import 'styles/lib/corona/layouts/content-sidebar';
+@import 'styles/lib/corona/layouts/columns';
+@import 'styles/lib/corona/modules/caption';
+@import 'styles/lib/corona/modules/comment';
+@import 'styles/lib/corona/modules/cta';
+@import 'styles/lib/corona/modules/post-list';
+@import 'styles/lib/corona/modules/media';
+@import 'styles/lib/corona/modules/header';
+@import 'styles/lib/corona/modules/navigation';
+@import 'styles/lib/corona/modules/post';
+@import 'styles/lib/corona/modules/sidebar';
+@import 'styles/lib/corona/modules/widget';
+@import 'styles/lib/corona/helper';
+@import 'styles/lib/corona/accessibility';
+
+// load bourbon & neat for mixins and grid system
+@import 'styles/lib/bourbon/bourbon';
+@import 'styles/lib/neat/neat';
+
+// basics
+@import 'styles/base/font-faces';
+@import 'styles/base/variables/colors';
+@import 'styles/base/variables/fonts';
+@import 'styles/base/mixins';
+@import 'styles/base/accessibility';
+@import 'styles/base/base';
+@import 'styles/base/grid';
+
+// components
+// @import 'styles/components/navigation/main-menu';
+@import 'styles/components/navigation/social';
+@import 'styles/components/sections/top-bar';
+@import 'styles/components/sections/header';
+@import 'styles/components/sections/footer';
+@import 'styles/components/pages/basic';
+@import 'styles/components/pages/map';
+
+// print styles
+@import 'styles/print';

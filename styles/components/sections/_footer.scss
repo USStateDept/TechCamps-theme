@@ -1,0 +1,178 @@
+.site-footer {
+	background:$navy-dark;
+	color:#fff;
+}
+
+.footer-top,
+.footer-bottom__container {
+	@include grid-container;
+}
+
+.footer-top,
+.footer-bottom {
+	&__primary {
+		@include grid-column( 8 );
+	}
+
+	&__secondary {
+		@include grid-column( 4 );
+	}
+}
+
+.footer-top {
+	padding:3.7rem 0 4rem;
+
+	&__logo {
+		float:left;
+		max-width:229px;
+		height:auto;
+	}
+
+	&__menu {
+		float:left;
+		padding:2.4rem 0 0 4.6rem;
+
+		li {
+			float:left;
+		}
+
+		a {
+			font-family:"Open Sans", sans-serif;
+			text-decoration:none;
+			color:#fff;
+			text-transform:uppercase;
+			font-weight:600;
+			padding:1rem 2rem;
+			letter-spacing:0.03rem;
+			transition:color 0.1s;
+
+			&:hover,
+			&:focus {
+				color:$bright-blue;
+			}
+		}
+	}
+
+	&__social {
+		text-align:right;
+		margin-top:1.7rem;
+		li {
+			font-size:3.6rem;
+		}
+		a {
+			padding:1.4rem 0.75rem;
+		}
+	}
+
+}
+
+.footer-middle {
+	font-family:Glegoo, serif;
+	font-size:1.6rem;
+	line-height:2.8rem;
+	width:100%;
+	padding:2rem;
+
+	&:before {
+		content:'';
+		display:block;
+		height:0.4rem;
+		margin:0 0 5rem;
+		background:$navy-darker;
+	}
+
+	.footer-1 {
+		width:110%;
+		margin:0 -5%;
+	}
+
+	.widget {
+		width:33.3333%;
+		padding:0 5%;
+		float:left;
+		img {
+			max-width:70%;
+			margin-top:0.7rem;
+		}
+	}
+
+	.button {
+		display:inline-block;
+		text-transform:uppercase;
+		font-family:"Open Sans", sans-serif;
+		font-weight:600;
+		text-decoration:none;
+		background:$dark-blue;
+		color:#fff;
+		padding:1.5rem 3rem;
+		margin-top:0.7rem;
+		transition:background 0.2s;
+		&:hover,
+		&:focus {
+			background:$blue;
+		}
+	}
+
+}
+
+.footer-bottom {
+	background:$navy-darker;
+	padding:2rem 0;
+
+	&__secondary {
+		text-align:right;
+	}
+
+	&__flag {
+		width:10.5rem;
+		vertical-align:middle;
+	}
+
+	&__seal {
+		width:8.5rem;
+		vertical-align:middle;
+		margin-left:4rem;
+	}
+
+}
+
+.footer-links {
+	margin-top:1.2rem;
+
+	a {
+		text-decoration:none;
+	}
+
+	.menu > li {
+		font-family:Glegoo, serif;
+		font-size:1.9rem;
+		letter-spacing:0.02rem;
+		> a {
+			color:#fff;
+			&:hover,
+			&:focus {
+				text-decoration:underline;
+			}
+		}
+	}
+
+	.sub-menu li {
+		margin-top:1.5rem;
+		float:left;
+		font-family:"Open Sans", sans-serif;
+		font-size:1.4rem;
+		font-weight:600;
+		margin-right:2.2rem;
+		letter-spacing:0.05rem;
+		a {
+			color:$bright-blue;
+			transition:color 0.3s;
+			&:hover,
+			&:focus {
+				color:$blue;
+			}
+		}
+	}
+
+
+}

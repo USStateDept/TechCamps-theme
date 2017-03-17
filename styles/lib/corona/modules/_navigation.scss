@@ -1,0 +1,170 @@
+/*------------------------------------*\
+  #PRIMARY-NAVIGATION
+\*------------------------------------*/
+
+.nav-primary {
+	clear: both;
+	display: block;
+	width: 100%;
+}
+
+.nav-primary ul {
+	display: none;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+	text-indent: 0;
+	z-index: 100;
+}
+
+.nav-primary li:before {
+	display: none;
+}
+
+.nav-primary li {
+	@include bp($laptop) {
+		float: left;
+		position: relative;
+	}
+}
+
+.nav-primary a {
+	display: block;
+	text-decoration: none;
+}
+
+.nav-primary ul ul {
+  margin-left: 1em;
+
+  @include bp($laptop) {
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    float: left;
+    left: -999em;
+    margin-left: 0;
+    position: absolute;
+    top: 1.5em;
+    z-index: 99999;
+  }
+}
+
+.nav-primary ul ul ul {
+	left: -999em;
+	top: 0;
+}
+
+.nav-primary ul ul a {
+	width: 200px;
+}
+
+.nav-primary ul ul li {
+
+}
+
+.nav-primary li:hover > a,
+.nav-primary li.focus > a {
+}
+
+.nav-primary ul ul :hover > a,
+.nav-primary ul ul .focus > a {
+}
+
+.nav-primary ul ul a:hover,
+.nav-primary ul ul a.focus {
+}
+
+.nav-primary ul li:hover > ul,
+.nav-primary ul li.focus > ul {
+	left: auto;
+}
+
+.nav-primary ul ul li:hover > ul,
+.nav-primary ul ul li.focus > ul {
+	left: 100%;
+}
+
+.nav-primary .current_page_item > a,
+.nav-primary .current-menu-item > a,
+.nav-primary .current_page_ancestor > a,
+.nav-primary .current-menu-ancestor > a {
+}
+
+
+
+
+/*------------------------------------*\
+  #CONTENT-NAVIGATION
+\*------------------------------------*/
+
+.content .comment-navigation,
+.content .posts-navigation,
+.content .post-navigation {
+	margin: 0 0 1.5em;
+	overflow: hidden;
+}
+
+.comment-navigation .nav-previous,
+.posts-navigation .nav-previous,
+.post-navigation .nav-previous {
+	float: left;
+	width: 50%;
+}
+
+.comment-navigation .nav-next,
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
+}
+
+
+
+
+/*------------------------------------*\
+  #MOBILE-NAVIGATION
+\*------------------------------------*/
+
+.menu-toggle {
+	display: inline-block;
+	float: right;
+	margin: 1em;
+
+	@include bp($laptop) {
+		display: none;
+	}
+}
+
+.menu-primary {
+	position: absolute;
+	background: white;
+	width: 100%;
+
+	@include bp($laptop) {
+		position: static;
+		width: auto;
+	}
+}
+
+.nav-primary ul {
+	@include bp($laptop) {
+		display: inline-block;
+	}
+}
+
+.nav-primary.toggled ul {
+	display: block;
+}
+
+.line {
+  border-top: em(4) solid $font-color;
+  clear: both;
+  display: block;
+  margin: em(2) 0;
+  width: 1.45em;
+
+	@include bp($big-mobile) {
+	  border-top: em(5) solid $font-color;
+		margin: em(4) 0;
+		width: 2em;
+	}
+}

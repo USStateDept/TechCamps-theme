@@ -1,0 +1,24 @@
+/*------------------------------------*\
+   #POST-LIST-SHORTCODE
+\*------------------------------------*/
+
+.post-list-container {
+  @include bp($tablet) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.post-list-container .entry {
+  @include bp($tablet) {
+    padding: 0 1em;
+  }
+}
+
+.post-list-container .post-image-anchor {
+  border: 0;
+}
+
+.post-list-container .entry-content {
+  font-size: 1em;
+}

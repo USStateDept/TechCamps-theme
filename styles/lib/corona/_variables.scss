@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  #VARIABLES (DEFAULTS)
+\*------------------------------------*/
+
+$font-color: rgb(34, 34, 34);
+$border-color: rgb(0, 0, 0);
+
+// Typography
+$font-default: sans-serif;
+$font-alternate: serif;
+
+// Repeated styles
+$box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+$border: 1px solid $border-color;
+
+
+
+/*------------------------------------*\
+  #MEDIA-QUERIES
+\*------------------------------------*/
+
+$big-mobile:           25em; // 400px
+$tablet:               48em; // 768px
+$laptop:               64em; // 1024px
+$desktop:              75em; // 1200px

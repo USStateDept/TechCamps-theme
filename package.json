@@ -1,0 +1,53 @@
+{
+  "name": "corona",
+  "version": "2.10.1",
+  "description": " A base Wordpress installation",
+  "main": "index.php",
+  "scripts": {
+    "sass": "node-sass --output-style compressed style.scss > style.css",
+    "autoprefixer": "postcss -m -u autoprefixer --autoprefixer.browsers '> 1%, last 3 IE versions' style.css -o style.css",
+    "css": "npm run sass && npm run autoprefixer",
+    "eslint": "eslint js/src/*.js --quiet",
+    "uglify": "uglifyjs js/src/*.js -o js/dist/script.js",
+    "js": "npm run eslint && npm run uglify",
+    "imagemin": "imagemin images/src/* images/dist",
+    "server": "browser-sync start --no-notify --proxy 'techcamp.dev' --files './*.php' 'template-parts/*.php' 'page-templates/*.php' 'lib/inc/*.php' 'style.css' 'images/dist/*' 'js/dist/*.js'",
+    "watch:css": "onchange ./styles/**/*.scss ./styles/**/**/*.scss ./styles/*.scss ./style.scss -- npm run css",
+    "watch:js": "onchange ./js/src/*.js -v -- npm run js",
+    "watch:image": "onchange ./images/src/* -- npm run imagemin",
+    "watch": "parallelshell 'npm run server' 'npm run watch:css' 'npm run watch:js' 'npm run watch:image'",
+    "modernizr:dev": "node_modules/modernizr/bin/modernizr -c node_modules/modernizr/lib/config-all.json -d js/src/modernizr.dev.js",
+    "prod": "parallelshell 'npm run css' 'npm run uglify' 'npm run imagemin'",
+    "version": "versionbump 'version.json' 'package.json' && npm run prod && git add --all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IIP-Design/corona.git"
+  },
+  "author": "Office of Design, U.S. Department of State",
+  "license": "GPL-2.0+",
+  "bugs": {
+    "url": "https://github.com/IIP-Design/corona/issues"
+  },
+  "homepage": "https://github.com/IIP-Design/corona#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "browser-sync": "^2.12.1",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0",
+    "imagemin-cli": "^2.1.0",
+    "node-sass": "^3.4.2",
+    "node-sass-json-importer": "^1.0.6",
+    "onchange": "^2.3.0",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.5.1",
+    "uglify-js": "^2.6.2",
+    "versionbump": "git+ssh://git@github.com/IIP-Design/versionbump.git"
+  },
+  "dependencies": {
+    "modernizr": "^3.3.1",
+    "normalize-css": "^2.3.1"
+  }
+}

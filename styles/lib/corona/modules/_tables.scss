@@ -1,0 +1,12 @@
+.tbl-container {
+  display: table;
+}
+
+.tbl-row {
+  display: table-row;
+}
+
+.tbl-column {
+  display: table-cell;
+  padding: em(5);
+}

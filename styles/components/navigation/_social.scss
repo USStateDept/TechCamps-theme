@@ -1,0 +1,36 @@
+.social-menu {
+	li {
+		font-size:1.9rem;
+		margin-right:1px;
+		vertical-align:middle;
+		display:inline-block;
+		padding:0;
+	}
+	a {
+		color:#fff;
+		text-decoration:none;
+		padding:1.4rem 0.6rem;
+		&:hover,
+		&:focus {
+			color:$bright-blue;
+		}
+	}
+	li:first-child a {
+		margin-left:-0.6rem;
+	}
+	.facebook a {
+		@include icon( 'facebook' );
+	}
+	.twitter a {
+		@include icon( 'twitter' );
+	}
+	.youtube a {
+		@include icon( 'youtube' );
+	}
+	.medium a {
+		@include icon( 'medium' );
+	}
+	.storify a {
+		@include icon( 'storify' );
+	}
+}
