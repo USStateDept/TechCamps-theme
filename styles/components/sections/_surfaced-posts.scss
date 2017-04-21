@@ -1,0 +1,120 @@
+// 'surfaced' refers to the section with three horizontal posts.
+// used for related blog posts, most recent outcomes/events.
+
+.surfaced-posts {
+	padding:6rem 3rem;
+	@include bp( $thin ) {
+		padding:12rem 3rem;
+	}
+	@include bp( $medium ) {
+		padding:12rem 3rem;
+	}
+	text-align:center;
+	background:$off-white;
+	clear:both;
+	@include clearfix;
+
+	&__heading {
+		font-size:3rem;
+		line-height:1.15;
+		font-weight:700;
+	}
+
+	&__row {
+		@include grid-container();
+		text-align:left;
+		margin:4rem 0;
+		@include bp( $thin ) {
+			margin:7rem -2rem;
+		}
+	}
+
+	&__post {
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+			&:last-child {
+				display:none;
+			}
+		}
+		@include bp( $medium ) {
+			@include grid-column( 4 );
+			&:last-child {
+				display:block;
+			}
+		}
+	}
+
+	&__post-inner {
+		margin:0 0 4rem;
+		@include bp( $thin ) {
+			margin:0 2rem;
+		}
+		box-shadow:0 0 2rem -0.5rem $dark-gray;
+	}
+
+	&__image {
+		width:100%;
+		height:auto;
+		display:block;
+	}
+
+	&__text {
+		padding:2.5rem 4rem 0;
+		height:21.7rem;
+		background:#fff;
+		position:relative;
+	}
+
+	&__title {
+		line-height:1.5;
+		a {
+			color:$navy;
+			text-decoration:none;
+			font-weight:400;
+			font-size:2.5rem;
+		}
+		max-height:15rem;
+		overflow:hidden;
+	}
+
+	&__meta {
+		color:$gray-text;
+		font-weight:600;
+		font-size:1.5rem;
+		margin:0;
+		position:absolute;
+		bottom:3rem;
+	}
+
+	&__date {
+		background:#fff;
+		color:$blue;
+		font-weight:700;
+		float:left;
+		position:absolute;
+		top:-4.4rem;
+		padding:2rem;
+		left:0;
+	}
+
+}
+
+.main-basic + .surfaced-posts,
+.main-singular + .surfaced-posts {
+	background-image:url( 'images/globe-bg.png' );
+	background-size:cover;
+
+	.surfaced-posts__heading {
+		color:#fff;
+	}
+
+	.surfaced-posts__post-inner {
+		background:$navy;
+	}
+
+	// if default globe image we don't want to show the globe over the globe
+	.surfaced-posts__image.default {
+		opacity:0;
+	}
+
+}

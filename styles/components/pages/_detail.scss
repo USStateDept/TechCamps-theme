@@ -1,0 +1,311 @@
+.main-single {
+	.entry-content {
+		// width:85rem;
+		// margin:12rem auto;
+		font-weight:400;
+		color:$navy;
+	}
+}
+
+.detail-header {
+	background-color:$light-gray; // backup if no image
+	background-size:cover;
+	background-position:center center;
+	position:relative;
+	padding:10rem 1rem;
+	&:before {
+		content:'';
+		display:block;
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		opacity:0.9;
+	}
+
+	&.orange:before { background-color:$orange; }
+	&.blue:before   { background-color:$blue; }
+	&.green:before  { background-color:$green; }
+	&.purple:before { background-color:$purple; }
+	&.pink:before   { background-color:$deep-pink; }
+	&.ocean:before  { background-color:$ocean; }
+	&.red:before    { background-color:$red; }
+	&.olive:before  { background-color:$olive; }
+	&.maroon:before { background-color:$maroon; }
+
+	a {
+		color:#fff;
+	}
+
+	&__container {
+		position:relative;
+		z-index:1;
+		color:#fff;
+		@include grid-container;
+	}
+
+	&__primary {
+		padding:0 2rem;
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+		}
+	}
+
+	&__breadcrumbs,
+	&__title,
+	&__subhead {
+		color:#fff;
+	}
+
+	&__breadcrumbs {
+		a {
+			@include secondary-text;
+			display:inline-block;
+			font-size:1.6rem;
+			border-bottom:1px solid #fff;
+		}
+	}
+
+	&__title {
+		font-size:4rem;
+		@include bp( $thin ) {
+			font-size:8rem;
+		}
+		letter-spacing:-0.3rem;
+		font-weight:700;
+		padding:6rem 0 2rem;
+		margin:0 0 2rem;
+		line-height:1;
+	}
+
+	&__subhead {
+		font-size:2rem;
+		line-height:2;
+		font-family:"Open Sans", sans-serif;
+		color:#fff;
+		letter-spacing:0;
+		line-height:1.5;
+	}
+
+}
+
+// adjustments for outcomes
+.single-outcome .detail-header {
+
+	// give title more space - outcome titles are long-ish
+
+	@include bp( $thin ) {
+
+		&__primary {
+			@include grid-column( 8 );
+		}
+
+		&__title {
+			font-size:7rem;
+			line-height:1.1;
+		}
+
+	}
+
+}
+
+.single-outcome .detail-content {
+	margin-bottom:8rem;
+}
+
+.detail-meta {
+	background:$light-gray;
+	padding:8rem 3rem;
+	margin-bottom:6rem;
+	@include bp( $medium ) {
+		margin-bottom:10rem;
+	}
+	line-height:1.4;
+	font-size:1.5rem;
+	font-weight:600;
+
+	&__container {
+		@include grid-container;
+	}
+
+	@include bp( $thin ) {
+
+		&__data {
+			@include grid-column( 8 );
+		}
+
+		&__cta {
+			@include grid-column( 4 );
+			text-align:right;
+			padding-right:2.4rem;
+		}
+
+	}
+
+	a {
+		@include secondary-text;
+		color:$blue;
+		font-size:1.5rem;
+		font-weight:700;
+		&:hover,
+		&:focus {
+			color:$bright-blue;
+			text-decoration:underline;
+		}
+		&.button {
+			color:#fff;
+			&:hover,
+			&:focus {
+				text-decoration:none;
+			}
+		}
+	}
+
+	&__topics {
+		@include icon-before( 'tag' );
+		margin-bottom:4rem;
+		&:before {
+			display:block;
+			float:left;
+			padding-right:1.2rem;
+			// padding:0 2rem 4rem 0;
+		}
+		a:first-child {
+			&:before {
+				display:none;
+			}
+		}
+	}
+
+	&__location {
+		@include icon-before( 'pin' );
+		display:block;
+		margin-bottom:4rem;
+		@include bp( $thin ) {
+			display:inline-block;
+			margin-right:4rem;
+			margin-bottom:0;
+		}
+
+		span {
+			padding-left:1.4rem;
+			@include bp( $thin ) {
+				padding-left:0;
+			}
+		}
+	}
+
+	&__date {
+		@include icon-before( 'calendar' );
+		display:block;
+		margin:2.4rem 0 4rem;
+		@include bp( $thin ) {
+			margin:0;
+			display:inline-block;
+		}
+	}
+
+	&__funded {
+		@include icon-before( 'contact' );
+		display:inline-block;
+	}
+
+	&__topics,
+	&__location,
+	&__date,
+	&__funded {
+		&:before {
+			color:$blue;
+			font-size:3.4rem;
+		}
+
+		a {
+			display:block;
+			margin-bottom:1rem;
+			padding-left:4.8rem;
+		}
+
+		@include bp( $thin ) {
+			a {
+				display:inline;
+				margin-bottom:0;
+				padding-left:0;
+				&:before {
+					content:'';
+					display:inline-block;
+					width:0.2rem;
+					height:2rem;
+					margin-left:1rem;
+					margin-right:1rem;
+					vertical-align:middle;
+					background-color:$navy;
+				}
+			}
+		}
+
+	}
+
+}
+
+.detail-content {
+	padding:0 3rem;
+
+	&__container {
+		@include grid-container;
+	}
+
+	&__primary {
+		margin-bottom:4rem;
+	}
+
+	@include bp( $medium ) {
+		&__primary {
+			@include grid-column( 6 );
+			margin-bottom:0;
+		}
+
+		&__secondary {
+			@include grid-column( 6 );
+			padding:0 2.4rem 0 5.5rem;
+		}
+	}
+
+}
+
+.detail-bottom {
+	background:$light-gray;
+	padding:8rem 3rem;
+	h2 {
+		line-height:1.3;
+	}
+}
+
+.detail-media {
+
+	&__item {
+		padding:2rem 0 5rem;
+	}
+
+}
+
+.flickr-gallery {
+	margin:0 auto 5rem;
+	&__container {
+		width:100%;
+		display:inline-block;
+		position:relative;
+	}
+	&__item {
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		iframe {
+			width:100% !important;
+			height:100% !important;
+			max-width:100% !important;
+		}
+	}
+}

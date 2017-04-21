@@ -1,0 +1,20 @@
+.autocomplete-suggestions {
+	border:1px solid $pale-blue;
+	background:#fff;
+	overflow:auto;
+
+	strong {
+		font-weight:400;
+		color:$blue;
+	}
+}
+
+.autocomplete-suggestion {
+	padding:0.2rem 0.5rem;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+.autocomplete-selected {
+	background:$off-white;
+}

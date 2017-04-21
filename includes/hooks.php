@@ -1,0 +1,105 @@
+<?php
+/**
+ * General hooks (actions/filters) not related to specific
+ * post type functionality.
+ *
+ * @package techcamp
+ */
+
+/**
+ * Adjust archive title.
+ */
+function techcamp_archive_title( $title ) {
+
+	if ( is_post_type_archive() ) {
+		$title = post_type_archive_title( '', false );
+	}
+
+	if ( is_home() ) {
+		$title = 'Blog';
+	}
+
+	return $title;
+}
+add_action( 'get_the_archive_title', 'techcamp_archive_title' );
+
+/**
+ * Remove broken corona filter (Read More link is empty).
+ */
+function techcamp_remove_filters() {
+	remove_filter( 'excerpt_more', 'corona_excerpt_read_more', 10 );
+}
+add_action( 'corona_init', 'techcamp_remove_filters', 11 );
+
+/**
+ * Add custom excerpt_more.
+ */
+function techcamp_excerpt_more( $excerpt_more ) {
+	return '&hellip;';
+}
+add_filter( 'excerpt_more', 'techcamp_excerpt_more' );
+
+/**
+ * Hook up the short description field to the excerpt, and force the
+ * short description to accept the same word count and trailing text
+ * as default excerpts.
+ */
+function techcamp_excerpt( $excerpt ) {
+
+	global $post;
+	$desc = get_post_meta( get_the_ID(), 'short_description', true );
+	if ( $desc ) {
+		$excerpt_length = apply_filters( 'excerpt_length', 55 );
+		$excerpt_more   = apply_filters( 'excerpt_more', ' [&hellip;]' );
+		$desc = wp_trim_words( $desc, $excerpt_length, $excerpt_more );
+		return $desc;
+	}
+
+	return $excerpt;
+
+}
+add_filter( 'get_the_excerpt', 'techcamp_excerpt' );
+
+/**
+ * Smartly adjust the excerpt length.
+ */
+function techcamp_excerpt_length( $length ) {
+
+	global $post;
+	if ( get_post_type() === 'resource' || get_post_type() === 'bio' ) {
+		return 42;
+	}
+
+	return $length;
+
+}
+add_filter( 'excerpt_length', 'techcamp_excerpt_length', 11 );
+
+/**
+ * Adjust the category list classes - used for the region list on landing pages.
+ */
+function techcamp_category_css_class( $classes ) {
+	$classes[] = 'explore-sections__item';
+	return $classes;
+}
+// no add_filter() here - used in page-templates/landing-page.php
+
+/**
+ * Adjust the term link destination to go to the events search - used for the
+ * region list on landing pages.
+ */
+function techcamp_override_term_link_for_event( $link, $term, $taxonomy  ) {
+	$link = techcamp_get_term_link( $term, $taxonomy, 'event' );
+	return $link;
+}
+// no add_filter() here - used in page-templates/landing-page.php
+
+/**
+ * Adjust the term link destination to go to the outcomes search - used for the
+ * region list on landing pages.
+ */
+function techcamp_override_term_link_for_outcome( $link, $term, $taxonomy  ) {
+	$link = techcamp_get_term_link( $term, $taxonomy, 'outcome' );
+	return $link;
+}
+// no add_filter() here - used in page-templates/landing-page.php

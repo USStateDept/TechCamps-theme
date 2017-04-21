@@ -1,13 +1,29 @@
-// colors
+// primary color palette
 
-$navy:#292e4b;
-$navy-dark:#293049;
-$navy-darker:#21273b;
+$navy:#293049;
+	$navy-light:#292e4b;
+	$navy-dark:#21273b;
 
-$bright-blue:#559ffe;
-$blue:#4073b5;
-$dark-blue:#33517f;
+$blue:#3c70b4; // #4073b5
+	$bright-blue:#559ffe;
+	$dark-blue:#33517f;
+	$darker-blue:#2b4675;
+	$pale-blue:#37517c;
 
 $light-gray:#f6f6f6;
-$gray:#d1d1d1;
-$near-black:#333333;
+	$gray:#d1d1d1;
+	$dark-gray:#7b7b7b;
+	$gray-text:#626262;
+	$near-black:#333333;
+	$off-white:#f3f3f3;
+
+// branded events/outcomes
+
+$green:#168545;
+$purple:#7d449a;
+$deep-pink:#c7345e;
+$ocean:#038181;
+$red:#cd2f27;
+$orange:#be482f;
+$olive:#928431;
+$maroon:#802242;

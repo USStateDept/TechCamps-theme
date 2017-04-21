@@ -25,7 +25,7 @@
 	&:focus {
 		@include element-invisible-off;
 		font-size:1.6rem;
-		color:$navy;
+		color:$navy-light;
 	}
 	margin: 0;
 	display: block;

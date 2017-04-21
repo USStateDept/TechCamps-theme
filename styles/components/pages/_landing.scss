@@ -1,0 +1,388 @@
+// various sections that appear exclusively on landing pages
+
+.explore-search {
+	background:$navy;
+	padding:8rem 3rem 6rem;
+	@include bp( $medium ) {
+		padding:12.5rem 3rem 7.5rem;
+	}
+	color:#fff;
+	a {
+		color:#fff;
+	}
+
+	&__container {
+		@include grid-container;
+	}
+
+	&__label {
+		margin-bottom:2rem;
+		display:block;
+		letter-spacing:0;
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+			margin:0;
+			display:inline;
+			letter-spacing:-0.05rem;
+		}
+		font-size:1.8rem;
+		@include bp( $medium ) {
+			font-size:2.6rem;
+		}
+		@include bp( $wide ) {
+			font-size:3.4rem;
+		}
+		line-height:1.3;
+		font-family:Glegoo, serif;
+		font-weight:700;
+		padding-top:1rem;
+	}
+
+	&__fields {
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+		}
+		background:$pale-blue;
+		position:relative;
+	}
+
+	&__input,
+	&__submit {
+		height:6.3rem;
+		padding:1rem 2.6rem;
+		border:0;
+		color:#fff;
+		font-size:1.8rem;
+		font-family:"Open Sans", sans-serif;
+		display:inline-block;
+	}
+
+	&__input {
+		background:$pale-blue;
+		width:100%;
+		padding-right:10rem;
+
+		&::placeholder {
+			color:$gray;
+		}
+	}
+
+	&__submit {
+		background:$blue;
+		position:absolute;
+		top:0;
+		right:0;
+	}
+
+	&__map {
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+			@include grid-push( 6 );
+			padding-left:2.6rem;
+		}
+		@include secondary-text;
+		font-size:1.6rem;
+		letter-spacing:0.15rem;
+		margin-top:2rem;
+		@include icon-after( 'pin' );
+		&:after {
+			font-size:2.6rem;
+		}
+	}
+
+	&__map-link {
+		text-decoration:none;
+		padding-bottom:0rem;
+		border-bottom:2px solid transparent;
+		transition:border 0.2s;
+		&:hover,
+		&:focus {
+			border-bottom:2px solid #fff;
+		}
+	}
+
+}
+
+.explore-links {
+	background-image:url( 'images/people-bg.jpg' );
+	background-size:cover;
+	padding:8rem 0;
+	@include bp( $wide ) {
+		padding:10rem 0;
+	}
+
+	&__container {
+		padding:0 3rem;
+	}
+
+	&__header {
+		text-align:left;
+		@include bp( $thin ) {
+			text-align:center;
+		}
+		color:#fff;
+		font-size:3.7rem;
+		line-height:1.3;
+	}
+
+	&__list-container {
+		margin-top:6rem;
+		overflow:hidden;
+	}
+
+	&__list {
+		margin-top:-0.2rem;
+		padding:0;
+		@include bp( $thin ) {
+			columns:3;
+			column-gap:8rem;
+		}
+	}
+
+	&__item {
+		@include remove-uli;
+		font-family:Glegoo, serif;
+		color:#fff;
+		font-size:2.4rem;
+		line-height:1.3;
+		padding:2rem 0;
+		border-top:2px solid #fff;
+		break-inside:avoid;
+
+		a {
+			color:#fff;
+			text-decoration:none;
+		}
+	}
+
+}
+
+.landing-signup {
+	background:$dark-blue;
+	padding:10rem 3rem;
+
+	&__container {
+	}
+
+	&__heading {
+		color:#fff;
+		font-size:3.7rem;
+		line-height:1.3;
+		margin-bottom:4rem;
+	}
+
+	input {
+		border:0;
+		color:#fff;
+		padding:2rem 3rem;
+		height:6.2rem;
+		@include secondary-text;
+		font-size:1.35rem;
+		@include bp( $thin ) {
+			font-size:1.6rem;
+		}
+	}
+
+	input[type="text"] {
+		background:$blue;
+		width:100%;
+		margin-bottom:2rem;
+		margin-right:2rem;
+		@include bp( $medium ) {
+			width:40%;
+			margin-bottom:0;
+		}
+		@include bp( $wide ) {
+			width:52rem;
+		}
+		text-transform:none;
+		&::placeholder {
+			color:#fff;
+			text-transform:uppercase;
+		}
+	}
+
+	input[type="submit"] {
+		background:$navy;
+		transition:background-color 0.2s;
+		&:hover,
+		&:focus {
+			background:$navy-dark;
+		}
+	}
+
+}
+
+.secondary-cta {
+	position:relative;
+	background-color:$navy;
+	color:#fff;
+
+	&:before {
+		content:'';
+		position:absolute;
+		top:0;
+		bottom:0;
+		width:100%;
+		background-image:url( 'images/spiral-bg.png' );
+		background-size:cover;
+		z-index:0;
+		@include bp( $thin ) {
+			width:50%;
+		}
+	}
+
+	&__container {
+		@include grid-container;
+		position:relative;
+		z-index:1;
+	}
+
+	&__featured,
+	&__general {
+		padding:8rem 3rem;
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+			padding:10rem 6rem;
+		}
+		@include bp( $medium ) {
+			padding:14.6rem 8rem;
+		}
+	}
+
+	&__featured {
+		@include bp( $thin ) {
+			padding-left:1rem;
+		}
+		a {
+			&:hover,
+			&:focus {
+				color:$bright-blue;
+			}
+		}
+	}
+
+	&__general {
+		padding-top:0;
+		padding-right:1rem;
+		line-height:1.3;
+		@include bp( $thin ) {
+			padding-top:8rem;
+		}
+	}
+
+	&__label,
+	&__title {
+		color:#fff;
+	}
+
+	&__label {
+		@include secondary-text;
+		font-size:1.6rem;
+		font-weight:700;
+		margin-bottom:1.8rem;
+	}
+
+	&__title {
+		font-size:3.4rem;
+		font-weight:400;
+		margin-bottom:0.7rem;
+	}
+
+	&__meta {
+		font-size:1.5rem;
+		letter-spacing:0.08rem;
+		font-weight:600;
+	}
+
+	&__button {
+		margin-top:2rem;
+		background-color:$blue;
+		&:hover,
+		&:focus {
+			background-color:$bright-blue;
+		}
+	}
+
+	a {
+		color:#fff;
+		text-decoration:none;
+	}
+
+}
+
+.explore-sections { // combine with explore-links? very similar
+	background-image:url( 'images/globe-bg.png' );
+	background-size:cover;
+	padding:10rem 3rem;
+	text-align:center;
+
+	&__container {
+	}
+
+	&__header {
+		text-align:left;
+		@include bp( $thin ) {
+			text-align:center;
+		}
+		color:#fff;
+		font-size:3.7rem;
+		line-height:1.3;
+	}
+
+	&__list {
+		padding:0;
+		text-align:left;
+		@include bp( $thin ) {
+			columns:3;
+			column-gap:8rem;
+		}
+	}
+
+	&__list-container {
+		margin-top:6rem;
+		overflow:hidden;
+	}
+
+	&__item {
+		@include remove-uli;
+		color:#fff;
+		padding:1rem 0;
+		break-inside:avoid;
+
+		font-family:Glegoo, serif;
+		font-size:2.4rem;
+		line-height:1.3;
+		font-weight:700;
+
+		a {
+			color:#fff;
+			text-decoration:none;
+			margin-bottom:0.6rem;
+			display:block;
+		}
+
+		// sub-menu
+
+		.children {
+			padding-left:0;
+			margin-bottom:2rem;
+		}
+
+		li {
+			@include secondary-text;
+			font-size:1.6rem;
+			a {
+				margin-bottom:0;
+			}
+		}
+
+	}
+
+	.button {
+		margin:4rem auto 0;
+		line-height:1.4;
+		text-align:left;
+	}
+
+}

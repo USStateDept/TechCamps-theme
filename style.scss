@@ -38,19 +38,37 @@ Template: corona
 @import 'styles/base/font-faces';
 @import 'styles/base/variables/colors';
 @import 'styles/base/variables/fonts';
+@import 'styles/base/variables/breakpoints';
 @import 'styles/base/mixins';
 @import 'styles/base/accessibility';
 @import 'styles/base/base';
+@import 'styles/base/elements';
 @import 'styles/base/grid';
 
 // components
 // @import 'styles/components/navigation/main-menu';
 @import 'styles/components/navigation/social';
+@import 'styles/components/navigation/hamburger';
+@import 'styles/components/navigation/mobile';
+@import 'styles/components/media/inline-images';
 @import 'styles/components/sections/top-bar';
 @import 'styles/components/sections/header';
+@import 'styles/components/sections/hero';
+@import 'styles/components/sections/sidebar';
+@import 'styles/components/sections/surfaced-posts';
 @import 'styles/components/sections/footer';
 @import 'styles/components/pages/basic';
+@import 'styles/components/pages/landing';
+@import 'styles/components/pages/archive';
+@import 'styles/components/pages/detail';
+@import 'styles/components/pages/home';
 @import 'styles/components/pages/map';
+@import 'styles/components/featured';
+@import 'styles/components/bios';
+@import 'styles/components/agenda';
+@import 'styles/components/toggles';
+@import 'styles/components/resource-search';
+@import 'styles/components/autocomplete';
 
 // print styles
 @import 'styles/print';

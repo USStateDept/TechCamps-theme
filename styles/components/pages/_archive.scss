@@ -1,0 +1,392 @@
+.archive-header {
+	background:$light-gray;
+	padding:6rem 3rem 4rem;
+	@include bp( $thin ) {
+		padding:8rem 3rem;
+	}
+	@include bp( $medium ) {
+		padding:12rem 3rem;
+	}
+}
+
+.archive-title {
+	width:100%;
+	font-size:4rem;
+	@include bp( $thin ) {
+		max-width:85rem;
+		font-size:6rem;
+	}
+	@include bp( $medium ) {
+		width:85rem;
+		font-size:7.8rem;
+	}
+	margin:0 auto;
+	font-weight:700;
+	letter-spacing:-0.2rem;
+	line-height:1;
+}
+
+.archive-description {
+	width:100%;
+	margin:3rem auto;
+	@include bp( $thin ) {
+		max-width:85rem;
+	}
+	@include bp( $medium ) {
+		width:85rem;
+	}
+}
+
+.archive-search {
+	background:$blue;
+	padding:4rem 3rem;
+	@include bp( $thin ) {
+		padding:6rem 3rem;
+	}
+	@include bp( $medium ) {
+		padding:10rem 6rem;
+	}
+
+	&__container {
+		@include bp( $thin ) {
+			max-width:85rem;
+		}
+		@include bp( $medium ) {
+			width:85rem;
+		}
+	}
+
+	&__form {
+		background:$pale-blue;
+		height:6.3rem;
+		position:relative;
+	}
+
+	&__input,
+	&__submit {
+		border:0;
+		background:none;
+		display:inline-block;
+		color:#fff;
+		height:6.3rem;
+		vertical-align:top;
+		@include secondary-text;
+		font-size:1.6rem;
+	}
+
+	&__input {
+		background-color:$pale-blue;
+		width:100%;
+		padding:2rem 11rem 2rem 3rem;
+
+		&::placeholder {
+			color:#fff;
+		}
+	}
+
+	&__submit {
+		background-color:$navy;
+		position:absolute;
+		right:0;
+		top:0;
+		padding:2rem 2rem;
+		@include icon-font( 'search' );
+		font-size:2.6rem;
+	}
+
+
+}
+
+.archive-body {
+	padding:0 3rem;
+	background:$light-gray;
+}
+
+$two-col: (
+	columns: 2,
+	gutter: 6.5rem,
+);
+
+.archive-container {
+	width:auto;
+	@include bp( $thin ) {
+		max-width:85rem;
+	}
+	@include bp( $medium ) {
+		width:85rem;
+	}
+	margin:0 auto;
+	padding:8rem 0;
+
+	&--two-col {
+		width:auto;
+
+		.archive-inner {
+			@include grid-container( $two-col );
+			margin-left:-6.5rem;
+		}
+
+		.archive-entry {
+			@include grid-column( 1, $two-col );
+			height:45rem;
+			margin-bottom:0;
+		}
+	}
+
+}
+
+// tighten up margins on blog where there's no search bar
+.main-archive--no-search {
+
+	.archive-header {
+		padding:6rem 3rem 1rem;
+		@include bp( $thin ) {
+			padding:8rem 3rem 3rem;
+		}
+		@include bp( $medium ) {
+			padding:12rem 3rem 6rem;
+		}
+	}
+
+	.archive-container {
+		padding:1rem 0;
+	}
+
+}
+
+.archive-total {
+	font-size:2.4rem;
+	margin-bottom:3.2rem;
+	line-height:1.4;
+	@include bp( $thin ) {
+		font-size:3.4rem;
+		margin-bottom:7rem;
+	}
+	font-weight:700;
+
+	&__count {
+		color:$blue;
+	}
+
+	&__query {
+		color:$blue;
+	}
+
+}
+
+.archive-entry {
+	background:#fff;
+	box-shadow:0 0 1.8rem -0.2rem $dark-gray;
+	padding:2rem 3rem;
+	@include bp( $thin ) {
+		padding:2rem 5.4rem;
+	}
+	margin:4rem 0;
+	&:first-child {
+		margin-top:0;
+	}
+	@include bp( $thin ) {
+		margin:7rem 0;
+		&:first-child {
+			margin-top:0;
+		}
+	}
+
+	&__type {
+		@include secondary-text;
+		font-size:1.5rem;
+		background:$blue;
+		color:#fff;
+		float:left;
+		margin:-2rem 0 3rem -3rem;
+		padding:2.4rem 3rem;
+		@include bp( $thin ) {
+			margin:-2rem 0 3rem -5.4rem;
+			padding:2.4rem 5.4rem;
+		}
+	}
+
+	&__title {
+		margin:0 0 3rem;
+		@include bp( $thin ) {
+			margin:3rem 0;
+		}
+		// font-weight:400;
+		a {
+			color:$navy;
+			text-decoration:none;
+			&:hover,
+			&:focus {
+				color:$blue;
+			}
+		}
+	}
+
+	&__meta {
+		font-size:1.4rem;
+		font-weight:600;
+		margin-bottom:3rem;
+	}
+
+	&__excerpt {
+		margin-bottom:3rem;
+
+		p {
+			margin-bottom:0;
+		}
+
+	}
+
+	.entry-footer {
+		padding:0;
+	}
+
+	.entry-footer a {
+		font-size:1.5rem;
+		font-weight:600;
+	}
+
+	.entry-footer__container {
+		width:auto;
+		margin-left:-0.4rem;
+	}
+
+	.entry-footer__list {
+
+		&:before {
+			color:$blue;
+		}
+
+		font-size:1.4rem;
+		line-height:1.6;
+		@include bp( $thin ) {
+			font-size:1.5rem;
+			line-height:1.8;
+		}
+
+	}
+
+	&--with-thumb {
+		position:relative;
+		padding:0;
+		@include clearfix;
+
+		&__thumb {
+			background:$navy;
+			padding:10% 20%;
+			@include bp( $thin ) {
+				float:left;
+				padding:5%;
+				width:29%;
+			}
+
+			img {
+				width:100%;
+				height:auto;
+			}
+		}
+
+		&__inner {
+			padding:2rem 3rem;
+			font-size:1.4rem;
+			@include bp( $thin ) {
+				font-size:1.6rem;
+				padding:2rem 5.4rem;
+				float:left;
+				width:70%;
+			}
+		}
+
+		.archive-entry__title {
+			margin:1rem 0 3rem;
+			line-height:1.3;
+			font-size:2.2rem;
+			@include bp( $thin ) {
+				font-size:3.4rem;
+			}
+		}
+
+		.entry-footer {
+			clear:both;
+			background:$blue;
+			color:#fff;
+			padding:3rem;
+			span {
+				@include secondary-text;
+			}
+			span, a {
+				margin:1rem 0;
+				font-size:1.4rem;
+				display:block;
+			}
+			.button {
+				padding:2.0rem 1.6rem;
+				width:100%;
+				max-width:19rem;
+			}
+			@include bp( $thin ) {
+				padding:5%;
+				text-align:center;
+				span, a {
+					margin:0 0.3rem;
+					display:inline-block;
+				}
+				.button {
+					width:auto;
+					max-width:none;
+				}
+			}
+			@include bp( $medium ) {
+				.button {
+					padding:2.5rem 3rem;
+				}
+			}
+		}
+	}
+
+}
+
+.pagination {
+	@include clearfix;
+	background:$light-gray;
+	padding:0 3rem;
+	@include secondary-text;
+	font-size:1.5rem;
+
+	&__container {
+		text-align:right;
+		padding:0 0 8rem;
+		@include bp( $medium ) {
+			padding:0 2rem 12rem;
+		}
+	}
+
+	.page-numbers {
+		display:inline-block;
+		padding:2rem 3rem;
+		margin:0 0.5rem;
+		text-decoration:none;
+		font-weight:700;
+		color:$navy;
+		transition:background 0.2s;
+		&:hover,
+		&:focus {
+			background:$gray;
+		}
+	}
+
+	.current,
+	.prev,
+	.next {
+		background:#e9e9e9;
+	}
+
+	.prev {
+		margin-right:3rem;
+	}
+
+	.next {
+		margin-left:3rem;
+	}
+
+}

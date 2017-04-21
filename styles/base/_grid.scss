@@ -1,16 +1,15 @@
-/* .site-container {
-	max-width:1300px;
-	margin:0 auto;
-} */
+// grid defaults
 
 $neat-grid: (
 	columns: 12,
 	gutter: 2rem,
 );
 
+// helper classes
+
 .container {
 	@include clearfix;
-	max-width:1360px;
+	max-width:136rem;
 	margin:0 auto;
 
 	&--padded {
@@ -18,9 +17,11 @@ $neat-grid: (
 	}
 }
 
+// corona structure
+
 .content-sidebar-wrap {
 	@include clearfix;
-	max-width:1360px;
+	max-width:136rem;
 	margin:0 auto;
 	padding:2rem 0;
 	float:none; // ?

@@ -1,6 +1,11 @@
 .site-footer {
-	background:$navy-dark;
+	background:$navy;
 	color:#fff;
+	padding:0 3rem;
+	ul,
+	li {
+		@include list-reset;
+	}
 }
 
 .footer-top,
@@ -8,32 +13,86 @@
 	@include grid-container;
 }
 
-.footer-top,
-.footer-bottom {
-	&__primary {
-		@include grid-column( 8 );
+.footer-top {
+	@include bp( $thin ) {
+		&__primary {
+			@include grid-column( 12 );
+		}
+		&__secondary {
+			@include grid-column( 12 );
+		}
 	}
+	@include bp( $medium ) {
+		&__primary {
+			@include grid-column( 9 );
+		}
+		&__secondary {
+			@include grid-column( 3 );
+		}
+	}
+}
 
-	&__secondary {
-		@include grid-column( 4 );
+.footer-bottom {
+	@include bp( $thin ) {
+		&__primary {
+			@include grid-column( 6 );
+		}
+		&__secondary {
+			@include grid-column( 6 );
+		}
+	}
+	@include bp( $medium ) {
+		&__primary {
+			@include grid-column( 8 );
+		}
+		&__secondary {
+			@include grid-column( 4 );
+		}
+	}
+	@include bp( $wide ) {
+		&__primary {
+			@include grid-column( 9 );
+		}
+		&__secondary {
+			@include grid-column( 3 );
+		}
 	}
 }
 
 .footer-top {
-	padding:3.7rem 0 4rem;
+	padding:5rem 0 4rem;
 
 	&__logo {
-		float:left;
+		@include bp( $medium ) {
+			float:left;
+		}
 		max-width:229px;
 		height:auto;
 	}
 
 	&__menu {
-		float:left;
-		padding:2.4rem 0 0 4.6rem;
+		@include clearfix;
+		@include bp( $medium ) {
+			float:left;
+		}
+		padding:2.4rem 0 0;
+		margin-left:-2rem;
+		clear:both;
+		@include bp( 1200px ) {
+			padding-left:1rem;
+			margin-left:0;
+			clear:none;
+		}
+		@include bp( $wide ) {
+			padding:2.4rem 0 0 4.6rem;
+		}
 
 		li {
-			float:left;
+			margin-bottom:1rem;
+			@include bp( $thin ) {
+				float:left;
+				margin:0;
+			}
 		}
 
 		a {
@@ -54,10 +113,17 @@
 	}
 
 	&__social {
-		text-align:right;
+		padding-top:2.4rem;
+		@include bp( $medium ) {
+			padding-top:0;
+			text-align:right;
+		}
 		margin-top:1.7rem;
 		li {
-			font-size:3.6rem;
+			font-size:2.6rem;
+			@include bp( $wide ) {
+				font-size:3.6rem;
+			}
 		}
 		a {
 			padding:1.4rem 0.75rem;
@@ -71,42 +137,33 @@
 	font-size:1.6rem;
 	line-height:2.8rem;
 	width:100%;
-	padding:2rem;
+	padding:3rem 0;
+	overflow:hidden;
+	@include grid-container;
 
 	&:before {
 		content:'';
 		display:block;
 		height:0.4rem;
-		margin:0 0 5rem;
-		background:$navy-darker;
-	}
-
-	.footer-1 {
-		width:110%;
-		margin:0 -5%;
+		margin:0 2rem 5rem;
+		background:$navy-dark;
 	}
 
 	.widget {
-		width:33.3333%;
-		padding:0 5%;
-		float:left;
+		@include bp( $thin ) {
+			@include grid-column( 6 );
+			padding-right:8rem;
+		}
 		img {
-			max-width:70%;
+			max-width:22rem;
 			margin-top:0.7rem;
 		}
 	}
 
 	.button {
-		display:inline-block;
-		text-transform:uppercase;
-		font-family:"Open Sans", sans-serif;
-		font-weight:600;
-		text-decoration:none;
 		background:$dark-blue;
-		color:#fff;
-		padding:1.5rem 3rem;
 		margin-top:0.7rem;
-		transition:background 0.2s;
+		font-size:1.6rem;
 		&:hover,
 		&:focus {
 			background:$blue;
@@ -116,11 +173,16 @@
 }
 
 .footer-bottom {
-	background:$navy-darker;
-	padding:2rem 0;
+	background:$navy-dark;
+	padding:3rem;
+	margin:0 -3rem;
 
 	&__secondary {
-		text-align:right;
+		margin-top:4rem;
+		@include bp( $medium ) {
+			margin:0;
+			text-align:right;
+		}
 	}
 
 	&__flag {
@@ -156,13 +218,20 @@
 		}
 	}
 
+	.sub-menu {
+		margin-top:1.3rem;
+	}
+
 	.sub-menu li {
-		margin-top:1.5rem;
-		float:left;
+		margin:0.2rem 2.2rem 0.6rem 0;
+		margin-bottom:0.6rem;
+		@include bp( $thin ) {
+			float:left;
+			margin-bottom:0;
+		}
 		font-family:"Open Sans", sans-serif;
 		font-size:1.4rem;
 		font-weight:600;
-		margin-right:2.2rem;
 		letter-spacing:0.05rem;
 		a {
 			color:$bright-blue;

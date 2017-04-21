@@ -15,61 +15,25 @@ body {
 	background:#fff;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family:$heading-font;
-	color:$navy;
-	margin:0 0 2.2rem;
-}
-
-h2 {
-	font-size:3.4rem;
-	letter-spacing:-1px;
-}
-
-p {
-	margin:0 0 4rem;
-}
-
 .content {
-	color:$navy;
-	font-size:1.8rem;
-	line-height:3.5rem;
+	color:$navy-light;
+	font-size:1.6rem;
+	line-height:1.8;
+	@include bp( $thin ) {
+		font-size:1.8rem;
+		line-height:1.95;
+	}
+	padding:0;
 }
 
 .entry-content {
 	margin:0;
 }
 
-a {
-	transition:color 0.1s;
-	&:before,
-	&:after {
-		transition:color 0.1s;
+// on small sizes, add margin for header
+.site-inner {
+	margin-top:7rem;
+	@include bp( $medium ) {
+		margin-top:0;
 	}
-}
-
-.size-full,
-.wp-caption {
-	width:107rem !important; // need to refactor obviously - fighting inline style
-	margin-left:-11rem;
-	margin-right:-11rem;
-	margin-top:5rem;
-	margin-bottom:5rem;
-}
-
-.wp-caption img.size-full {
-	width:auto;
-	margin:0;
-}
-
-.wp-caption .wp-caption-text {
-	text-align:left;
-	background:$light-gray;
-	font-family:"Source Serif Pro", serif;
-	font-size:1.6rem;
-	padding:2.6rem 4.8rem;
-	width:107rem;
-	margin:0;
-	letter-spacing:-0.04rem;
-	color:$near-black;
 }

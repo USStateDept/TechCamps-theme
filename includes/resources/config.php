@@ -35,7 +35,7 @@ function techcamp_resource_post_type() {
 		'hierarchical' => false,
 		'supports'     => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'page-attributes' ),
 		'has_archive'  => true,
-		'rewrite'      => array( 'slug' => 'resources' )
+		'rewrite'      => array( 'slug' => 'resources', 'with_front' => false )
 	) );
 
 }

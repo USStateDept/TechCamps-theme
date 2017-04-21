@@ -1,0 +1,66 @@
+.home-topics {
+	background-image:url( 'images/people-bg.jpg' );
+	background-position:center;
+	background-size:cover;
+	text-align:center;
+	padding:5rem 3rem;
+	@include bp( $thin ) {
+		padding:10rem 3rem;
+	}
+
+	&__intro {
+		font-size:2.1rem;
+		@include bp( $thin ) {
+			font-size:2.8rem;
+		}
+		@include bp( $medium ) {
+			font-size:3.4rem;
+		}
+		font-family:Glegoo, serif;
+		font-weight:bold;
+		line-height:1.4;
+		color:#fff;
+	}
+
+	&__row {
+		@include grid-column( 12 );
+		padding:0 0 3rem;
+		@include bp( $thin ) {
+			padding:6rem 0;
+		}
+	}
+
+	&__topic {
+		display:block;
+		text-decoration:none;
+		@include bp( $thin ) {
+			@include grid-column( 4 );
+		}
+	}
+
+	&__icon {
+		width:auto;
+		height:8rem;
+		@include bp( $medium ) {
+			height:12rem;
+			width:auto;
+		}
+	}
+
+	&__name {
+		color:#fff;
+		line-height:1.4;
+		margin-top:2rem;
+		font-size:2.1rem;
+		padding:0 1.5rem;
+		margin-bottom:4rem;
+		@include bp( $thin ) {
+			margin-bottom:2.2rem;
+		}
+		@include bp( $medium ) {
+			padding:0 3rem;
+			font-size:2.6rem;
+		}
+	}
+
+}

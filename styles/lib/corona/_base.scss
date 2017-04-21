@@ -122,72 +122,72 @@ body {
 	background: #fff; /* Fallback for when there is no custom background color defined. */
 }
 
-.content {
+// techcamp note: removed the .content qualifier from everything in the rest of this
+// section to streamline specificity
+// (i.e. so we don't have to worry about `.some-class li` being overridden by `.content li`)
 
-	blockquote:before,
-	blockquote:after,
-	q:before,
-	q:after {
-		content: "";
-	}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+}
 
-	blockquote,
-	q {
-		quotes: "" "";
-	}
+blockquote,
+q {
+	quotes: "" "";
+}
 
-	hr {
-		background-color: #ccc;
-		border: 0;
-		height: 1px;
-		margin-bottom: 1.5em;
-	}
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
+}
 
-	ul,
-	ol {
-		margin: 0 0 1em 0;
-		padding: 1em;
-	}
+ul,
+ol {
+	margin: 0 0 1em 0;
+	padding: 1em;
+}
 
-	ul {
-		list-style: none;
-		padding: 0 0 0 1em;
-		text-indent: -1em;
-	}
+ul {
+	list-style: none;
+	padding: 0 0 0 1em;
+	text-indent: -1em;
+}
 
-	ol {
-		list-style: decimal;
-	}
+ol {
+	list-style: decimal;
+}
 
-	ul li:before {
-		content: '•';
-		padding-right: 0.5em;
-	}
+ul li:before {
+	content: '•';
+	padding-right: 0.5em;
+}
 
-	li > ul,
-	li > ol {
-		margin: 0;
-	}
+li > ul,
+li > ol {
+	margin: 0;
+}
 
-	dt {
-		font-weight: bold;
-	}
+dt {
+	font-weight: bold;
+}
 
-	dd {
-		margin: 0 1.5em 1.5em;
-	}
+dd {
+	margin: 0 1.5em 1.5em;
+}
 
-	/* img {
-		height: auto;
-		width: auto !important;
-		max-width: 100% !important;
-	} */
+/* img {
+	height: auto;
+	width: auto !important;
+	max-width: 100% !important;
+} */
 
-	table {
-		margin: 0 0 1.5em;
-		width: 100%;
-	}
-
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
 }
 
 

@@ -14,7 +14,7 @@ get_header(); ?>
 
 	<?php tha_content_before(); ?>
 
-	<main id="main" class="content full-width main-map" role="main">
+	<main id="main" class="content main-basic full-width main-map" role="main">
 
 		<?php tha_content_top(); ?>
 

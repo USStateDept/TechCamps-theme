@@ -8,7 +8,17 @@
 /**
  * Run general theme setup functions such as enqueues.
  */
-require_once( __DIR__ . '/includes/setup.php' );
+require_once( __DIR__ . '/includes/theme-setup.php' );
+
+/**
+ * Load custom theme template tags.
+ */
+require_once( __DIR__ . '/includes/template-tags.php' );
+
+/**
+ * Load general action and filter hooks.
+ */
+require_once( __DIR__ . '/includes/hooks.php' );
 
 /**
  * Load all theme hooks containing templating.
@@ -16,13 +26,30 @@ require_once( __DIR__ . '/includes/setup.php' );
 require_once( __DIR__ . '/includes/theme-hooks.php' );
 
 /**
- * Register custom post types and fields.
+ * Add a parent class for creating options pages.
  */
-require_once( __DIR__ . '/includes/post-types/events.php' );
-require_once( __DIR__ . '/includes/post-types/outcomes.php' );
-require_once( __DIR__ . '/includes/post-types/resources.php' );
-require_once( __DIR__ . '/includes/post-types/bios.php' );
-require_once( __DIR__ . '/includes/post-types/posts.php' );
+require_once( __DIR__ . '/includes/options-pages.php' );
+
+/**
+ * Load post type-related functionality.
+ */
+require_once( __DIR__ . '/includes/pages/config.php' );
+
+require_once( __DIR__ . '/includes/events/config.php' );
+require_once( __DIR__ . '/includes/events/hooks.php' );
+require_once( __DIR__ . '/includes/events/options-page.php' );
+
+require_once( __DIR__ . '/includes/outcomes/config.php' );
+require_once( __DIR__ . '/includes/outcomes/options-page.php' );
+
+require_once( __DIR__ . '/includes/resources/config.php' );
+require_once( __DIR__ . '/includes/resources/options-page.php' );
+require_once( __DIR__ . '/includes/resources/resource-library.php' );
+
+require_once( __DIR__ . '/includes/bios/config.php' );
+
+require_once( __DIR__ . '/includes/posts/config.php' );
+require_once( __DIR__ . '/includes/posts/hooks.php' );
 
 /**
  * Register custom taxonomies.
@@ -35,6 +62,6 @@ require_once( __DIR__ . '/includes/taxonomies.php' );
 require_once( __DIR__ . '/includes/connections.php' );
 
 /**
- * Run custom map functions and hooks.
+ * Run custom functions and hooks for Map section.
  */
 require_once( __DIR__ . '/includes/map.php' );

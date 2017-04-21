@@ -18,46 +18,60 @@
  */
 function techcamp_connection_types() {
 
-	// relationship between an event and its trainers
+	// connect resources/bios to events/outcomes
 	p2p_register_connection_type( array(
-		'name' => 'event_trainers',
-		'from' => 'event',
-		'to'   => 'bio'
+		'name'        => 'resource_connections',
+		'from'        => array( 'resource', 'bio' ),
+		'to'          => array( 'event', 'outcome' ),
+		'sortable'    => 'any',
+		'title'       => array(
+			'from'          => 'Related Events & Outcomes',
+			'to'            => 'Related Resources & Bios',
+		),
+		'from_labels' => array(
+			'singular_name' => 'Event or Outcome',
+			'search_items'  => 'Search events/outcomes',
+			'not_found'     => 'No events or outcomes found.',
+		),
+		'to_labels'   => array(
+			'singular_name' => 'Resource or Bio',
+			'search_items'  => 'Search resources/bios',
+			'not_found'     => 'No resources or bios found.',
+		),
 	) );
 
-	// relationship between an event and any outcomes
+	// connect blog posts to events/outcomes
 	p2p_register_connection_type( array(
-		'name' => 'event_outcomes',
-		'from' => 'event',
-		'to'   => 'outcome'
+		'name'        => 'blog_connections',
+		'from'        => array( 'post' ),
+		'to'          => array( 'event', 'outcome' ),
+		'sortable'    => 'any',
+		'title'       => array(
+			'from'          => 'Related Events & Outcomes',
+			'to'            => 'Related Blog Posts',
+		),
+		'from_labels'   => array(
+			'singular_name' => 'Post',
+			'search_items'  => 'Search posts',
+			'not_found'     => 'No posts found.',
+		),
+		'to_labels' => array(
+			'singular_name' => 'Event or Outcome',
+			'search_items'  => 'Search events/outcomes',
+			'not_found'     => 'No events or outcomes found.',
+		),
 	) );
 
-	// relationship between an event and a related blog post
+	// connect events and outcomes to each other
 	p2p_register_connection_type( array(
-		'name' => 'event_blog_posts',
-		'from' => 'event',
-		'to'   => 'post'
-	) );
-
-	// relationship between an event and its related resources
-	p2p_register_connection_type( array(
-		'name' => 'event_resources',
-		'from' => 'event',
-		'to'   => 'resource'
-	) );
-
-	// relationship between an outcome and a related blog post
-	p2p_register_connection_type( array(
-		'name' => 'outcome_blog_posts',
-		'from' => 'outcome',
-		'to'   => 'post'
-	) );
-
-	// relationship between an outcome and a resource
-	p2p_register_connection_type( array(
-		'name' => 'outcome_resources',
-		'from' => 'outcome',
-		'to'   => 'resource'
+		'name'     => 'events_and_outcomes',
+		'from'     => 'event',
+		'to'       => 'outcome',
+		'sortable' => 'any',
+		'title'    => array(
+			'from' => 'Related Outcomes',
+			'to'   => 'Related Events',
+		),
 	) );
 
 }

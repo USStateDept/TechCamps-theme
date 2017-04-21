@@ -48,21 +48,29 @@ foreach( $markers as $id ) {
 		$date = date( $format, $start ) . ' - ' . date( $format, $end );
 	}
 
-	// get country
-	$countries = get_the_terms( $id, 'country' );
-	$country = array_shift( $countries );
+	// get region
+	$regions = get_the_terms( $id, 'country' );
+	if ( $regions ) {
+		$region = array_shift( $regions );
+	}
 
-	// get participating countries
+	// get participating regions
 	$participators = get_the_terms( $id, 'participator' );
-	$participating_countries = array();
+	$participating_regions = array();
 	if ( $participators ) {
 		foreach( $participators as $participator ) {
-			$participating_countries[] = $participator->name;
+			$participating_regions[] = addslashes( $participator->name );
 		}
 	}
 
 	// get description
 	$desc = get_post_meta( $id, 'short_description', true );
+
+	// get image or fallback
+	$img = get_the_post_thumbnail( $id, 'map-thumbnail' );
+	if ( !$img ) {
+		$img = '<img class="attachment-map-thumbnail" src="' . get_stylesheet_directory_uri() . '/images/world-thumbnail.png" alt="" />';
+	}
 
 	// defaults
 	$feature = array(
@@ -76,11 +84,11 @@ foreach( $markers as $id ) {
 			'desc'        => get_post_meta( $id, 'short_description', true ),
 			'date'        => $date,
 			'url'         => get_permalink( $id ),
-			'img'         => get_the_post_thumbnail( $id, 'map-thumbnail' ),
+			'img'         => $img,
 			'icon'        => get_stylesheet_directory_uri() . '/images/marker-event.png',
-			'c1'          => $country->name,
-			'c2'          => $participating_countries
-		)
+			'c1'          => isset( $region->name ) ? addslashes( $region->name ) : '',
+			'c2'          => $participating_regions
+		),
 	);
 
 	// conditional rules

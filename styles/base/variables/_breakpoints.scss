@@ -1,11 +1,6 @@
-//
-// Breakpoints
-//
-// Naming sizes after devices is imperfect, but it's an easy shorthand.
-//
+// meant to be used with the bp() mixin,
+// which is a basic min-width:$var implementation
 
-// $thin:
-// $medium:
-$wide: 1300px;
-
-$wide-and-up: min-width $wide;
+$thin:768px;
+$medium:1024px;
+$wide:1300px;

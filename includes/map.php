@@ -56,7 +56,7 @@ class TechCamp_Map {
 	}
 
 	/**
-	 * Based on an event's descriptive location, get geolocation info (lat, lng, country abbreviation)
+	 * Based on an event's descriptive location, get geolocation info (lat, lng)
 	 * and store it to the post.
 	 */
 	static function get_geolocation( $post_id, $post ) {
@@ -65,21 +65,21 @@ class TechCamp_Map {
 			return;
 		}
 
-		// get city/country
+		// get city/region
 		$address = get_post_meta( $post_id, 'address', true );
-		$country = get_the_terms( $post, 'country' );
+		$region  = get_the_terms( $post, 'country' );
 
 		// format into a location string
 		$location = $address;
-		if ( $country ) {
-			$country = array_shift( $country );
-			$location .= ', ' . $country->name;
+		if ( $region ) {
+			$region = array_shift( $region );
+			$location .= ', ' . $region->name;
 		}
 
 		// create the URL to query Google's geocoding API
 		$url = esc_url_raw( add_query_arg( array(
 			'address' => urlencode( $location ),
-			'key'     => self::$api_key
+			'key'     => self::$api_key,
 		), 'https://maps.googleapis.com/maps/api/geocode/json' ) );
 
 		// retrieve the data
@@ -89,10 +89,9 @@ class TechCamp_Map {
 			return;
 		}
 
-		// parse out the data
+		// parse out the data to extract location
 		$body_array = json_decode( $body );
 		$location = isset( $body_array->results[0]->geometry->location ) ? $body_array->results[0]->geometry->location : false;
-
 		if ( !$location ) {
 			return;
 		}
@@ -104,7 +103,7 @@ class TechCamp_Map {
 	}
 
 	/**
-	 * Get all countries and participating countries and return as an array.
+	 * Get all regions and participating regions and return as an array.
 	 *
 	 * @todo Do this.
 	 * @todo Consider loading from a file instead of generating dynamically each time.
@@ -112,16 +111,16 @@ class TechCamp_Map {
 	 */
 	static function get_participators() {
 
-		// get all non-empty countries and participators
-		$countries = get_terms( array(
+		// get all non-empty regions and participators
+		$regions = get_terms( array(
 			'taxonomy' => array( 'country', 'participator' ),
 			'fields'   => 'names'
 		) );
 
 		// remove duplicates and keys
-		$countries = array_values( array_unique( $countries ) );
+		$regions = array_values( array_unique( $regions ) );
 
-		return $countries;
+		return $regions;
 
 	}
 

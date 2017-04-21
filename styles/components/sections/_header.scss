@@ -1,3 +1,11 @@
+.header {
+	display:none;
+	@include bp( $medium ) {
+		display:block;
+		margin-top:5.3rem;
+	}
+}
+
 .container--header {
 	@include grid-container;
 }
@@ -30,7 +38,7 @@
 	}
 
 	a {
-		color:$navy;
+		color:$navy-light;
 		text-transform:uppercase;
 		font-weight:700;
 		padding:4rem 2.4rem 0.6rem;
@@ -41,9 +49,14 @@
 	.current-menu-item a,
 	a:hover,
 	a:focus {
-		background:$navy-dark;
+		background:$navy;
 		color:#fff;
 		padding-bottom:4rem;
+	}
+
+	a:hover,
+	a:focus {
+		background:$blue;
 	}
 
 }

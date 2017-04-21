@@ -34,8 +34,8 @@ function techcamp_event_post_type() {
 		'menu_icon'    => 'dashicons-calendar',
 		'hierarchical' => false,
 		'supports'     => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'page-attributes' ),
-		'has_archive'  => true,
-		'rewrite'      => array( 'slug' => 'events' )
+		'has_archive'  => 'events/all',
+		'rewrite'      => array( 'slug' => 'events', 'with_front' => false )
 	) );
 
 }
@@ -81,22 +81,35 @@ function techcamp_event_fields() {
 
 	$event_box->add_field( array(
 		'id'       => 'country_field',
-		'name'     => __( 'Country', 'techcamp' ),
+		'name'     => __( 'Region', 'techcamp' ),
 		'type'     => 'taxonomy_select',
 		'taxonomy' => 'country',
-		'desc'     => 'Select the country in which the TechCamp is held.',
+		'desc'     => 'Select the region in which the TechCamp is held.',
 		'remove_default' => true
 	) );
 
 	$event_box->add_field( array(
+		'id'   => 'exclude_from_map',
+		'name' => __( 'Exclude from map?', 'techcamp' ),
+		'desc' => 'Yes',
+		'type' => 'checkbox'
+	) );
+
+	$event_box->add_field( array(
 		'id'       => 'participator',
-		'name'     => __( 'Participating Countries', 'techcamp' ),
+		'name'     => __( 'Participating Regions', 'techcamp' ),
 		'type'     => 'taxonomy_multicheck',
 		'taxonomy' => 'participator',
-		'desc'     => 'Select all countries participating in this TechCamp. Scroll to see more.',
+		'desc'     => 'Select all regions participating in this TechCamp. Scroll to see more.',
 		'remove_default' => true,
 		'select_all_button' => false,
 		'before' => '<style>.cmb2-checkbox-list{max-height:200px;overflow:scroll;}</style>'
+	) );
+
+	$event_box->add_field( array(
+		'id'   => 'agenda',
+		'name' => __( 'Agenda', 'techcamp' ),
+		'type' => 'wysiwyg'
 	) );
 
 	$event_box->add_field( array(
@@ -112,18 +125,60 @@ function techcamp_event_fields() {
 	) );
 
 	$event_box->add_field( array(
+		'id'   => 'quote',
+		'name' => __( 'Quote', 'techcamp' ),
+		'type' => 'text'
+	) );
+
+	$event_box->add_field( array(
+		'id'   => 'attribution',
+		'name' => __( 'Quote Attribution', 'techcamp' ),
+		'type' => 'text'
+	) );
+
+	$event_box->add_field( array(
+		'id'   => 'images',
+		'name' => __( 'Flickr image gallery embed', 'techcamp' ),
+		'type' => 'textarea_code'
+	) );
+
+	$event_box->add_field( array(
+		'id'         => 'videos',
+		'name'       => __( 'Videos', 'techcamp' ),
+		'type'       => 'text',
+		'repeatable' => true,
+		'attributes' => array(
+			'placeholder' => 'Enter a YouTube or Vimeo URL'
+		),
+		'options'    => array(
+			'add_row_text' => __( 'Add video', 'techcamp' )
+		)
+	) );
+
+	$event_box->add_field( array(
+		'id'      => 'color_scheme',
+		'name'    => __( 'Color scheme', 'techcamp' ),
+		'type'    => 'select',
+		'options' => array(
+			'orange' => 'Orange',
+			'blue'   => 'Blue',
+			'green'  => 'Green',
+			'purple' => 'Purple',
+			'pink'   => 'Deep Pink',
+			'ocean'  => 'Ocean',
+			'red'    => 'Red',
+			'olive'  => 'Olive',
+			'maroon' => 'Maroon'
+		)
+	) );
+
+	$event_box->add_field( array(
 		'id'      => 'short_description',
 		'name'    => __( 'Short Description', 'techcamp' ),
 		'type'    => 'wysiwyg',
 		'options' => array(
 			'textarea_rows' => 6
 		)
-	) );
-
-	$event_box->add_field( array(
-		'id'   => 'quote',
-		'name' => __( 'Quote', 'techcamp' ),
-		'type' => 'text'
 	) );
 
 }

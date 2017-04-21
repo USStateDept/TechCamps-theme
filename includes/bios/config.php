@@ -35,7 +35,7 @@ function techcamp_bio_post_type() {
 		'hierarchical' => false,
 		'supports'     => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'page-attributes' ),
 		'has_archive'  => true,
-		'rewrite'      => array( 'slug' => 'bios' )
+		'rewrite'      => array( 'slug' => 'bios', 'with_front' => false )
 	) );
 
 }

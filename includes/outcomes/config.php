@@ -34,8 +34,8 @@ function techcamp_outcome_post_type() {
 		'menu_icon'    => 'dashicons-chart-bar',
 		'hierarchical' => false,
 		'supports'     => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'page-attributes' ),
-		'has_archive'  => true,
-		'rewrite'      => array( 'slug' => 'outcomes' )
+		'has_archive'  => 'outcomes/all',
+		'rewrite'      => array( 'slug' => 'outcomes', 'with_front' => false )
 	) );
 
 }
@@ -50,6 +50,12 @@ function techcamp_outcome_fields() {
 		'id'           => 'outcome_box',
 		'title'        => __( 'Outcome Fields', 'techcamp' ),
 		'object_types' => array( 'outcome' )
+	) );
+
+	$outcome_box->add_field( array(
+		'id'   => 'subhead',
+		'name' => __( 'Subhead', 'techcamp' ),
+		'type' => 'text'
 	) );
 
 	$outcome_box->add_field( array(
@@ -74,10 +80,10 @@ function techcamp_outcome_fields() {
 
 	$outcome_box->add_field( array(
 		'id'       => 'country',
-		'name'     => __( 'Country', 'techcamp' ),
+		'name'     => __( 'Region', 'techcamp' ),
 		'type'     => 'taxonomy_select',
 		'taxonomy' => 'country',
-		'desc'     => 'Select the country in which the Outcome is held.',
+		'desc'     => 'Select the region in which the Outcome is held.',
 		'remove_default' => true
 	) );
 
@@ -95,12 +101,32 @@ function techcamp_outcome_fields() {
 	) );
 
 	$outcome_box->add_field( array(
+		'id'         => 'videos',
+		'name'       => __( 'Videos', 'techcamp' ),
+		'type'       => 'text',
+		'repeatable' => true,
+		'attributes' => array(
+			'placeholder' => 'Enter a YouTube or Vimeo URL'
+		),
+		'options'    => array(
+			'add_row_text' => __( 'Add video', 'techcamp' )
+		)
+	) );
+
+	$outcome_box->add_field( array(
 		'id'      => 'color_scheme',
 		'name'    => __( 'Color scheme', 'techcamp' ),
 		'type'    => 'select',
 		'options' => array(
-			'blue'  => 'Blue',
-			'green' => 'Green'
+			'orange' => 'Orange',
+			'blue'   => 'Blue',
+			'green'  => 'Green',
+			'purple' => 'Purple',
+			'pink'   => 'Deep Pink',
+			'ocean'  => 'Ocean',
+			'red'    => 'Red',
+			'olive'  => 'Olive',
+			'maroon' => 'Maroon'
 		)
 	) );
 

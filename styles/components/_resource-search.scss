@@ -1,0 +1,130 @@
+.resource-filters {
+	background:$navy;
+	color:#fff;
+	padding:8.9rem 0 11.4rem;
+	@include secondary-text;
+	font-size:1.6rem;
+
+	&__desc,
+	&__dropdown {
+		display:inline-block;
+		margin:0 5rem 0 0;
+	}
+
+	&__desc,
+	&__label {
+		padding:4rem 2rem;
+	}
+
+	&__desc {
+		margin-left:-2rem;
+	}
+
+	&__label {
+		padding-right:3.6rem;
+		position:relative;
+		&:hover {
+			cursor:pointer;
+		}
+		&:after {
+			content:'';
+			@include triangle(2rem, #c2c2c2, down);
+			position:absolute;
+			right:0;
+			top:4.3rem;
+		}
+		&:before {
+			content:'';
+			@include triangle(1rem, $navy, down );
+			position:absolute;
+			right:0.5rem;
+			top:4.3rem;
+			z-index:1;
+		}
+	}
+
+	&__checklist {
+		display:none;
+		&.toggled {
+			display:block;
+		}
+		position:absolute;
+		background:$navy;
+		width:45.5rem;
+		margin-left:-2rem;
+		padding-bottom:2.4rem;
+		max-height:35rem;
+		overflow-y:auto;
+	}
+
+	&__checkline {
+		@include clearfix;
+		display:block;
+		width:100%;
+		padding:1.5rem 4rem;
+		margin:0;
+
+		&:hover {
+			cursor:pointer;
+		}
+
+		input {
+			display:block;
+			float:left;
+		}
+
+		span {
+			display:block;
+			float:left;
+			width:75%;
+			line-height:1.4;
+		}
+	}
+
+	&__apply {
+		float:right;
+		margin:2rem 0;
+		padding:2.5rem 4.5rem;
+		font-size:1.6rem;
+		background:$blue;
+		&:hover,
+		&:focus {
+			background:$bright-blue;
+		}
+	}
+
+	&__selection {
+		background:$ocean;
+		transition:none;
+		&:hover,
+		&:focus {
+			background:$ocean;
+		}
+		margin-right:2rem;
+		padding:1.5rem 3rem;
+	}
+
+	&__remove-selection {
+		color:#fff;
+		text-decoration:none;
+		padding:0 0 0 1rem;
+		display:inline-block;
+		transition:none;
+		&:before {
+			content:'\00d7';
+			font-size:2.8rem;
+			height:3.2rem;
+			display:inline-block;
+			vertical-align:middle;
+		}
+		&:hover,
+		&:focus {
+			color:#fff;
+		}
+	}
+
+	&__clear {
+		color:#fff;
+	}
+
+}
