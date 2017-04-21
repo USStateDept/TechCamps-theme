@@ -10,7 +10,7 @@
  */
 function techcamp_taxonomies() {
 
-	register_taxonomy( 'topic', array( 'event', 'outcome', 'resource', 'post' ), array(
+	register_taxonomy( 'topic', array( 'event', 'outcome', 'post' ), array(
 		'labels' => array(
 			'name'                       => 'Topics',
 			'singular_name'              => 'Topic',
@@ -41,61 +41,61 @@ function techcamp_taxonomies() {
 
 	register_taxonomy( 'country', array( 'event', 'outcome' ), array(
 		'labels' => array(
-			'name'                       => 'Countries',
-			'singular_name'              => 'Country',
-			'search_items'               => 'Search Countries',
-			'popular_items'              => 'Popular Countries',
-			'all_items'                  => 'All Countries',
-			'parent_item'                => 'Parent Country',
-			'parent_item_colon'          => 'Parent Country:',
-			'edit_item'                  => 'Edit Country',
-			'view_item'                  => 'View Country',
-			'update_item'                => 'Update Country',
-			'add_new_item'               => 'Add New Country',
-			'new_item_name'              => 'New Country Name',
-			'separate_items_with_commas' => 'Separate countries with commas',
-			'add_or_remove_items'        => 'Add or remove countries',
-			'choose_from_most_used'      => 'Choose from the most used countries',
-			'not_found'                  => 'No countries found',
-			'no_terms'                   => 'No countries',
-			'items_list_navigation'      => 'Countries list navigation',
-			'items_list'                 => 'Countries list'
+			'name'                       => 'Regions',
+			'singular_name'              => 'Region',
+			'search_items'               => 'Search Regions',
+			'popular_items'              => 'Popular Regions',
+			'all_items'                  => 'All Regions',
+			'parent_item'                => 'Parent Region',
+			'parent_item_colon'          => 'Parent Region:',
+			'edit_item'                  => 'Edit Region',
+			'view_item'                  => 'View Region',
+			'update_item'                => 'Update Region',
+			'add_new_item'               => 'Add New Region',
+			'new_item_name'              => 'New Region Name',
+			'separate_items_with_commas' => 'Separate regions with commas',
+			'add_or_remove_items'        => 'Add or remove regions',
+			'choose_from_most_used'      => 'Choose from the most used regions',
+			'not_found'                  => 'No regions found',
+			'no_terms'                   => 'No regions',
+			'items_list_navigation'      => 'Regions list navigation',
+			'items_list'                 => 'Regions list'
 		),
 		'public'            => true,
 		'hierarchical'      => true,
 		'show_admin_column' => true,
 		'show_tagcloud'     => false,
-		'rewrite'           => array( 'slug' => 'countries' )
+		'rewrite'           => array( 'slug' => 'regions' )
 	) );
 
-	// participating countries is a separate taxonomy, though it will have the same terms
+	// participators is a separate taxonomy, though it will have the same terms
 	register_taxonomy( 'participator', array( 'event' ), array(
 		'labels' => array(
-			'name'                       => 'Participating Countries',
-			'singular_name'              => 'Participating Country',
-			'search_items'               => 'Search Participating Countries',
-			'popular_items'              => 'Popular Participating Countries',
-			'all_items'                  => 'All Participating Countries',
-			'parent_item'                => 'Parent Participating Country',
-			'parent_item_colon'          => 'Parent Participating Country:',
-			'edit_item'                  => 'Edit Participating Country',
-			'view_item'                  => 'View Participating Country',
-			'update_item'                => 'Update Participating Country',
-			'add_new_item'               => 'Add New Participating Country',
-			'new_item_name'              => 'New Participating Country Name',
-			'separate_items_with_commas' => 'Separate participating countries with commas',
-			'add_or_remove_items'        => 'Add or remove participating countries',
-			'choose_from_most_used'      => 'Choose from the most used participating countries',
-			'not_found'                  => 'No participating countries found',
-			'no_terms'                   => 'No participating countries',
-			'items_list_navigation'      => 'Participating countries list navigation',
-			'items_list'                 => 'Participating countries list'
+			'name'                       => 'Participating Regions',
+			'singular_name'              => 'Participating Region',
+			'search_items'               => 'Search Participating Regions',
+			'popular_items'              => 'Popular Participating Regions',
+			'all_items'                  => 'All Participating Regions',
+			'parent_item'                => 'Parent Participating Region',
+			'parent_item_colon'          => 'Parent Participating Region:',
+			'edit_item'                  => 'Edit Participating Region',
+			'view_item'                  => 'View Participating Region',
+			'update_item'                => 'Update Participating Region',
+			'add_new_item'               => 'Add New Participating Region',
+			'new_item_name'              => 'New Participating Region Name',
+			'separate_items_with_commas' => 'Separate participating regions with commas',
+			'add_or_remove_items'        => 'Add or remove participating regions',
+			'choose_from_most_used'      => 'Choose from the most used participating regions',
+			'not_found'                  => 'No participating regions found',
+			'no_terms'                   => 'No participating regions',
+			'items_list_navigation'      => 'Participating regions list navigation',
+			'items_list'                 => 'Participating regions list'
 		),
 		'public'            => true,
 		'hierarchical'      => true,
 		'show_admin_column' => true,
 		'show_tagcloud'     => false,
-		'rewrite'           => array( 'slug' => 'countries' )
+		'rewrite'           => array( 'slug' => 'participating-regions' )
 	) );
 
 	register_taxonomy( 'resource_type', array( 'resource' ), array(
@@ -127,5 +127,80 @@ function techcamp_taxonomies() {
 		'rewrite'           => array( 'slug' => 'resource-types' )
 	) );
 
+	//
+	// The following are HIDDEN taxonomies.
+	//
+	// They are used for various functionality to store data automatically
+	// that the user shouldn't have control over.
+	//
+
+	// needs prefix because 'year' is reserved by wp and causes a mess of weird rewrite behavior
+	register_taxonomy( 'event_year', array( 'event' ), array(
+		'labels' => array(
+			'name'          => 'Years',
+			'singular_name' => 'Year',
+		),
+		'public' => false
+	) );
+
+	/*
+
+	register_taxonomy( 'resource_techcamp', array( 'resource', 'bio' ), array(
+		'labels' => array(
+			'name'          => 'TechCamps',
+			'singular_name' => 'TechCamp',
+		),
+		'public'       => true,
+		'show_ui'      => false,
+		'hierarchical' => true,
+	) );
+
+	register_taxonomy( 'resource_topic', array( 'resource', 'bio' ), array(
+		'labels' => array(
+			'name'          => 'TechCamps',
+			'singular_name' => 'TechCamp',
+		),
+		'public'       => true,
+		'show_ui'      => false,
+		'hierarchical' => true,
+	) );
+
+	register_taxonomy( 'resource_country', array( 'resource', 'bio' ), array(
+		'labels' => array(
+			'name'          => 'TechCamps',
+			'singular_name' => 'TechCamp',
+		),
+		'public'       => true,
+		'show_ui'      => false,
+		'hierarchical' => true,
+	) );
+
+	*/
+
 }
 add_action( 'init', 'techcamp_taxonomies', 10 );
+
+/**
+ * Additional fields for the Topics taxonomy.
+ */
+function techcamp_topics_fields() {
+
+	$home_box = new_cmb2_box( array(
+		'id'           => 'topic_box',
+		'title'        => __( 'Topic Fields', 'techcamp' ),
+		'object_types' => array( 'term' ),
+		'taxonomies'   => array( 'topic' ),
+	) );
+
+	$home_box->add_field( array(
+		'id'   => 'icon',
+		'name' => __( 'Icon', 'techcamp' ),
+		'type' => 'file',
+		'options' => array(
+			'url' => false,
+		),
+	) );
+
+
+}
+add_action( 'cmb2_admin_init', 'techcamp_topics_fields' );

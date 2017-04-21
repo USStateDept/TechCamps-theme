@@ -1,0 +1,131 @@
+.featured-items {
+
+	&__container {
+		padding:0 3rem;
+	}
+
+	&__item {
+		@include clearfix;
+		position:relative;
+		margin:8rem 0;
+		@include bp( $medium ) {
+			margin:13.2rem 0;
+		}
+	}
+
+	&__image { // image controls height of entire item
+		position:relative;
+		z-index:0;
+		display:block;
+		width:100%;
+		height:auto;
+		margin:0 auto;
+		@include bp( $thin ) {
+			margin:0;
+			margin-left:-5%;
+			width:55%;
+			height:auto;
+			float:right;
+		}
+	}
+
+	&__text { // contains green and white text boxes
+		width:100%;
+		@include bp( $thin ) {
+			@include vertical-align;
+			width:45%;
+			position:absolute;
+		}
+	}
+
+	&__box {
+		z-index:1;
+		position:relative;
+		padding:4rem;
+		@include bp( $thin ) {
+			margin-right:-11.5%;
+		}
+		@include bp( $medium ) {
+			padding:7.5rem 7rem 7.5rem 7rem;
+		}
+		@include bp( $wide ) {
+			padding:10.5rem 11.5rem 9rem 11.5rem;
+		}
+		background-color:$green;
+		color:#fff;
+		a, h2, h3 {
+			color:#fff;
+		}
+	}
+
+	&__sub {
+		background-color:#fff;
+		box-shadow:0 0 5px $near-black;
+		font-weight:600;
+		font-size:1.4rem;
+		padding:2rem 3rem 2.6rem;
+		margin:0 auto;
+		width:90%;
+		@include bp( $thin ) {
+			width:auto;
+			margin:0;
+			margin-left:3rem;
+		}
+		@include bp( $medium ) {
+			font-size:1.6rem;
+			padding:2rem 4.5rem;
+			margin-left:7.5rem; // 7.5 + 4.5 padding to match padding of green box
+		}
+		@include icon( 'pin' );
+		&:before {
+			color:$blue;
+			font-size:4rem;
+			padding-right:1rem;
+			margin-top:-0.5rem;
+			display:block;
+			float:left;
+		}
+	}
+
+	&__label {
+		@include secondary-text;
+		font-size:1.6rem;
+		font-weight:700;
+		letter-spacing:0.1rem;
+	}
+
+	&__title {
+		font-weight:400;
+		margin-bottom:0;
+		a {
+			@include border-underline;
+		}
+
+	}
+
+	// swap image & text positions
+	.featured-items__item--right {
+
+		.featured-items__image {
+			float:left;
+			margin-left:0;
+			margin-right:-5%;
+		}
+
+		.featured-items__text {
+			right:0;
+		}
+
+		.featured-items__box {
+			margin-right:0;
+			margin-left:-11.5%;
+		}
+
+		.featured-items__sub {
+			margin-left:0;
+			margin-right:7.5rem;
+		}
+
+	}
+
+}

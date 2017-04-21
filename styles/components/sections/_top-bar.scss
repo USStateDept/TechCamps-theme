@@ -1,12 +1,70 @@
+.admin-bar .top-bar {
+	top:46px;
+	@include bp( 783px ) {
+		top:32px;
+	}
+	&.top-sticky {
+		top:0;
+		@include bp( 601px ) {
+			top:46px;
+		}
+		@include bp( 783px ) {
+			top:32px;
+		}
+	}
+}
+
 .top-bar {
 	@include clearfix;
-	background:$navy-dark;
+	background:#fff;
+	color:$navy;
+	@include bp( $medium ) {
+		color:#fff;
+		background:$navy;
+	}
 	font-size:1.4rem;
+	width:100%;
+	position:absolute;
+	top:0;
+	z-index:2;
+	transition:top 0.4s;
+	transition-timing-function:cubic-bezier( 0.7, 0, 0.3, 1 );
+	height:7rem;
+	@include bp( $medium ) {
+		height:5.3rem;
+	}
+
+	&--visible {
+		transition-delay:0.2s;
+	}
+
+	&__logo {
+		@include bp( $medium ) {
+			display:none;
+		}
+
+		h1 {
+			float:left;
+			margin:0;
+		}
+	}
+
+	&__nav {
+		display:none;
+	}
+
+	ul,
+	li {
+		@include list-reset;
+	}
 
 	li {
 		vertical-align:middle;
 		display:inline-block;
 		padding:0;
+		&:before {
+			display:none;
+		}
 	}
 
 	a {
@@ -27,29 +85,87 @@
 	}
 
 	&__social {
-		@include grid-column( 6 );
+		display:none;
+		@include bp( $medium ) {
+			display:block;
+			@include grid-column( 3 );
+		}
 	}
 
 	&__utility {
-		@include grid-column( 6 );
+		display:none;
+		@include bp( $medium ) {
+			display:block;
+			@include grid-column( 9 );
+		}
 		text-align:right;
 		a {
 			padding:1.4rem 2.4rem;
 		}
 	}
 
+	&__logo {
+		position:relative;
+	}
+
+	&__t {
+		display:block;
+		float:left;
+
+		img {
+			width:19.3rem;
+			height:auto;
+			margin:1.4rem 0 1.3rem 2rem;
+			display:block;
+			@include bp( $medium ) {
+				display:none;
+			}
+		}
+
+		&__center {
+			display:none;
+			@include bp( $medium ) {
+				display:inline-block;
+			}
+			position:relative;
+			padding-left:0.6rem;
+			width:2.2rem;
+			height:3.2rem;
+			border-top:0.5rem solid $blue;
+			border-right:0.5rem solid $blue;
+
+			&:before {
+				content:'';
+				width:1.5rem;
+				height:2.5rem;
+				border-top:0.5rem solid $blue;
+				border-right:0.5rem solid $blue;
+				position:absolute;
+				left:0;
+				bottom:0;
+			}
+			&:after {
+				content:'';
+				width:1.1rem;
+				height:1.1rem;
+				background:$navy;
+				position:absolute;
+				top:-0.5rem;
+				right:-1.9rem;
+			}
+
+		}
+	}
+
 }
+
+.top-search .top-search__toggle { display:inline-block; }
 
 .top-search {
 	display:inline-block;
 	vertical-align:middle;
-
-	&__form {
-		display:none;
-		&.toggled {
-			display:block;
-		}
-	}
+	height:5.3rem;
+	margin-right:-0.4rem;
 
 	&__toggle {
 		@include icon-before( 'search' );
@@ -57,6 +173,56 @@
 		&:focus:before {
 			color:$bright-blue;
 		}
+		&.active {
+			&:before {
+				content:'\d7';
+				font-size:4rem;
+				line-height:0;
+				vertical-align:baseline;
+				position:relative;
+				top:0.5rem;
+			}
+		}
+	}
+
+	&__form {
+		display:inline-block;
+		height:100%;
+		opacity:0;
+		transition:opacity 0.3s;
+		&.toggled {
+			opacity:1;
+		}
+		background:$blue;
+		margin-right:-0.4rem;
+	}
+
+	&__input {
+		height:100%;
+		color:$navy;
+		font-size:1.4rem;
+		font-family:"Open Sans", sans-serif;
+		border:0;
+		height:5.2rem;
+		padding:0 2rem;
+		width:20rem;
+		vertical-align:baseline;
+		border-bottom:1px solid $gray;
+
+		@include bp( $wide ) {
+			width:30rem;
+		}
+	}
+
+	&__submit {
+		@include secondary-text;
+		font-size:1.6rem;
+		border:0;
+		background:$blue;
+		color:#fff;
+		height:5.2rem;
+		vertical-align:baseline;
+		padding:0 2rem;
 	}
 
 }
@@ -66,12 +232,148 @@
 
 	.contact {
 		a {
-			@include icon-before( 'contact' );
+			@include icon-before( 'envelope' );
 			&:hover:before,
 			&:focus:before {
 				color:$bright-blue;
 			}
 		}
+	}
+
+}
+
+.top-sticky {
+	// box-shadow:0 0 6rem $near-black;
+	background:#fff;
+	color:$navy;
+	font-size:1.4rem;
+	height:7rem;
+	@include bp( $medium ) {
+		height:5.3rem;
+	}
+	@include bp( $wide ) {
+		font-size:1.6rem;
+	}
+
+	.top-bar__logo {
+		display:block;
+	}
+
+	.top-bar__t {
+		padding:0;
+		@include bp( $medium ) {
+			padding:1.1rem;
+		}
+	}
+
+	@include bp( $medium ) {
+
+		a {
+			color:$navy;
+			font-weight:700;
+			letter-spacing:0.06rem;
+			padding:1.5rem 1.5rem 1.4rem;
+			@include bp( $wide ) {
+				padding:1.5rem 2.2rem 1.4rem;
+			}
+
+			&:hover,
+			&:focus {
+				color:$blue;
+			}
+		}
+
+		.top-bar__nav {
+			display:block;
+		}
+
+		.top-bar__social {
+			display:none;
+		}
+
+		.top-bar__logo {
+			@include grid-column( 1 );
+		}
+
+		.top-bar__utility {
+			@include grid-column( 11 );
+		}
+
+		.top-search__toggle,
+		.top-bar__menu .contact a {
+			height:5.3rem;
+			color:#fff;
+			overflow:hidden;
+			padding:1.5rem 1.5rem 1.4rem;
+			&:before {
+				color:$navy;
+				padding-right:0;
+			}
+			&:hover,
+			&:focus {
+				color:#fff;
+				&:before {
+					color:$blue;
+				}
+			}
+		}
+
+		.top-search__toggle {
+			width:5.2rem;
+			@include icon-font( 'search' );
+			transition:none;
+			&.active {
+				background:$navy;
+				color:$navy;
+				&:before {
+					content:'\d7';
+					color:#fff;
+				}
+			}
+		}
+
+		.top-bar__menu .contact a {
+			width:6.1rem;
+			border-left:1px solid $navy;
+			border-right:1px solid $navy;
+			@include icon-font( 'envelope' );
+		}
+
+		.top-bar__nav {
+			display:inline-block;
+			float:right;
+		}
+
+		.top-search__form,
+		.top-bar__menu {
+			vertical-align:top;
+		}
+
+		.top-search__form {
+			// margin:-1rem 0;
+			background:$navy;
+			color:#fff;
+		}
+
+		.top-search__input {
+			background:$navy;
+			color:$off-white;
+			border:0;
+			height:5.3rem;
+			width:15rem;
+			@include bp( $wide ) {
+				width:30rem;
+			}
+
+			&::placeholder {
+				color:$off-white;
+			}
+		}
+
+		.top-search__submit {
+			height:5.3rem;
+		}
+
 	}
 
 }

@@ -17,6 +17,13 @@ function techcamp_post_fields() {
 	) );
 
 	$post_box->add_field( array(
+		'id'      => 'blog_author',
+		'name'    => __( 'Author', 'techcamp' ),
+		'type'    => 'text',
+		'desc'    => 'The author to display in the post byline.',
+	) );
+
+	$post_box->add_field( array(
 		'id'      => 'short_description',
 		'name'    => __( 'Short Description', 'techcamp' ),
 		'type'    => 'wysiwyg',
@@ -35,9 +42,6 @@ function techcamp_remove_post_defaults() {
 
 	// remove post formats
 	remove_post_type_support( 'post', 'post-formats' );
-
-	// remove category taxonomy
-	unregister_taxonomy_for_object_type( 'category', 'post' );
 
 }
 add_action( 'init', 'techcamp_remove_post_defaults' );

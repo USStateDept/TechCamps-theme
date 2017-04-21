@@ -1,0 +1,133 @@
+// bio panels
+
+.bios {
+	background:$light-gray;
+	margin:10rem 0 6rem;
+	padding:10rem 0;
+
+	@include bp( $medium ) {
+		margin-bottom:10rem;
+	}
+
+	&__container {
+		position:relative;
+		padding:0 3rem;
+	}
+
+	&__title {
+		font-weight:700;
+		margin-bottom:3rem;
+		@include bp( $thin ) {
+			margin-bottom:6.4rem;
+		}
+	}
+
+	&__controls {
+		@include secondary-text;
+		font-size:1.6rem;
+		margin-bottom:3rem;
+		@include bp( $thin ) {
+			position:absolute;
+			right:3.3rem;
+			top:0;
+			margin-bottom:0;
+		}
+	}
+
+	&__count {
+		margin-right:1rem;
+		border-right:2px solid $near-black;
+		padding-right:1rem;
+	}
+
+	&__more {
+		@include toggler;
+		margin:1rem 0;
+	}
+
+	&__list,
+	&__item {
+		@include list-reset;
+	}
+
+	&__list {
+		@include clearfix;
+		@include bp( $thin ) {
+			margin:0 -3.2rem;
+		}
+		margin-bottom:2rem;
+		max-height:46rem;
+		overflow:hidden;
+		&.toggled {
+			max-height:none;
+		}
+	}
+
+	&__item {
+		width:26rem;
+		height:39.6rem;
+		margin-bottom:6.4rem;
+		@include bp( $thin ) {
+			width:27.6rem; // 27.6rem;
+			height:39.6rem; // 41.6rem;
+			margin:0 3.2rem 6.4rem;
+		}
+		display:block;
+		float:left;
+		// design: 276x396
+		position:relative;
+	}
+
+	&__image {
+		width:100%;
+		img {
+			width:100%;
+			height:auto;
+			// height:27.4rem;
+		}
+	}
+
+	&__text {
+		width:100%;
+		background:$navy;
+		color:#fff;
+		margin-top:-1.2rem;
+		text-align:center;
+		padding:3rem 1rem;
+		height:14.3rem;
+		position:absolute;
+		bottom:0;
+	}
+
+	&__name {
+		font-size:2.1rem;
+		font-weight:400;
+		a {
+			color:#fff;
+			text-decoration:none;
+		}
+		margin-bottom:1rem;
+	}
+
+	&__position,
+	&__organization {
+		display:block;
+		font-size:1.6rem;
+		line-height:1.4;
+	}
+
+	&__organization {
+		font-weight:600;
+	}
+
+}
+
+// bio pages
+
+.entry-content .bio-meta {
+
+	&__heading {
+		font-size:2.8rem;
+	}
+
+}

@@ -35,25 +35,37 @@
 		float:left;
 		padding:3% 5% 6% 3%;
 		width:32%;
+		height:auto;
 	}
 
 	&__text {
 		float:left;
 		padding:3% 3% 3% 0;
-		width:57%;
+		width:65%;
 	}
 
 	&__head {
 		font-weight:700;
-		text-transform:uppercase;
-		font-size:19px;
+		font-family:Glegoo, serif;
+		font-size:2.4rem;
+		line-height:1.4;
+		letter-spacing:-0.04rem;
 		margin-top:0;
-		margin-bottom:2px;
+		margin-bottom:1rem;
+		a {
+			color:$blue;
+			&:hover,
+			&:focus {
+				color:$bright-blue;
+			}
+		}
 	}
 
 	&__desc {
-		font-size:14px;
-		line-height:2.1rem;
+		font-size:1.6rem;
+		font-weight:400;
+		color:$navy;
+		line-height:1.6;
 	}
 
 	&__date {
@@ -64,6 +76,12 @@
 	&__date,
 	&__more {
 		font-weight:600;
+	}
+
+	&__more {
+		@include secondary-text;
+		font-size:1.5rem;
+		letter-spacing:0;
 	}
 
 }
