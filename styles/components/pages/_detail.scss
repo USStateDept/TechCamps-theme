@@ -8,31 +8,9 @@
 }
 
 .detail-header {
-	background-color:$light-gray; // backup if no image
 	background-size:cover;
 	background-position:center center;
-	position:relative;
 	padding:10rem 1rem;
-	&:before {
-		content:'';
-		display:block;
-		position:absolute;
-		top:0;
-		bottom:0;
-		left:0;
-		right:0;
-		opacity:0.9;
-	}
-
-	&.orange:before { background-color:$orange; }
-	&.blue:before   { background-color:$blue; }
-	&.green:before  { background-color:$green; }
-	&.purple:before { background-color:$purple; }
-	&.pink:before   { background-color:$deep-pink; }
-	&.ocean:before  { background-color:$ocean; }
-	&.red:before    { background-color:$red; }
-	&.olive:before  { background-color:$olive; }
-	&.maroon:before { background-color:$maroon; }
 
 	a {
 		color:#fff;
@@ -76,7 +54,7 @@
 		font-weight:700;
 		padding:6rem 0 2rem;
 		margin:0 0 2rem;
-		line-height:1;
+		line-height: 1.2em;
 	}
 
 	&__subhead {
@@ -151,7 +129,6 @@
 		&:hover,
 		&:focus {
 			color:$bright-blue;
-			text-decoration:underline;
 		}
 		&.button {
 			color:#fff;
@@ -164,12 +141,9 @@
 
 	&__topics {
 		@include icon-before( 'tag' );
-		margin-bottom:4rem;
+		margin-bottom:3.6rem;
 		&:before {
-			display:block;
-			float:left;
 			padding-right:1.2rem;
-			// padding:0 2rem 4rem 0;
 		}
 		a:first-child {
 			&:before {

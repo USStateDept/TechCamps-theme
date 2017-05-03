@@ -24,7 +24,7 @@
 
 	<?php $color_scheme = get_post_meta( get_the_ID(), 'color_scheme', true ); ?>
 
-	<header class="entry-header detail-header <?php echo esc_attr( $color_scheme ); ?> <?php echo esc_attr( techcamp_thumbnail_class() ); ?>"
+	<header class="entry-header detail-header has-color <?php echo esc_attr( $color_scheme ); ?> <?php echo esc_attr( techcamp_thumbnail_class() ); ?>"
 		style="background-image:url('<?php echo esc_url( techcamp_thumbnail_url() ); ?>">
 
 		<div class="container detail-header__container">
@@ -118,15 +118,17 @@
 
 			<aside class="detail-content__secondary">
 
+				<!--
 				<div class="box">
 					<p>Keep up to date with TechCamp. Sign up for email updates.</p>
 					<a class="button secondary" href="#">Stay Connected</a>
 				</div>
+				-->
 
 				<!-- Slack -->
 				<div class="box box--slack">
 					<img class="slack-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/slack-logo.png" alt="Slack logo" />
-					<p>Attending a TechCamp and looking to connect? Log in and continue the conversation.</p>
+					<?php echo wp_kses_post( wpautop( techcamp_get_setting( 'slack_text', 'outcome' ) ) ); ?>
 					<a class="button secondary" href="https://slack.com/signin">Log In</a>
 				</div>
 
@@ -141,7 +143,7 @@
 				) );
 				if ( $rel_events ) { ?>
 					<div class="box box--highlight">
-						<h2 class="box__title">Event</h2>
+						<h2 class="box__title"><?php echo esc_html( techcamp_get_setting( 'rel_event_label', 'outcome' ) ); ?></h2>
 						<ul class="box-list">
 							<?php foreach( $rel_events as $post ) {
 								setup_postdata( $post ); ?>
@@ -164,7 +166,7 @@
 				) );
 				if ( $rel_articles ) { ?>
 					<div class="box box--secondary">
-						<h2 class="box__title">Related Articles</h2>
+						<h2 class="box__title"><?php echo esc_html( techcamp_get_setting( 'rel_posts_label', 'outcome' ) ); ?></h2>
 						<ul class="box-list">
 							<?php foreach( $rel_articles as $post ) {
 								setup_postdata( $post ); ?>
@@ -173,6 +175,24 @@
 								</li>
 							<?php }
 							wp_reset_postdata(); ?>
+						</ul>
+					</div>
+				<?php } ?>
+
+				<?php $links = get_post_meta( get_the_ID(), 'external_links', true );
+				if ( $links ) { ?>
+					<div class="box box--external">
+						<h2 class="box__title"><?php echo esc_html( techcamp_get_setting( 'rel_links_label', 'event' ) ); ?></h2>
+						<ul class="box-list">
+							<?php foreach( $links as $link ) {
+								$link = wp_parse_args( $link, array(
+									'link_text' => '',
+									'link_url'  => '',
+								) ); ?>
+								<li class="box-list__item box-list__item--external">
+									<a class="box-list__title" href="<?php echo esc_url( $link['link_url'] ); ?>"><?php echo esc_html( $link['link_text'] ); ?></a>
+								</li>
+							<?php } ?>
 						</ul>
 					</div>
 				<?php } ?>
@@ -190,7 +210,7 @@
 		<div class="detail-bottom detail-media">
 			<div class="container">
 				<?php if ( $photos ) { ?>
-					<h2>Photos from Event</h2>
+					<h2><?php echo esc_html( techcamp_get_setting( 'photos_label', 'outcome' ) ); ?></h2>
 					<div class="flickr-gallery">
 						<div class="flickr-gallery__container">
 							<div class="flickr-gallery__item">
@@ -202,7 +222,7 @@
 				<?php } ?>
 				<?php if ( $videos ) { ?>
 				<div class="videos">
-					<h2>Videos from Event</h2>
+					<h2><?php echo esc_html( techcamp_get_setting( 'videos_label', 'outcome' ) ); ?></h2>
 					<?php global $wp_embed;
 					foreach( $videos as $video ) {
 						$video = esc_url_raw( $video );

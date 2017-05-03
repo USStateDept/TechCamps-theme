@@ -74,10 +74,7 @@
 		text-transform:uppercase;
 		letter-spacing:0.13rem;
 		display:block;
-		&:hover,
-		&:focus {
-			color:$bright-blue;
-		}
+
 	}
 
 	.container--top-bar {
@@ -86,6 +83,13 @@
 
 	&__social {
 		display:none;
+
+		a {
+			&:hover,
+			&:focus {
+				color:$bright-blue;
+			}
+		}
 		@include bp( $medium ) {
 			display:block;
 			@include grid-column( 3 );
@@ -112,7 +116,7 @@
 		display:block;
 		float:left;
 
-		img {
+		img, svg {
 			width:19.3rem;
 			height:auto;
 			margin:1.4rem 0 1.3rem 2rem;
@@ -171,7 +175,10 @@
 		@include icon-before( 'search' );
 		&:hover:before,
 		&:focus:before {
-			color:$bright-blue;
+			color: rgba(255, 255, 255, 0.65);
+		}
+		&:hover {
+			color: rgba(255, 255, 255, 0.65);
 		}
 		&.active {
 			&:before {
@@ -189,28 +196,46 @@
 		display:inline-block;
 		height:100%;
 		opacity:0;
-		transition:opacity 0.3s;
+		transition: opacity 0.3s;
+		//overflow: hidden;
+		//width: 0px;
+		//float: left;
+
 		&.toggled {
 			opacity:1;
+			//width: 370px;
 		}
 		background:$blue;
 		margin-right:-0.4rem;
+		position:relative;
 	}
 
 	&__input {
 		height:100%;
-		color:$navy;
+		color: #ffffff;
 		font-size:1.4rem;
 		font-family:"Open Sans", sans-serif;
 		border:0;
 		height:5.2rem;
 		padding:0 2rem;
+		padding-right:8.6rem;
 		width:20rem;
 		vertical-align:baseline;
-		border-bottom:1px solid $gray;
+		//border-bottom:1px solid $gray;
+		//float: left;
+		background-color: #37517c;
 
 		@include bp( $wide ) {
 			width:30rem;
+		}
+
+		&::placeholder {
+			color:#fff;
+		}
+
+		&:focus {
+			outline:1px dotted;
+			outline-offset:0;
 		}
 	}
 
@@ -223,6 +248,13 @@
 		height:5.2rem;
 		vertical-align:baseline;
 		padding:0 2rem;
+		position:absolute;
+		right:0;
+		top:0;
+
+		&:focus {
+			outline: 1px dotted;
+		}
 	}
 
 }
@@ -235,7 +267,11 @@
 			@include icon-before( 'envelope' );
 			&:hover:before,
 			&:focus:before {
-				color:$bright-blue;
+				color: rgba(255, 255, 255, 0.65);
+			}
+
+			&:hover {
+				color: rgba(255, 255, 255, 0.65);
 			}
 		}
 	}
@@ -263,7 +299,14 @@
 		padding:0;
 		@include bp( $medium ) {
 			padding:1.1rem;
+			padding-right: 2.5rem;
+    		outline-offset: -1px;
+    		height: 5.3rem;
 		}
+	}
+
+	* {
+		outline-offset:-1px;
 	}
 
 	@include bp( $medium ) {
@@ -330,6 +373,9 @@
 					color:#fff;
 				}
 			}
+			&:focus {
+				outline-color:#fff;
+			}
 		}
 
 		.top-bar__menu .contact a {
@@ -337,6 +383,9 @@
 			border-left:1px solid $navy;
 			border-right:1px solid $navy;
 			@include icon-font( 'envelope' );
+			&:focus {
+				outline-color:$navy;
+			}
 		}
 
 		.top-bar__nav {
@@ -357,7 +406,7 @@
 
 		.top-search__input {
 			background:$navy;
-			color:$off-white;
+			color:#fff;
 			border:0;
 			height:5.3rem;
 			width:15rem;
@@ -366,7 +415,7 @@
 			}
 
 			&::placeholder {
-				color:$off-white;
+				color:#fff;
 			}
 		}
 

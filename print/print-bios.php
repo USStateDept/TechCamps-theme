@@ -45,6 +45,9 @@ tha_html_before(); ?>
 		if ( $trainers ) {
 			foreach( $trainers as $post ) {
 				setup_postdata( $post ); ?>
+				<figure>
+					<?php the_post_thumbnail( 'surfaced-thumb' ); ?>
+				</figure>
 				<h2><?php the_title(); ?></h2>
 				<p>
 					<span class="bios__position"><?php echo get_post_meta( get_the_ID(), 'position', true ); ?></span>

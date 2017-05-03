@@ -17,6 +17,7 @@
 	&__title {
 		font-weight:700;
 		margin-bottom:3rem;
+		line-height: 1em;
 		@include bp( $thin ) {
 			margin-bottom:6.4rem;
 		}
@@ -80,10 +81,15 @@
 
 	&__image {
 		width:100%;
+		max-width:27.6rem;;
+		overflow:hidden;
+		background:$gray;
+		text-align:center;
 		img {
-			width:100%;
-			height:auto;
-			// height:27.4rem;
+			width:auto; // design: 276x273
+			height:27.3rem;
+			// going by width instead of height makes smaller portraits look half-decent (generally)
+			// and doesn't affect correctly-proportioned portraits
 		}
 	}
 
@@ -97,6 +103,10 @@
 		height:14.3rem;
 		position:absolute;
 		bottom:0;
+
+		&:hover {
+			background: $blue;
+		}
 	}
 
 	&__name {
@@ -118,16 +128,6 @@
 
 	&__organization {
 		font-weight:600;
-	}
-
-}
-
-// bio pages
-
-.entry-content .bio-meta {
-
-	&__heading {
-		font-size:2.8rem;
 	}
 
 }

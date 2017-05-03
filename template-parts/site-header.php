@@ -14,7 +14,7 @@
 		<?php if ( get_header_image() ) : ?>
 			<h1 class="site-title">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-					<?php the_header_image_tag(); ?>
+					<?php get_template_part( 'template-parts/logo.svg' ); ?>
 				</a>
 			</h1>
 		<?php endif; ?>

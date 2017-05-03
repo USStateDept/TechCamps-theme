@@ -30,7 +30,7 @@ get_header(); ?>
 
 		</div>
 
-		<div class="home-topics">
+		<div class="home-topics white-icons">
 			<div class="home-topics__container container">
 
 				<p class="home-topics__intro">
@@ -47,7 +47,12 @@ get_header(); ?>
 							$topic = get_term_by( 'id', $topic, 'topic' ); ?>
 
 							<a class="home-topics__topic" href="<?php echo esc_url( site_url() . '/topics#topic-' . $topic->term_id ); ?>">
-								<img class="home-topics__icon" src="<?php echo esc_url( get_term_meta( $topic->term_id, 'icon', true ) ); ?>" alt="" />
+								<div class="home-topics__icon">
+									<?php
+										$icon_name = get_term_meta( $topic->term_id, 'icon', true );
+										get_template_part( 'template-parts/topics/' . $icon_name . '.svg' );
+									?>
+								</div>
 								<h2 class="home-topics__name"><?php echo $topic->name; ?></h2>
 							</a>
 

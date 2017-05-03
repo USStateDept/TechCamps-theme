@@ -7,52 +7,36 @@
 
 if ( is_post_type_archive( 'resource' ) ) {
 
-	/* @todo discussion
-	global $post;
-	$connection = get_posts( array(
-		'connected_type'   => 'resource_connections',
-		'connected_items'  => array( $post ),
-		'posts_per_page'   => 1, // just need one; most resources will only have one
-		'suppress_filters' => false,
-	) );
-	if ( $connection ) {
-		$connection = array_shift( $connection );
-	}
-	// might be an event or an outcome
-	if ( $connection ) {
-		$post = $connection;
-		setup_postdata( $post ); ?>
-
-		<div class="entry-footer__event">
-			<h4><?php the_title(); ?></h4>
-		</div>
-
-		<?php wp_reset_postdata();
-	}
-	*/
+	techcamp_term_list( 'resource_type' );
+	techcamp_term_list( 'topic' );
 
 } else if ( is_post_type_archive() || is_search() ) { ?>
 
 	<div class="entry-footer__container container">
 		<?php techcamp_term_list( 'topic' ); ?>
+
+		<?php if ( get_post_type() === 'outcome' ) { ?>
+			<div class="archive-entry__location archive-entry__location--footer">
+				<?php echo esc_html( techcamp_location() ); ?>
+			</div>
+		<?php } ?>
 	</div>
 
-<?php } else if ( is_home() || is_category() || is_tag() || is_tax() ) { ?>
+<?php } else if ( techcamp_is_blog_archive() ) { ?>
 
 	<div class="entry-footer__container container">
 		<?php techcamp_term_list( 'topic' ); ?>
-		<?php techcamp_term_list( 'post_tag' ); ?>
 		<?php techcamp_term_list( 'category' ); ?>
 	</div>
 
-<?php } else if ( is_singular( 'post' ) ) { ?>
+<?php } else if ( is_singular( 'post' ) || is_singular( 'resource' ) ) { ?>
 
 	<div class="entry-footer__container container">
 
 		<?php // related techcamps/outcomes
 		global $post;
 		$related_posts = get_posts( array(
-			'connected_type'   => 'blog_connections',
+			'connected_type'   => is_singular( 'resource' ) ? 'resource_connections' : 'blog_connections',
 			'connected_items'  => array( $post ),
 			'posts_per_page'   => 50,
 			'no_found_rows'    => true,
@@ -68,9 +52,14 @@ if ( is_post_type_archive( 'resource' ) ) {
 		<?php }
 		wp_reset_postdata(); ?>
 
+		<?php if ( is_singular( 'resource' ) ) { ?>
+			<?php techcamp_term_list( 'resource_type' ); ?>
+		<?php } ?>
 		<?php techcamp_term_list( 'topic' ); ?>
-		<?php techcamp_term_list( 'post_tag' ); ?>
-		<?php techcamp_term_list( 'category' ); ?>
+		<?php if ( is_singular( 'post' ) ) { ?>
+			<?php techcamp_term_list( 'category' ); ?>
+			<?php techcamp_term_list( 'post_tag' ); ?>
+		<?php } ?>
 
 	</div>
 

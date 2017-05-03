@@ -192,6 +192,7 @@
 	&.toggled {
 		&:after {
 			content:'-';
+			line-height: .8em
 		}
 	}
 }

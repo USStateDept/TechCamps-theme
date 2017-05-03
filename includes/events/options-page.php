@@ -36,10 +36,101 @@ class TechCamp_Event_Settings extends TechCamp_Admin {
 		// Set our CMB2 fields
 
 		$cmb->add_field( array(
+			'name' => 'Landing Page',
+			'type' => 'title',
+			'id'   => 'event_landing_page_title'
+		) );
+
+		$cmb->add_field( array(
 			'id'         => 'featured_event',
 			'name'       => __( 'Featured Event', 'techcamp' ),
+			'desc'       => __( 'Make sure the selected event has a featured image.', 'techcamp' ),
 			'type'       => 'select',
 			'options_cb' => array( $this, 'get_events' ),
+		) );
+
+		$cmb->add_field( array(
+			'name' => 'Detail Pages',
+			'type' => 'title',
+			'id'   => 'event_detail_page_title'
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'participators_label',
+			'name'       => __( 'Participators Label', 'techcamp' ),
+			'default'    => 'Participating Regions',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'description_label',
+			'name'       => __( 'Description Label', 'techcamp' ),
+			'default'    => 'Description / Overview of Event',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'trainers_label',
+			'name'       => __( 'Trainers Label', 'techcamp' ),
+			'default'    => 'Trainer Bios',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'agenda_label',
+			'name'       => __( 'Agenda Label', 'techcamp' ),
+			'default'    => 'Agenda',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'resources_label',
+			'name'       => __( 'Resources Label', 'techcamp' ),
+			'default'    => 'Resources',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'slack_text',
+			'name'       => __( 'Slack Text', 'techcamp' ),
+			'desc'       => __( 'Introductory text to the Slack link in the sidebar of event detail pages.', 'techcamp' ),
+			'default'    => 'Did you attend this TechCamp? Attendees to this event can log in and continue the conversation.',
+			'type'       => 'textarea',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'rel_outcomes_label',
+			'name'       => __( 'Related Outcomes Label', 'techcamp' ),
+			'default'    => 'Outcomes',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'rel_posts_label',
+			'name'       => __( 'Related Posts Label', 'techcamp' ),
+			'default'    => 'Related Blog Posts',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'rel_links_label',
+			'name'       => __( 'Related Links Label', 'techcamp' ),
+			'default'    => 'Related Links',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'photos_label',
+			'name'       => __( 'Photos Label', 'techcamp' ),
+			'default'    => 'Photos from Event',
+			'type'       => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'         => 'videos_label',
+			'name'       => __( 'Videos Label', 'techcamp' ),
+			'default'    => 'Videos from Event',
+			'type'       => 'text',
 		) );
 
 	}

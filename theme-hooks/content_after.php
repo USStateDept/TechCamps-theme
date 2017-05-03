@@ -10,7 +10,8 @@ if ( !is_front_page() && !is_singular() ) {
 }
 
 if ( is_page_template( 'page-templates/landing-page.php' )
-  || is_page_template( 'page-templates/topics.php' ) ) {
+  || is_page_template( 'page-templates/topics.php' )
+  || is_page_template( 'page-templates/map.php' ) ) {
 	return;
 }
 

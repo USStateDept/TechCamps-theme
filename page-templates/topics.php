@@ -15,9 +15,9 @@ get_header(); ?>
 
 	<main id="main" class="content main-archive main-archive--no-search full-width" role="main"><!-- post loop -->
 
-		<header class="archive-header page-header">
-			<h1 class="archive-title"><?php the_title(); ?></h1>
-			<div class="archive-description">
+		<header class="archive-header page-header archive-header--topics">
+			<h1 class="archive-title archive-title--topics"><?php the_title(); ?></h1>
+			<div class="archive-description archive-description--topics">
 				<?php the_content(); ?>
 			</div>
 		</header><!-- .page-header -->
@@ -36,28 +36,19 @@ get_header(); ?>
 
 						<?php tha_entry_before(); ?>
 
-						<article id="topic-<?php echo esc_attr( $topic->term_id ); ?>" <?php post_class( 'entry archive-entry archive-entry--with-thumb archive-entry--topic' ); ?>>
+						<article id="topic-<?php echo esc_attr( $topic->term_id ); ?>" <?php post_class( 'entry archive-entry archive-entry--topic' ); ?>>
 
 							<?php tha_entry_top(); ?>
 
-							<div class="archive-entry--with-thumb__thumb archive-entry--topic__icon">
-								<?php $icon_id = get_term_meta( $topic->term_id, 'icon_id', true );
-								if ( $icon_id ) {
-									echo wp_get_attachment_image( $icon_id, 'icon' );
-								} else { ?>
-									<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/world-thumbnail.png" alt="" />
-								<?php } ?>
-							</div>
-
-							<div class="archive-entry--with-thumb__inner">
+							<div class="archive-entry__text">
 
 								<header class="archive-entry__header">
-									<h2 class="archive-entry__title"><?php echo esc_html( $topic->name ); ?></h2>
+									<h2 class="archive-entry__title archive-entry__title--topic"><?php echo esc_html( $topic->name ); ?></h2>
 								</header>
 
 								<?php tha_entry_content_before(); ?>
 
-								<div class="archive-entry__excerpt entry-excerpt archive-content container">
+								<div class="archive-entry__excerpt archive-entry__excerpt--topic entry-excerpt archive-content container">
 									<?php echo wp_kses_post( $topic->description ); ?>
 								</div><!-- .archive-content -->
 
@@ -65,11 +56,16 @@ get_header(); ?>
 
 							</div>
 
-							<footer class="entry-footer">
-								<span>Explore:</span>
-								<a class="button" href="<?php echo esc_url( techcamp_get_term_link( $topic, 'topic', 'event' ) ); ?>">Related TechCamps</a>
-								<a class="button" href="<?php echo esc_url( techcamp_get_term_link( $topic, 'topic', 'outcome' ) ); ?>">Related Outcomes</a>
-								<a class="button" href="<?php echo esc_url( techcamp_get_term_link( $topic, 'topic', 'post' ) ); ?>">Related Blogs</a>
+							<footer class="entry-footer entry-footer--topic">
+								<?php
+									$icon_name = get_term_meta( $topic->term_id, 'icon', true );
+									get_template_part( 'template-parts/topics/' . $icon_name . '.svg' );
+								?>
+								<ul>
+									<li><a class="archive-entry__sub-link" href="<?php echo esc_url( techcamp_get_term_link( $topic, 'topic', 'event' ) ); ?>">Related TechCamps</a></li>
+									<li><a class="archive-entry__sub-link" href="<?php echo esc_url( techcamp_get_term_link( $topic, 'topic', 'outcome' ) ); ?>">Related Outcomes</a></li>
+									<li><a class="archive-entry__sub-link" href="<?php echo esc_url( techcamp_get_term_link( $topic, 'topic', 'post' ) ); ?>">Related Blogs</a></li>
+								</ul>
 								<?php corona_entry_footer(); ?>
 							</footer><!-- .entry-footer -->
 

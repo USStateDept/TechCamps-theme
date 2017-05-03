@@ -238,11 +238,11 @@ function techcamp_surfaced_posts( $context = '', $title = '', $posts = array(), 
 					<div class="surfaced-posts__post">
 						<div class="surfaced-posts__post-inner">
 							<?php if ( has_post_thumbnail() ) {
-								the_post_thumbnail( 'surfaced-thumbnail', array(
+								the_post_thumbnail( 'surfaced-thumb', array(
 									'class' => 'surfaced-posts__image'
 								) );
 							} else { ?>
-								<img class="surfaced-posts__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/world-thumbnail.png" alt="" />
+								<img class="surfaced-posts__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/default-thumbnail.jpg" alt="" />
 							<?php } ?>
 							<div class="surfaced-posts__text">
 								<?php if ( get_post_type() === 'post' ) { ?>
@@ -300,9 +300,9 @@ function techcamp_get_post_type_label( $post_type = '', $label_type = 'plural' )
 		$label = 'Blog';
 	}
 
-	if ( $label === 'Page' ) {
+	/* if ( $label === 'Page' ) {
 		$label = '';
-	}
+	} */
 
 	return sanitize_text_field( $label );
 
@@ -402,15 +402,33 @@ function techcamp_get_term_link( $term, $taxonomy = '', $post_type = '' ) {
 		return get_term_link( $term, $taxonomy );
 	}
 
-	if ( is_object( $term ) ) {
-		$term = $term->name;
-	}
-
-	$taxonomy = get_taxonomy( $taxonomy );
-	$tax_name = $taxonomy->labels->singular_name;
-
 	$archive_url = get_post_type_archive_link( $post_type );
-	$full_url    = add_query_arg( 'keyword', urlencode( $tax_name . ': ' . $term ), $archive_url );
+
+	if ( $post_type === 'resource' || $post_type === 'bio' ) {
+
+		if ( $post_type === 'bio' ) {
+			$archive_url = get_post_type_archive_link( 'resource' );
+		}
+
+		if ( is_object( $term ) ) {
+			$term = $term->term_id;
+		}
+		$taxonomies = array(
+			'resource_type' => 'types',
+			'language'      => 'languages',
+			'topic'         => 'topics',
+		);
+		$arg = isset( $taxonomies[$taxonomy] ) ? $taxonomies[$taxonomy] . '[]' : $taxonomy;
+		$full_url = add_query_arg( $arg, $term, $archive_url ) . '#resource-filters';
+
+	} else {
+		if ( is_object( $term ) ) {
+			$term = $term->name;
+		}
+		$taxonomy = get_taxonomy( $taxonomy );
+		$tax_name = $taxonomy->labels->singular_name;
+		$full_url = add_query_arg( 'keyword', urlencode( $tax_name . ': ' . $term ), $archive_url );
+	}
 
 	return esc_url_raw( $full_url );
 
@@ -463,5 +481,36 @@ function techcamp_term_list( $taxonomy = '' ) {
 		<?php } ?>
 	</ul>
 	<?php
+
+}
+
+/**
+ * Return true if we are on the blog archive page or any blog-related taxonomy page.
+ */
+function techcamp_is_blog_archive() {
+	return is_home() || is_category() || is_tag() || is_tax();
+}
+
+/**
+ * Get a specific setting.
+ */
+function techcamp_get_setting( $key = '', $post_type = '' ) {
+
+	if ( !$key ) {
+		return false;
+	}
+
+	if ( !$post_type ) {
+		$setting = 'techcamp_site_settings';
+	} else {
+		$setting = sanitize_key( $post_type ) . '_settings';
+	}
+
+	$values = get_option( $setting );
+	$values = wp_parse_args( $values, array(
+		$key => ''
+	) );
+
+	return $values[$key];
 
 }

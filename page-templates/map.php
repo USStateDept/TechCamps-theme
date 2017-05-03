@@ -18,27 +18,33 @@ get_header(); ?>
 
 		<?php tha_content_top(); ?>
 
-		<?php if ( is_active_sidebar( 'before-entry' ) ) : ?>
-			<div class="before-entry">
-				<?php dynamic_sidebar( 'before-entry' ); ?>
-			</div>
-		<?php endif; ?>
-
-		<?php
-			tha_content_while_before();
-			corona_loop( 'template-parts/content', 'page', $comments = true );
-			tha_content_while_after();
-		?>
-
-		<!-- Begin Map -->
 		<div id="map" class="map"></div>
-		<!-- End Map (that's it.) -->
+		<div class="legend">
+			<dl class="legend__definitions container">
+				<dt class="legend__techcamp">
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/marker-techcamp.svg" alt="Blue TechCamp Marker" />
+				</dt>
+				<dd>TechCamps</dd>
+				<dt class="legend__outcome">
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/marker-outcome.svg" alt="Green Outcome Marker" />
+				</dt>
+				<dd>Featured Outcomes</dd>
+				<dt class="legend__region">
+					<span class="element-invisible">Dark Blue</span>
+				</dt>
+				<dd>Host Regions</dd>
+				<dt class="legend__participator">
+					<span class="element-invisible">Light Blue</span>
+				</dt>
+				<dd>Participating Regions</dd>
+			</dl>
+		</div>
 
-		<?php if ( is_active_sidebar( 'after-entry' ) ) : ?>
-			<div class="after-entry">
-				<?php dynamic_sidebar( 'after-entry' ); ?>
-			</div>
-		<?php endif; ?>
+		<?php the_post(); ?>
+		<div class="entry-content">
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<?php the_content(); ?>
+		</div>
 
 		<?php tha_content_bottom(); ?>
 

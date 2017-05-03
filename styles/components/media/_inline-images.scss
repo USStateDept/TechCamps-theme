@@ -1,5 +1,5 @@
 .size-full,
-.size-inline-big,
+.size-inline,
 .wp-caption {
 	width:100%;
 	@include bp( $medium ) {
@@ -18,7 +18,7 @@
 }
 
 .wp-caption img.size-full,
-.wp-caption img.size-inline-big {
+.wp-caption img.size-inline {
 	margin:0;
 }
 
@@ -62,7 +62,7 @@
 .single-outcome, .single-event {
 
 	.size-full,
-	.size-inline-big,
+	.size-inline,
 	.wp-caption,
 	.wp-caption .wp-caption-text {
 		width:100%;

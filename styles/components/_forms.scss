@@ -1,0 +1,123 @@
+// override formidable defaults
+.frm_forms .frm_form_fields {
+
+	.form-field {
+		display:inline-block;
+
+		.frm_primary_label {
+			font-family:"Open Sans", sans-serif;
+			font-weight:600;
+			font-size:1.6rem;
+		}
+
+		.frm_description {
+			font-family:"Open Sans", sans-serif;
+			font-size:1.4rem;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="submit"] {
+			box-shadow:none;
+			border:0;
+			border-bottom:1px solid $gray;
+			color:$navy;
+			padding:2rem 3rem;
+			height:6.2rem;
+			@include secondary-text;
+			font-size:1.35rem;
+			border-radius:0;
+			@include bp( $thin ) {
+				font-size:1.6rem;
+			}
+		}
+
+		input[type="text"],
+		input[type="email"] {
+			background:$light-gray;
+			width:100%;
+			margin-bottom:2rem;
+			margin-right:2rem;
+			@include bp( $medium ) {
+				width:40%;
+				margin-bottom:0;
+			}
+			@include bp( $wide ) {
+				width:52rem;
+			}
+			text-transform:none;
+			&::placeholder {
+				color:#fff;
+				text-transform:uppercase;
+			}
+			&:focus {
+				background:$light-gray;
+			}
+		}
+
+		input[type="submit"] {
+			background:$navy;
+			transition:background-color 0.2s;
+			&:hover,
+			&:focus {
+				background:$navy-dark;
+			}
+		}
+
+		textarea {
+			border-radius:0;
+			background:$light-gray;
+			border:0;
+			border-bottom:1px solid $gray;
+			box-shadow:none;
+		}
+
+	}
+
+	.frm_submit {
+		display:inline-block;
+		input[type="submit"],
+		button[type="submit"] {
+			box-shadow:none;
+			width:auto;
+			font-size:1.6rem;
+			&:hover,
+			&:focus {
+				background-color:$dark-blue;
+			}
+		}
+	}
+
+}
+
+// email signup on landing pages
+.landing-signup {
+	.frm_forms .frm_form_fields {
+
+		input[type="text"],
+		input[type="email"],
+		input[type="submit"] {
+			color:#fff;
+		}
+
+		input[type="text"],
+		input[type="email"] {
+			border:0;
+			background:$blue;
+			&:focus {
+				background:$blue;
+			}
+		}
+
+		.frm_submit {
+			input[type="submit"],
+			button[type="submit"] {
+				&:hover,
+				&:focus {
+					background-color:$navy-dark;
+				}
+			}
+		}
+
+	}
+}

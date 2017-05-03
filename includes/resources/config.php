@@ -65,6 +65,17 @@ function techcamp_resource_fields() {
 	) );
 
 	$resource_box->add_field( array(
+		'id'   => 'pinned',
+		'name' => __( 'Pinned', 'techcamp' ),
+		'desc' => 'Pin to top of resource library results',
+		'type' => 'select',
+		'options' => array( // can't use checkbox because we need a negative value, not no value
+			'0' => 'No',
+			'1' => 'Yes',
+		),
+	) );
+
+	$resource_box->add_field( array(
 		'id'   => 'post_led_resource',
 		'name' => __( 'Related to post-led TechCamp?', 'techcamp' ),
 		'desc' => 'Yes',

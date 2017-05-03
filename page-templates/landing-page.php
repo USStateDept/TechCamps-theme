@@ -28,7 +28,7 @@ get_header(); ?>
 
 			<div class="hero hero--landing">
 
-				<?php the_post_thumbnail( 'inner-hero', array(
+				<?php the_post_thumbnail( 'hero', array(
 					'class' => 'hero__image'
 				) ); ?>
 
@@ -62,9 +62,15 @@ get_header(); ?>
 				<div class="featured-items">
 					<div class="featured-items__container container">
 						<div class="featured-items__item">
-							<?php the_post_thumbnail( 'featured', array(
-								'class' => 'featured-items__image'
-							) ); ?>
+							<?php if ( has_post_thumbnail() ) {
+								the_post_thumbnail( 'featured', array(
+									'class' => 'featured-items__image'
+								) );
+							} else { ?>
+								<img class="featured-items__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/default-featured.jpg" alt="" />
+							<?php } ?>
+
+
 							<div class="featured-items__text">
 								<div class="featured-items__box">
 									<h2 class="featured-items__label">
@@ -151,14 +157,16 @@ get_header(); ?>
 
 			<?php } ?>
 
-			<div class="landing-signup">
-				<div class="landing-signup__container container">
-					<h2 class="landing-signup__heading">
-						<?php echo esc_html( get_post_meta( get_the_ID(), 'email_heading', true ) ); ?>
-					</h2>
-					<?php get_template_part( 'template-parts/email-signup' ); ?>
+			<?php if ( techcamp_get_setting( 'enable_email_signup' ) ) { ?>
+				<div class="landing-signup">
+					<div class="landing-signup__container container">
+						<h2 class="landing-signup__heading">
+							<?php echo esc_html( techcamp_get_setting( 'email_heading' ) ); ?>
+						</h2>
+						<?php echo do_shortcode( esc_html( techcamp_get_setting( 'email_signup_shortcode' ) ) ); ?>
+					</div>
 				</div>
-			</div>
+			<?php } ?>
 
 			<div class="explore-sections explore-sections--regions">
 				<div class="explore-sections__container container">
