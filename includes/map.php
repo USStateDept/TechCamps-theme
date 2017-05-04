@@ -41,7 +41,8 @@ class TechCamp_Map {
 
 		// add Participators array for js availabiliy
 		wp_localize_script( 'techcamp-scripts', 'techcamp_map_vars', array(
-			'participators' => self::get_participators()
+			'participators' => self::get_participators(),
+			'hosts'         => self::get_hosts(),
 		) );
 	}
 
@@ -104,18 +105,38 @@ class TechCamp_Map {
 
 	/**
 	 * Get all regions and participating regions and return as an array.
-	 *
-	 * @todo Do this.
-	 * @todo Consider loading from a file instead of generating dynamically each time.
-	 * @todo Consider country codes instead of names?
 	 */
 	static function get_participators() {
 
 		// get all non-empty regions and participators
 		$regions = get_terms( array(
-			'taxonomy' => array( 'country', 'participator' ),
-			'fields'   => 'names'
+			'taxonomy'  => array( 'participator' ),
+			'fields'    => 'names',
+			'childless' => true,
 		) );
+
+		$regions = array_map( 'addslashes', $regions );
+
+		// remove duplicates and keys
+		$regions = array_values( array_unique( $regions ) );
+
+		return $regions;
+
+	}
+
+	/**
+	 * Get all regions and return as an array.
+	 */
+	static function get_hosts() {
+
+		// get all non-empty regions and participators
+		$regions = get_terms( array(
+			'taxonomy'  => array( 'country' ),
+			'fields'    => 'names',
+			'childless' => true,
+		) );
+
+		$regions = array_map( 'addslashes', $regions );
 
 		// remove duplicates and keys
 		$regions = array_values( array_unique( $regions ) );

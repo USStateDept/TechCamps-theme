@@ -45,13 +45,9 @@ blockquote {
 	color:$blue;
 	position:relative;
 	margin:0 0 4rem 7rem;
+	@include icon-before( 'quote' );
 	&:before {
-		content:'\201c';
-		font-family:sans-serif;
-		font-size:12rem;
-		position:absolute;
-		left:-8rem;
-		top:-3.2rem;
+		font-size:3.2rem;
 	}
 }
 
@@ -61,6 +57,8 @@ cite {
 		color:$blue;
 		font-size:2.8rem;
 		margin-right:0.8rem;
+		float:left;
+		display:block;
 	}
 	font-style:normal;
 	font-size:1.6rem;
@@ -74,11 +72,12 @@ cite {
 //
 
 .button,
-button {
+button, .frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
 	@include secondary-text();
 	font-size:1.4rem;
 	display:inline-block;
 	border:0;
+	border-radius: 0;
 	background:$navy;
 	color:#fff;
 	padding:2.5rem 3rem;
@@ -96,6 +95,33 @@ button {
 			color:#fff;
 		}
 	}
+}
+
+.frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
+	width: 18rem;
+}
+
+.button {
+
+	&--icon-pdf {
+		@include icon-before( 'file-pdf' );
+	}
+
+	&--icon-ppt {
+		@include icon-before( 'file-ppt' );
+	}
+
+	&--icon-doc {
+		@include icon-before( 'file-doc' );
+	}
+
+	&--icon {
+		&:before {
+			font-size:3rem;
+			padding-right:1.2rem;
+		}
+	}
+
 }
 
 //

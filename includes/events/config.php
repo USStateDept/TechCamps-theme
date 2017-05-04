@@ -136,6 +136,30 @@ function techcamp_event_fields() {
 		'type' => 'text'
 	) );
 
+	$links_group = $event_box->add_field( array(
+		'name'    => 'Related Links',
+		'id'      => 'external_links',
+		'type'    => 'group',
+		'options' => array(
+			'group_title'   => 'Link {#}',
+			'sortable'      => true,
+			'add_button'    => 'Add Link',
+			'remove_button' => 'Remove Link',
+		),
+	) );
+
+	$event_box->add_group_field( $links_group, array(
+		'name' => 'Link Text',
+		'id'   => 'link_text',
+		'type' => 'text',
+	) );
+
+	$event_box->add_group_field( $links_group, array(
+		'name' => 'Link URL',
+		'id'   => 'link_url',
+		'type' => 'text_url',
+	) );
+
 	$event_box->add_field( array(
 		'id'   => 'images',
 		'name' => __( 'Flickr image gallery embed', 'techcamp' ),

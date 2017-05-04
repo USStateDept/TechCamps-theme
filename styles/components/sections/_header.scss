@@ -23,9 +23,13 @@
 	a {
 		display:inline-block;
 	}
-	img {
+	img, svg {
 		max-width:298px;
 		height:auto;
+	}
+	svg {
+		width:298px;
+		height:66px;
 	}
 }
 

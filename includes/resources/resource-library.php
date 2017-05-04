@@ -7,12 +7,16 @@
 class TechCamp_Resource_Library {
 
 	/**
-	 * Form fields in name => label pairs.
+	 * Info about each field in the form.
+	 *
+	 * @var array
 	 */
 	static public $fields;
 
 	/**
 	 * Form values in name => value pairs.
+	 *
+	 * @var array
 	 */
 	static public $values;
 
@@ -26,15 +30,40 @@ class TechCamp_Resource_Library {
 	static public function init() {
 
 		self::$fields = array(
-			'years'     => 'Years',
-			'events'    => 'TechCamps',
-			'types'     => 'Types',
-			'topics'    => 'Topics',
-			'regions'   => 'Regions',
+			'types'         => array(
+				'label'     => 'Type',
+				'type'      => 'taxonomy',
+				'taxonomy'  => 'resource_type',
+			),
+			'languages'     => array(
+				'label'     => 'Language',
+				'type'      => 'taxonomy',
+				'taxonomy'  => 'language',
+			),
+			'topics'        => array(
+				'label'     => 'Topic',
+				'type'      => 'taxonomy',
+				'taxonomy'  => 'topic',
+			),
+			'techcamps'     => array(
+				'label'     => 'TechCamp',
+				'type'      => 'connection',
+				'post_type' => 'event',
+			),
+			'regions'       => array(
+				'label'     => 'Region',
+				'type'      => 'connection_taxonomy',
+				'taxonomy'  => 'country',
+			),
+			'years'         => array(
+				'label'     => 'Year',
+				'type'      => 'connection_taxonomy',
+				'taxonomy'  => 'event_year',
+			),
 		);
 
-		add_action( 'parse_query',        array( __CLASS__, 'query' ) );
-		add_action( 'tha_content_top',    array( __CLASS__, 'form' ) );
+		add_action( 'parse_query',     array( __CLASS__, 'query' ) );
+		add_action( 'tha_content_top', array( __CLASS__, 'form' ), 11 );
 
 	}
 
@@ -52,6 +81,13 @@ class TechCamp_Resource_Library {
 			return;
 		}
 
+		// set order
+		$query->set( 'meta_key', 'pinned' );
+		$query->set( 'orderby', array(
+			'meta_value' => 'DESC', // value will either be 1 for pinned or 0 for not pinned, hence DESC
+			'name'       => 'ASC',
+		) );
+
 		// get what the user searched for
 		self::$values = self::get_values();
 
@@ -66,22 +102,27 @@ class TechCamp_Resource_Library {
 			return;
 		}
 
-		// get resources related to events with the following params
-		$results = array();
-		foreach( array_keys( $searched ) as $field ) {
-			switch( $field ) {
-				case 'events' :
-					$results[] = self::get_resources_by_events();
-					break;
-				case 'years' :
-					$results[] = self::get_resources_by( 'years', 'event_year' );
-					break;
-				case 'topics' :
-					$results[] = self::get_resources_by( 'topics', 'topic' );
-					break;
-				case 'regions' :
-					$results[] = self::get_resources_by( 'regions', 'country' );
-					break;
+		//
+		// ---- secondary queries: get resources based on related techcamps and those techcamps' terms ----
+		//
+
+		// get resources related to the given events
+		if ( isset( $searched['techcamps'] ) ) {
+			$results[] = self::get_resources_by_techcamps();
+		}
+
+		// get resources related to the events that are associated with the given terms
+		foreach( self::$fields as $field_name => $field_args ) {
+
+			if ( !isset( $searched[$field_name] ) )
+				continue;
+
+			$field_args = wp_parse_args( $field_args, array(
+				'type'      => '',
+				'taxonomy'  => '',
+			) );
+			if ( $field_args['type'] === 'connection_taxonomy' ) {
+				$results[] = self::get_resources_by( $field_name, $field_args['taxonomy'] );
 			}
 		}
 
@@ -95,7 +136,7 @@ class TechCamp_Resource_Library {
 				$resources = array_shift( $results );
 			}
 
-			// quit if no resources found
+			// if no resources were found, stop early and send back no results
 			if ( empty( $resources ) ) {
 				$query->set( 'pagename', 'shortcircuit-this-query' );
 				return;
@@ -109,14 +150,40 @@ class TechCamp_Resource_Library {
 
 		}
 
-		// add types to main query
-		if ( !empty( self::$values['types'] ) ) {
-			$query->set( 'tax_query', array(
-				array(
-					'taxonomy' => 'resource_type',
-					'terms'    => self::$values['types'],
-				)
+		//
+		// ---- end secondary queries ----
+		//
+
+		// add taxonomies to query
+		foreach( self::$fields as $field => $args ) {
+			if ( !isset( $searched[$field] ) )
+				continue;
+
+			$args = wp_parse_args( $args, array(
+				'type'      => '',
+				'taxonomy'  => '',
 			) );
+
+			switch( $args['type'] ) {
+
+				case 'taxonomy' :
+
+					$terms = self::$values[$field];
+
+					if ( $terms ) {
+
+						$query->set( 'tax_query', array(
+							array(
+								'taxonomy' => $args['taxonomy'],
+								'terms'    => $terms,
+							)
+						) );
+
+					}
+					break;
+
+			}
+
 		}
 
 	}
@@ -142,10 +209,10 @@ class TechCamp_Resource_Library {
 	/**
 	 * Get all resources connected to the given events.
 	 */
-	static function get_resources_by_events( $events = array() ) {
+	static function get_resources_by_techcamps( $events = array() ) {
 
 		if ( empty( $events ) ) {
-			$events = self::$values['events'];
+			$events = self::$values['techcamps'];
 		}
 
 		return get_posts( array(
@@ -179,7 +246,7 @@ class TechCamp_Resource_Library {
 			),
 		) );
 
-		return self::get_resources_by_events( $events );
+		return self::get_resources_by_techcamps( $events );
 
 	}
 
@@ -193,123 +260,115 @@ class TechCamp_Resource_Library {
 			return;
 		}
 
-		// get terms in a simple format
-		$taxonomies = array( 'event_year', 'topic', 'country', 'resource_type' );
-		$terms = array();
-		foreach( $taxonomies as $taxonomy ) {
-			$get_terms = get_terms( array( 'taxonomy' => $taxonomy ) );
-			$terms[$taxonomy] = array();
-			foreach( $get_terms as $term ) {
-				$terms[$taxonomy][$term->term_id] = $term->name;
-			}
-		}
-
-		// get techcamps in a simple format
-		$techcamps = array();
-		$get_techcamps = get_posts( array(
-			'suppress_filters' => false,
-			'posts_per_page'   => 500,
-			'post_type'        => 'event',
-		) );
-		foreach( $get_techcamps as $techcamp ) {
-			$techcamps[$techcamp->ID] = $techcamp->post_title;
-		}
-
-		// line up the fields according to their output
-		$fields = array(
-			'years' => array(
-				'legend' => 'Year',
-				'data'   => $terms['event_year'],
-			),
-			'events' => array(
-				'legend' => 'TechCamp',
-				'data'   => $techcamps,
-			),
-			'types' => array(
-				'legend' => 'Type',
-				'data'   => $terms['resource_type'],
-
-			),
-			'topics' => array(
-				'legend' => 'Topic',
-				'data'   => $terms['topic'],
-
-			),
-			'regions' => array(
-				'legend' => 'Region',
-				'data'   => $terms['country'],
-			),
-		);
-
 		// get values
 		$values = self::get_values();
 
 		?>
 
-		<div class="resource-filters">
+		<div id="resource-filters" class="resource-filters">
 			<div class="container resource-filters__container">
 
-				<form method="get" action="<?php echo get_post_type_archive_link( 'resource' ); ?>" class="resource-filters__form">
-					<div class="resource-filters__desc">Filter by:</div>
+				<form method="get" action="<?php echo get_post_type_archive_link( 'resource' ); ?>#resource-filters" class="resource-filters__form">
 
-					<?php foreach( $fields as $key => $field ) {
-						$field = wp_parse_args( $field, array(
-							'legend' => '',
-							'data'   => array()
-						) ); ?>
-						<div class="resource-filters__dropdown">
-							<div class="resource-filters__label"><?php echo esc_html( $field['legend'] ); ?></div>
-							<div class="resource-filters__checklist">
-								<?php foreach( $field['data'] as $id => $label ) { ?>
-									<label class="resource-filters__checkline" for="<?php echo esc_attr( $key . '-' . $id ); ?>">
-										<input
-											id="<?php echo esc_attr( $key . '-' . $id ); ?>"
-											type="checkbox" name="<?php echo esc_attr( $key ); ?>[]"
-											value="<?php echo esc_attr( $id ); ?>"
-											<?php checked( in_array( $id, $values[$key] ) ); ?>
-										/>
-										<span><?php echo esc_html( $label ); ?></span>
-									</label>
-								<?php } ?>
-							</div>
+					<div class="resource-filters__filters">
+						<div class="resource-filters__desc">Filter by:</div>
+						<div class="resource-filters__dropdowns">
+
+							<?php foreach( self::$fields as $key => $field ) {
+
+								$field = wp_parse_args( $field, array(
+									'label'     => '',
+									'type'      => '',
+									'taxonomy'  => '',
+									'post_type' => '',
+								) );
+
+								$data = array();
+
+								switch( $field['type'] ) {
+
+									case 'taxonomy' :
+									case 'connection_taxonomy' :
+										$terms = get_terms( array(
+											'taxonomy' => $field['taxonomy'],
+										) );
+										foreach( $terms as $term ) {
+											$data[$term->term_id] = $term->name;
+										}
+										break;
+
+									case 'connection' :
+										$post_results = get_posts( array(
+											'suppress_filters' => false,
+											'posts_per_page'   => 500,
+											'post_type'        => $field['post_type'],
+										) );
+										foreach( $post_results as $result ) {
+											$data[$result->ID] = $result->post_title;
+										}
+										break;
+
+								} ?>
+
+								<div class="resource-filters__dropdown">
+									<a href="#" class="resource-filters__label"><?php echo esc_html( $field['label'] ); ?></a>
+									<div class="resource-filters__checklist">
+										<?php foreach( $data as $id => $label ) { ?>
+											<label class="resource-filters__checkline" for="<?php echo esc_attr( $key . '-' . $id ); ?>">
+												<input
+													id="<?php echo esc_attr( $key . '-' . $id ); ?>"
+													type="checkbox" name="<?php echo esc_attr( $key ); ?>[]"
+													value="<?php echo esc_attr( $id ); ?>"
+													<?php checked( in_array( $id, $values[$key] ) ); ?>
+												/>
+												<span><?php echo esc_html( $label ); ?></span>
+											</label>
+										<?php } ?>
+									</div>
+								</div>
+							<?php } ?>
 						</div>
-					<?php } ?>
+					</div>
 
-					<input class="button resource-filters__apply" type="submit" value="Apply" />
+					<input class="button resource-filters__apply" type="submit" value="Search" />
 				</form>
 
 				<?php $values = array_filter( $values );
 				if ( $values ) { ?>
 					<div class="resource-filters__selections">
-						<?php foreach( $values as $field => $values ) {
-							switch( $field ) {
-								case 'events' :
-									foreach( $values as $post_id ) {
-										$label = get_the_title( $post_id );
-										self::selection( get_the_title( $post_id ), $field, $post_id );
-									}
-									break;
-								case 'years' :
-								case 'types' :
-								case 'topics' :
-								case 'regions' :
+						<div class="resource-filters__desc">Selections:</div>
+							<div class="resource-filters__selection-links">
+							<?php foreach( $values as $field_name => $values ) {
 
-									// @todo refactor this travesty
-									$taxonomy = '';
-									if ( $field === 'years' ) $taxonomy = 'event_year';
-									if ( $field === 'types' ) $taxonomy = 'resource_type';
-									if ( $field === 'topics' ) $taxonomy = 'topic';
-									if ( $field === 'regions' ) $taxonomy = 'country';
+								$args = self::$fields[$field_name];
+								$args = wp_parse_args( $args, array(
+									'type'      => '',
+									'post_type' => '',
+									'taxonomy'  => '',
+								) );
 
-									foreach( $values as $term_id ) {
-										$term = get_term_by( 'id', $term_id, $taxonomy );
-										$term_name = $term ? $term->name : '';
-										self::selection( $term_name, $field, $term_id );
-									}
-									break;
-							}
-						} ?>
-						<a class="resource-filters__clear" href="<?php echo esc_url( get_post_type_archive_link( 'resource' ) ); ?>">Clear</a>
+								switch( $args['type'] ) {
+
+									case 'taxonomy' :
+									case 'connection_taxonomy' :
+										foreach( $values as $term_id ) {
+											$term = get_term_by( 'id', $term_id, $args['taxonomy'] );
+											if ( $term ) {
+												self::selection( $term->name, $field_name, $term_id );
+											}
+										}
+										break;
+
+									case 'connection' :
+										foreach( $values as $post_id ) {
+											self::selection( get_the_title( $post_id ), $field_name, $post_id );
+										}
+										break;
+
+								}
+							} ?>
+							<a class="resource-filters__clear" href="<?php echo esc_url( get_post_type_archive_link( 'resource' ) ); ?>#resource-filters">Clear&nbsp;All</a>
+						</div>
 					</div>
 				<?php } ?>
 
@@ -321,34 +380,30 @@ class TechCamp_Resource_Library {
 	}
 
 	/**
-	 * Output a specific selection.
+	 * Output a specific selection, with an option to remove it from the search.
 	 */
 	static public function selection( $label = '', $field = '', $value = 0 ) {
-		?>
+
+		// get current values
+		$values = self::$values;
+
+		// remove empty fields
+		$values = array_filter( $values );
+
+		// remove current selection from current values
+		$key = array_search( $value, $values[$field] );
+		unset( $values[$field][$key] );
+
+		// rebuild query string without current selection
+		$url = esc_url_raw( add_query_arg( $values, get_post_type_archive_link( 'resource' ) ) ); ?>
+
 		<div class="resource-filters__selection button">
 			<?php echo esc_html( $label ); ?>
-			<?php
-
-				// @todo refactor - pull $_GET values again and build URL that way.
-
-				// get URL
-				$query_string = urldecode( $_SERVER['QUERY_STRING'] );
-
-				// remove just the given arg
-				$query_string = str_replace( $field . '[]=' . $value, '', $query_string );
-
-				// clean up query string
-				$query_string = str_replace( '&&', '&', $query_string );
-				$query_string = trim( $query_string, '&' );
-
-				// rebuild URL
-				$url = get_post_type_archive_link( 'resources' ) . '?' . $query_string;
-
-			?>
-			<a href="<?php echo esc_url( $url ); ?>" class="resource-filters__remove-selection">
+			<a href="<?php echo esc_url( $url ); ?>#resource-filters" class="resource-filters__remove-selection">
 				<span class="element-invisible">Remove from search</span>
 			</a>
 		</div>
+
 		<?php
 	}
 

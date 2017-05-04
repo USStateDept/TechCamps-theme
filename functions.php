@@ -31,6 +31,11 @@ require_once( __DIR__ . '/includes/theme-hooks.php' );
 require_once( __DIR__ . '/includes/options-pages.php' );
 
 /**
+ * Site-wide general options.
+ */
+require_once( __DIR__ . '/includes/site-options.php' );
+
+/**
  * Load post type-related functionality.
  */
 require_once( __DIR__ . '/includes/pages/config.php' );
@@ -47,9 +52,11 @@ require_once( __DIR__ . '/includes/resources/options-page.php' );
 require_once( __DIR__ . '/includes/resources/resource-library.php' );
 
 require_once( __DIR__ . '/includes/bios/config.php' );
+require_once( __DIR__ . '/includes/bios/options-page.php' );
 
 require_once( __DIR__ . '/includes/posts/config.php' );
 require_once( __DIR__ . '/includes/posts/hooks.php' );
+require_once( __DIR__ . '/includes/posts/options-page.php' );
 
 /**
  * Register custom taxonomies.

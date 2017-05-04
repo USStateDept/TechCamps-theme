@@ -67,9 +67,9 @@ foreach( $markers as $id ) {
 	$desc = get_post_meta( $id, 'short_description', true );
 
 	// get image or fallback
-	$img = get_the_post_thumbnail( $id, 'map-thumbnail' );
+	$img = get_the_post_thumbnail( $id, 'map-thumb' );
 	if ( !$img ) {
-		$img = '<img class="attachment-map-thumbnail" src="' . get_stylesheet_directory_uri() . '/images/world-thumbnail.png" alt="" />';
+		$img = '<img class="attachment-map-thumb" src="' . get_stylesheet_directory_uri() . '/images/world-thumbnail.png" alt="" />';
 	}
 
 	// defaults
@@ -85,7 +85,7 @@ foreach( $markers as $id ) {
 			'date'        => $date,
 			'url'         => get_permalink( $id ),
 			'img'         => $img,
-			'icon'        => get_stylesheet_directory_uri() . '/images/marker-event.png',
+			'icon'        => get_stylesheet_directory_uri() . '/images/marker-techcamp.svg',
 			'c1'          => isset( $region->name ) ? addslashes( $region->name ) : '',
 			'c2'          => $participating_regions
 		),
@@ -93,7 +93,7 @@ foreach( $markers as $id ) {
 
 	// conditional rules
 	if ( get_post_type( $id ) === 'outcome' ) {
-		$feature['properties']['icon'] = get_stylesheet_directory_uri() . '/images/marker-outcome.png';
+		$feature['properties']['icon'] = get_stylesheet_directory_uri() . '/images/marker-outcome.svg';
 	}
 
 	$features[] = $feature;

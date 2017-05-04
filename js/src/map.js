@@ -7,6 +7,7 @@ function initMap() {
 	var defaults = {
 		center: { lat: 30, lng: 0 },
 		zoom: 2,
+		scrollwheel: false,
 		minZoom: 2,
 		styles: [
 			{
@@ -191,6 +192,13 @@ function initMap() {
 	// load data
 	map.data.loadGeoJson( techcamp_vars.content_url + '/themes/techcamp/map-data.json.php' );
 
+	// create legend/key
+	/* var legend = document.getElementById( 'legend' );
+	var legendContainer = document.createElement( 'div' );
+	legendContainer.innerHTML = '<p>This is the legend</p>';
+	legend.appendChild( legendContainer );
+	map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend); */
+
 	// set marker styles based on each feature's specified icon
 	var icon;
 	map.data.setStyle( function( feature ) {
@@ -200,15 +208,27 @@ function initMap() {
 		}
 	});
 
-	// get all regions & participating regions
+	// get all participating regions
 	var participators = "'" + techcamp_map_vars.participators.join( "', '" ) + "'";
 
-	// default fusiontables layer styles
-	var defaultStyle = {
+	// default styles for participating regions
+	var pStyle = {
 		where: "name IN ( " + participators + " )",
 		polygonOptions: {
 			fillColor: pColor,
 			fillOpacity: pOpacity
+		}
+	};
+
+	// get all host regions
+	var hosts = "'" + techcamp_map_vars.hosts.join( "', '" ) + "'";
+
+	// default styles for host regions
+	var hStyle = {
+		where: "name IN ( " + hosts + " )",
+		polygonOptions: {
+			fillColor: cColor,
+			fillOpacity: cOpacity
 		}
 	};
 
@@ -220,7 +240,7 @@ function initMap() {
 			from: '1K-eenN5UTU3D7Jj9Wyt6IGkDvUZevrsk8MQUTjUV'
 		},
 		styleId: 9,
-		styles: [ defaultStyle ],
+		styles: [ pStyle, hStyle ],
 		suppressInfoWindows: true
 	} );
 

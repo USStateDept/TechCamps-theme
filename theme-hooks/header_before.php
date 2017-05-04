@@ -44,7 +44,7 @@ $social_menu = wp_nav_menu( array(
 		<div class="top-bar__logo">
 			<?php if ( is_front_page() ) { echo '<h1>'; } ?>
 				<a class="top-bar__t" href="<?php echo site_url(); ?>">
-					<?php the_header_image_tag(); ?>
+					<?php get_template_part( 'template-parts/logo.svg' ); ?>
 					<span class="top-bar__t__center"></span>
 					<span class="element-invisible">TechCamp</span>
 				</a>

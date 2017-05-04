@@ -32,14 +32,6 @@ function techcamp_remove_filters() {
 add_action( 'corona_init', 'techcamp_remove_filters', 11 );
 
 /**
- * Add custom excerpt_more.
- */
-function techcamp_excerpt_more( $excerpt_more ) {
-	return '&hellip;';
-}
-add_filter( 'excerpt_more', 'techcamp_excerpt_more' );
-
-/**
  * Hook up the short description field to the excerpt, and force the
  * short description to accept the same word count and trailing text
  * as default excerpts.
@@ -49,8 +41,8 @@ function techcamp_excerpt( $excerpt ) {
 	global $post;
 	$desc = get_post_meta( get_the_ID(), 'short_description', true );
 	if ( $desc ) {
-		$excerpt_length = apply_filters( 'excerpt_length', 55 );
-		$excerpt_more   = apply_filters( 'excerpt_more', ' [&hellip;]' );
+		$excerpt_length = apply_filters( 'excerpt_length', techcamp_excerpt_length( 55 ) );
+		$excerpt_more   = apply_filters( 'excerpt_more', '&hellip;' );
 		$desc = wp_trim_words( $desc, $excerpt_length, $excerpt_more );
 		return $desc;
 	}
@@ -70,10 +62,22 @@ function techcamp_excerpt_length( $length ) {
 		return 42;
 	}
 
+	if ( get_post_type() === 'post' ) {
+		return 25;
+	}
+
 	return $length;
 
 }
 add_filter( 'excerpt_length', 'techcamp_excerpt_length', 11 );
+
+/**
+ * Adjust the trailing characters of excerpts.
+ */
+function techcamp_excerpt_more( $excerpt_more ) {
+	return '&hellip;';
+}
+add_filter( 'excerpt_more', 'techcamp_excerpt_more' );
 
 /**
  * Adjust the category list classes - used for the region list on landing pages.
@@ -103,3 +107,11 @@ function techcamp_override_term_link_for_outcome( $link, $term, $taxonomy  ) {
 	return $link;
 }
 // no add_filter() here - used in page-templates/landing-page.php
+
+/**
+ * Remove admin menu items.
+ */
+function techcamp_remove_admin_menu_items(){
+	remove_menu_page( 'edit-comments.php' );
+}
+add_action( 'admin_menu', 'techcamp_remove_admin_menu_items' );

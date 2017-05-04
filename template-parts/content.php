@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying posts and bios.
+ * Template part for displaying blog posts, bios, and resources.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -14,13 +14,22 @@
 
 	<?php tha_entry_top(); ?>
 
-	<header class="entry-header">
+	<?php
+	$classes = 'entry-header';
+	$styles  = '';
+	if ( is_singular( 'post' ) || is_singular( 'resource' ) ) {
+		if ( has_post_thumbnail() ) {
+			$classes .= ' ' . techcamp_thumbnail_class();
+			$styles = 'background-image:url(' . esc_url( techcamp_thumbnail_url() ) . ');';
+		}
+	} ?>
+	<header class="<?php echo esc_attr( $classes ); ?>" style="<?php echo esc_attr( $styles ); ?>">
 		<?php if ( is_singular() && !is_page() ) { ?>
 			<div class="entry-header__crumb">
 				<?php if ( is_singular( 'post' ) ) { ?>
 					<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>">Blog</a>
 				<?php } else if ( is_singular( 'bio' ) ) { ?>
-					<a href="<?php echo get_post_type_archive_link( 'resource' ); ?>">Trainers</a>
+					<a href="<?php echo esc_url( techcamp_get_setting( 'archive_url', 'bio' ) ); ?>"><?php echo esc_html( techcamp_get_setting( 'archive_label', 'bio' ) ); ?></a>
 				<?php } else if ( is_singular( 'resource' ) ) { ?>
 					<a href="<?php echo get_post_type_archive_link( 'resource' ); ?>">Resources</a>
 				<?php } else {
@@ -40,89 +49,15 @@
 					<?php the_time( 'F j, Y' ); ?>
 				</div>
 			</div>
-		<?php } else if ( is_singular( 'bio' ) ) {
-
-			$position     = get_post_meta( get_the_ID(), 'position', true );
-			$organization = get_post_meta( get_the_ID(), 'organization', true );
-			$output       = '';
-			if ( $position && $organization ) {
-				$output = $position . ', ' . $organization;
-			} else if ( $position ) {
-				$output = $position;
-			} else if ( $organization ) {
-				$output = $organization;
-			}
-			if ( $output ) { ?>
-				<div class="entry-header__meta">
-					<div class="entry-header__author">
-						<?php echo esc_html( $output ); ?>
-					</div>
-				</div>
-			<?php }
-
-		} else if ( is_singular( 'resource' ) ) { ?>
-			<div class="entry-header__meta">
-				<?php
-				$resource_url = get_post_meta( get_the_ID(), 'resource_url', true );
-				$ext = pathinfo( $resource_url, PATHINFO_EXTENSION ); ?>
-				<div class="entry-header__meta-item entry-header__ext entry-header__ext--<?php echo sanitize_key( $ext ); ?>">
-					<a href="<?php echo esc_url( $resource_url ); ?>"><?php echo strtoupper( esc_html( $ext ) ); ?> File</a>
-				</div>
-
-				<?php $types = get_the_terms( get_the_ID(), 'resource_type' );
-				$type_list = array();
-				foreach( $types as $type ) {
-					$type_list[] = '<a href="' . get_post_type_archive_link( 'resource' ) . '?types[]=' . $type->term_id . '">' . $type->name . '</a>';
-				}
-				$list = implode( ', ', $type_list );
-				if ( $list ) { ?>
-					<div class="entry-header__meta-item entry-header__type">
-						<?php echo wp_kses_post( $list ); ?>
-					</div>
-				<?php } ?>
-
-				<?php $related = get_posts( array(
-					'suppress_filters' => false,
-					'connected_items'  => array( get_post() ),
-					'connected_type'   => 'resource_connections',
-				) );
-				$rels = array();
-				foreach( $related as $post ) {
-					setup_postdata( $post );
-					$rels[] = '<a href="' . get_permalink() . '">' . get_the_title() . '</a>';
-				}
-				$relateds = implode( ', ', $rels );
-				if ( $relateds ) { ?>
-					<div class="entry-header__meta-item entry-header__related">
-						<?php echo wp_kses_post( $relateds ); ?>
-					</div>
-				<?php }
-				wp_reset_postdata(); ?>
-
-			</div>
 		<?php } ?>
 	</header><!-- .entry-header -->
 
 	<?php tha_entry_content_before(); ?>
 
 	<div class="entry-content">
-		<?php if ( has_post_thumbnail() ) {
-
-			$size = 'inline-big';
-			if ( get_post_type() === 'bio' ) {
-				$size = 'surfaced-thumbnail';
-			}
-
-			$caption = get_post( get_post_thumbnail_id() )->post_excerpt; ?>
-			<figure>
-				<?php the_post_thumbnail( $size ); ?>
-				<?php if ( $caption ) { ?>
-					<figcaption><?php echo wp_kses_post( $caption ); ?></figcaption>
-				<?php } ?>
-			</figure>
-		<?php } ?>
 
 		<?php if ( is_singular( 'resource' ) ) {
+
 			$subhead = get_post_meta( get_the_ID(), 'subhead', true );
 			$desc = techcamp_process_wysiwyg( 'short_description' ); ?>
 
@@ -136,7 +71,10 @@
 					</div>
 				<?php } ?>
 				<p class="resource-content__link">
-					<a class="button" target="_blank" href="<?php echo esc_url( $resource_url ); ?>">View this Resource</a>
+					<?php
+					$resource_url = get_post_meta( get_the_ID(), 'resource_url', true );
+					$ext = pathinfo( $resource_url, PATHINFO_EXTENSION ); ?>
+					<a class="button button--icon button--icon-<?php echo sanitize_key( $ext ); ?>" target="_blank" href="<?php echo esc_url( $resource_url ); ?>">Download <?php echo strtoupper( esc_html( $ext ) ); ?> File</a>
 				</p>
 			</div>
 
@@ -158,35 +96,6 @@
 
 		<?php if ( is_singular( 'bio' ) ) {
 
-			$contact = get_post_meta( get_the_ID(), 'contact', true );
-			if ( $contact ) { ?>
-				<div class="bio-meta">
-					<h2 class="bio-meta__heading">Best Ways to Contact Me:</h2>
-					<ul class="bio-meta__list">
-						<?php foreach( $contact as $link ) {
-							if ( is_email( $link ) ) { ?>
-								<li><a href="mailto:<?php echo esc_attr( sanitize_email( $link ) ); ?>">Email</a></li>
-							<?php } else {
-								$friendly = $link;
-								if ( strpos( $link, 'facebook.com' ) !== false )
-									$friendly = 'Facebook';
-								if ( strpos( $link, 'twitter.com' ) !== false )
-									$friendly = 'Twitter';
-								if ( strpos( $link, 'linkedin.com' ) !== false )
-									$friendly = 'LinkedIn';
-								if ( strpos( $link, 'youtube.com' ) !== false )
-									$friendly = 'YouTube';
-								if ( strpos( $link, 'medium.com' ) !== false )
-									$friendly = 'Medium';
-								if ( strpos( $link, 'instagram.com' ) !== false )
-									$friendly = 'Instagram'; ?>
-								<li><a target="_blank" href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $friendly ); ?></a></li>
-							<?php } ?>
-						<?php } ?>
-					</ul>
-				</div>
-			<?php }
-
 			$connected = get_posts( array(
 				'connected_type'  => 'resource_connections',
 				'connected_items' => array( get_post() ),
@@ -194,7 +103,7 @@
 			) );
 			if ( $connected ) { ?>
 				<div class="bio-meta">
-					<h2 class="bio-meta__heading">Events:</h2>
+					<h2 class="bio-meta__heading"><?php echo esc_html( techcamp_get_setting( 'techcamps_label', 'bio' ) ); ?></h2>
 					<ul class="bio-meta__list">
 						<?php foreach( $connected as $post ) {
 							setup_postdata( $post ); ?>

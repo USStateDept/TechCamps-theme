@@ -96,7 +96,8 @@
 	/**
 	 * Resource filter dropdown toggling.
 	 */
-	$( '.resource-filters__label' ).click( function() {
+	$( '.resource-filters__label' ).click( function( e ) {
+		e.preventDefault();
 		var checklist = $( this ).next( '.resource-filters__checklist' );
 		if ( checklist.hasClass( 'toggled' ) ) {
 			checklist.removeClass( 'toggled' );

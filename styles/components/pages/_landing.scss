@@ -78,7 +78,7 @@
 		@include bp( $thin ) {
 			@include grid-column( 6 );
 			@include grid-push( 6 );
-			padding-left:2.6rem;
+			padding-left:.6rem;
 		}
 		@include secondary-text;
 		font-size:1.6rem;
@@ -86,7 +86,7 @@
 		margin-top:2rem;
 		@include icon-after( 'pin' );
 		&:after {
-			font-size:2.6rem;
+			display: none;
 		}
 	}
 
@@ -152,6 +152,10 @@
 		a {
 			color:#fff;
 			text-decoration:none;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 
@@ -252,7 +256,7 @@
 
 	&__featured {
 		@include bp( $thin ) {
-			padding-left:1rem;
+			//padding-left:1rem;
 		}
 		a {
 			&:hover,
@@ -263,11 +267,13 @@
 	}
 
 	&__general {
-		padding-top:0;
 		padding-right:1rem;
 		line-height:1.3;
+		//padding-top: 3rem;
+		background-color:$navy;
 		@include bp( $thin ) {
-			padding-top:8rem;
+			//padding-top:8rem;
+			background-color: none;
 		}
 	}
 

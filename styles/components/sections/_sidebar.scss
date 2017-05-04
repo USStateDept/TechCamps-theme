@@ -52,10 +52,10 @@
 		font-weight:400;
 		margin-left:0;
 		&:before {
+			position:absolute;
 			left:-2rem;
-			opacity:0.2;
 			@include bp( $thin ) {
-				left:-6rem;
+				left:-5.3rem;
 				opacity:1;
 			}
 		}
@@ -94,6 +94,13 @@
 		&:last-child {
 			margin-bottom:0;
 		}
+		&--external {
+			@include icon-after( 'external' );
+			&:after {
+				padding-left:0;
+				vertical-align:baseline;
+			}
+		}
 	}
 
 	&__title {
@@ -102,6 +109,7 @@
 		text-decoration:none;
 		line-height:1.2;
 		margin-bottom:1rem;
+		padding-right:1rem;
 		&:hover,
 		&:focus {
 			text-decoration:underline;

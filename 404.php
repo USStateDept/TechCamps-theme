@@ -17,7 +17,7 @@ get_header(); ?>
 				<div class="entry-header__crumb">Error 404</div>
 				<h1 class="entry-header__title entry-title page-title">Page Not Found</h1>
 				<div class="entry-header__meta">
-					Nothing was found at this location. Try searching below.
+					<?php echo wp_kses_post( wpautop( techcamp_get_setting( '404_content' ) ) ); ?>
 				</div>
 			</header><!-- .page-header -->
 		</section><!-- .error-404 -->

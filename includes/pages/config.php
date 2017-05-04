@@ -105,13 +105,6 @@ function techcamp_landing_page_fields() {
 	) );
 
 	$landing_box->add_field( array(
-		'id'      => 'email_heading',
-		'name'    => __( 'Email Signup Heading', 'techcamp' ),
-		'type'    => 'text',
-		'default' => 'Keep up to date on TechCamp news and events.',
-	) );
-
-	$landing_box->add_field( array(
 		'id'      => 'region_label',
 		'name'    => __( 'Region Label', 'techcamp' ),
 		'type'    => 'text',
@@ -120,6 +113,30 @@ function techcamp_landing_page_fields() {
 
 }
 add_action( 'cmb2_admin_init', 'techcamp_landing_page_fields' );
+
+
+/**
+ * Register a metabox and fields for basic pages.
+ */
+function techcamp_basic_page_fields() {
+
+	$page_box = new_cmb2_box( array(
+		'id'           => 'page_box',
+		'title'        => __( 'Page Fields', 'techcamp' ),
+		'object_types' => array( 'page' ),
+	) );
+
+	$page_box->add_field( array(
+		'id'      => 'short_description',
+		'name'    => __( 'Short Description', 'techcamp' ),
+		'type'    => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 6,
+		)
+	) );
+
+}
+add_action( 'cmb2_admin_init', 'techcamp_basic_page_fields' );
 
 /**
  * Callback to only show a metabox on the homepage.

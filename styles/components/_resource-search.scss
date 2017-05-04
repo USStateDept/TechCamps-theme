@@ -1,45 +1,131 @@
 .resource-filters {
 	background:$navy;
 	color:#fff;
-	padding:8.9rem 0 11.4rem;
+	padding:3rem 3rem 6rem;
+	@include bp( $medium ) {
+		padding:7rem 3rem 8rem;
+	}
+	@include bp( $wide ) {
+		padding:8.9rem 3rem 11.4rem;
+	}
 	@include secondary-text;
 	font-size:1.6rem;
 
+	&__container {
+		max-width:85rem;
+		@include bp( $medium ) {
+			max-width:136rem;
+		}
+	}
+
+	&__form {
+		@include clearfix;
+	}
+
+	&__filters {
+		@include bp( $medium ) {
+			width:85%;
+			float:left;
+		}
+		@include bp( $wide ) {
+		}
+	}
+
 	&__desc,
 	&__dropdown {
-		display:inline-block;
-		margin:0 5rem 0 0;
+		display:block;
+		@include bp( $medium ) {
+			display:inline-block;
+		}
 	}
 
 	&__desc,
 	&__label {
-		padding:4rem 2rem;
+		padding:2rem;
+		margin:1.5rem 0;
+		@include bp( $medium ) {
+			margin:0;
+			padding:3rem 4rem;
+		}
+		@include bp( $wide ) {
+			padding:3rem 4rem;
+		}
 	}
 
 	&__desc {
-		margin-left:-2rem;
+		padding-left:0;
+		display:block;
+		@include bp( $medium ) {
+			float:left;
+			margin-left:0;
+			width:15%;
+			padding-right:3rem;
+		}
+		@include bp( $wide ) {
+			margin-left:0;
+			padding-right:4rem;
+		}
+	}
+
+	&__dropdowns {
+		@include bp( $medium ) {
+			float:left;
+			max-width:85%;
+		}
+	}
+
+	&__dropdown {
+		background:$navy-dark;
+		margin-bottom:2rem;
+		position:relative;
+		@include bp( $medium ) {
+			background:$navy-dark;
+			margin:0 3rem 3rem 0;
+		}
+		@include bp( $wide ) {
+			margin:0 5rem 3rem 0;
+		}
 	}
 
 	&__label {
-		padding-right:3.6rem;
+		display:block;
+		padding-right:7.6rem;
 		position:relative;
-		&:hover {
-			cursor:pointer;
+		text-decoration:none;
+		color:#fff;
+		@include bp( $medium ) {
+			width:19.5rem;
+		}
+		@include bp( $wide ) {
+			width:21rem;
+		}
+		&:hover,
+		&:focus {
+			color:#fff;
 		}
 		&:after {
 			content:'';
 			@include triangle(2rem, #c2c2c2, down);
 			position:absolute;
-			right:0;
-			top:4.3rem;
+			right:3.5rem;
+			top:2.3rem;
+			@include bp( $medium ) {
+				right:3.5rem;
+				top:3.4rem;
+			}
 		}
 		&:before {
 			content:'';
-			@include triangle(1rem, $navy, down );
+			@include triangle(1rem, $navy-dark, down );
 			position:absolute;
-			right:0.5rem;
-			top:4.3rem;
 			z-index:1;
+			right:4rem;
+			top:2.3rem;
+			@include bp( $medium ) {
+				@include triangle(1rem, $navy-dark, down );
+				right:4rem;
+				top:3.4rem;
+			}
 		}
 	}
 
@@ -48,21 +134,32 @@
 		&.toggled {
 			display:block;
 		}
+		z-index:1;
 		position:absolute;
-		background:$navy;
-		width:45.5rem;
-		margin-left:-2rem;
 		padding-bottom:2.4rem;
 		max-height:35rem;
 		overflow-y:auto;
+		background:$navy-dark;
+		width:100%;
+		margin-top:-1.5rem;
+		@include bp( $medium ) {
+			margin-top:0;
+			margin-left:0;
+			background:$navy-dark;
+			width:45.5rem;
+			padding-top:2.4rem;
+		}
 	}
 
 	&__checkline {
 		@include clearfix;
 		display:block;
 		width:100%;
-		padding:1.5rem 4rem;
 		margin:0;
+		padding:1.5rem 2rem;
+		@include bp( $medium ) {
+			padding:1.5rem 4rem;
+		}
 
 		&:hover {
 			cursor:pointer;
@@ -71,6 +168,10 @@
 		input {
 			display:block;
 			float:left;
+			&:focus {
+				outline:1px dotted #fff;
+				box-shadow:0 0 1rem $bright-blue;
+			}
 		}
 
 		span {
@@ -83,13 +184,36 @@
 
 	&__apply {
 		float:right;
-		margin:2rem 0;
-		padding:2.5rem 4.5rem;
+		margin:2rem 0 4rem;
+		@include bp( $medium ) {
+			margin:0;
+			width:15%;
+		}
+		padding:3rem 4.5rem;
 		font-size:1.6rem;
 		background:$blue;
 		&:hover,
 		&:focus {
 			background:$bright-blue;
+		}
+	}
+
+	&__selections {
+		@include clearfix;
+		@include bp( $medium ) {
+			width:85%;
+			padding-top:4rem;
+		}
+
+		.resource-filters__desc {
+			padding:2rem 3rem 2rem 0;
+		}
+	}
+
+	&__selection-links {
+		@include bp( $medium ) {
+			float:left;
+			width:85%;
 		}
 	}
 
@@ -100,20 +224,33 @@
 		&:focus {
 			background:$ocean;
 		}
-		margin-right:2rem;
-		padding:1.5rem 3rem;
+		clear:both;
+		display:block;
+		margin:0 0 2rem;
+		padding:1.5rem 2rem;
+		@include bp( $thin ) {
+			clear:none;
+			display:inline-block;
+			margin:0 2rem 2rem 0;
+			padding:2rem 3rem;
+		}
+		@include bp( $medium ) {
+
+		}
 	}
 
 	&__remove-selection {
 		color:#fff;
 		text-decoration:none;
-		padding:0 0 0 1rem;
+		margin:0 0 0 1rem;
 		display:inline-block;
 		transition:none;
+		float:right;
+		line-height:0.5;
 		&:before {
 			content:'\00d7';
 			font-size:2.8rem;
-			height:3.2rem;
+			height:auto;
 			display:inline-block;
 			vertical-align:middle;
 		}
@@ -125,6 +262,12 @@
 
 	&__clear {
 		color:#fff;
+		text-align:right;
+		display:block;
+		@include bp( $medium ) {
+			text-align:left;
+			display:inline-block;
+		}
 	}
 
 }

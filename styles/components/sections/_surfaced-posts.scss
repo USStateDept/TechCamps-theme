@@ -24,14 +24,17 @@
 		@include grid-container();
 		text-align:left;
 		margin:4rem 0;
+  		display: block;
 		@include bp( $thin ) {
 			margin:7rem -2rem;
+	  		display: flex;
 		}
 	}
 
 	&__post {
 		@include bp( $thin ) {
 			@include grid-column( 6 );
+			flex: inherit;
 			&:last-child {
 				display:none;
 			}
@@ -42,10 +45,15 @@
 				display:block;
 			}
 		}
+		height: auto;
+		position: relative;
 	}
 
 	&__post-inner {
 		margin:0 0 4rem;
+		height: 100%;
+	    overflow: hidden;
+	    background: $white;
 		@include bp( $thin ) {
 			margin:0 2rem;
 		}
@@ -59,9 +67,9 @@
 	}
 
 	&__text {
-		padding:2.5rem 4rem 0;
-		height:21.7rem;
-		background:#fff;
+		padding:2.5rem 4rem 4.5rem;
+		background: $white;
+		min-height: 21.7rem;
 		position:relative;
 	}
 
@@ -72,9 +80,11 @@
 			text-decoration:none;
 			font-weight:400;
 			font-size:2.5rem;
+		    word-break: break-word;
+			&:hover {
+				text-decoration: underline;
+			}
 		}
-		max-height:15rem;
-		overflow:hidden;
 	}
 
 	&__meta {
@@ -93,7 +103,7 @@
 		float:left;
 		position:absolute;
 		top:-4.4rem;
-		padding:2rem;
+		padding:2rem 4rem;
 		left:0;
 	}
 
@@ -109,7 +119,7 @@
 	}
 
 	.surfaced-posts__post-inner {
-		background:$navy;
+		background: $white;
 	}
 
 	// if default globe image we don't want to show the globe over the globe
