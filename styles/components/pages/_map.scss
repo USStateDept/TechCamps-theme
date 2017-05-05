@@ -20,7 +20,9 @@
 	margin-bottom:8rem;
 
 	&__definitions {
-		max-width:85rem;
+		font-family: $base-font;
+		font-size: 1.6rem;
+		max-width:90rem;
 		padding:0 3rem;
 		@include bp( $thin ) {
 			padding:0 6rem;
@@ -99,16 +101,26 @@
 	}
 
 	.attachment-map-thumb {
-		float:left;
+		float: none;
 		padding:3% 5% 6% 3%;
-		width:32%;
+		width:100%;
 		height:auto;
+
+		@include bp($thin){
+			width: 35%;
+			float: left;
+		}
 	}
 
 	&__text {
-		float:left;
+		float:none;
 		padding:3% 3% 3% 0;
-		width:65%;
+		width: 100%;
+
+		@include bp($thin){
+			float: left;
+			width: 65%;
+		}
 	}
 
 	&__head {

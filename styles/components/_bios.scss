@@ -33,6 +33,27 @@
 			top:0;
 			margin-bottom:0;
 		}
+
+		// don't display controls if there aren't enough bios
+		&--amount-1 {
+			display:none;
+		}
+		@include bp( $thin ) {
+			&--amount-2 {
+				display:none;
+			}
+		}
+		@include bp( $medium ) {
+			&--amount-3 {
+				display:none;
+			}
+		}
+		@include bp( $wide ) {
+			&--amount-4 {
+				display:none;
+			}
+		}
+
 	}
 
 	&__count {
@@ -54,59 +75,120 @@
 	&__list {
 		@include clearfix;
 		@include bp( $thin ) {
-			margin:0 -3.2rem;
+			width:calc( 100% + 4rem );
+			margin:0 -2rem;
 		}
+		display:flex;
+		flex-wrap:wrap;
 		margin-bottom:2rem;
-		max-height:46rem;
-		overflow:hidden;
+
+		.bios__item:nth-child(1n+2) {
+			display:none;
+		}
 		&.toggled {
-			max-height:none;
+			.bios__item:nth-child(1n+2) {
+				display:block;
+			}
 		}
-	}
-
-	&__item {
-		width:26rem;
-		height:39.6rem;
-		margin-bottom:6.4rem;
 		@include bp( $thin ) {
-			width:27.6rem; // 27.6rem;
-			height:39.6rem; // 41.6rem;
-			margin:0 3.2rem 6.4rem;
+			.bios__item:nth-child(1n+2) {
+				display:block;
+			}
+			.bios__item:nth-child(1n+3) {
+				display:none;
+			}
+			&.toggled {
+				.bios__item:nth-child(1n+3) {
+					display:block;
+				}
+			}
 		}
-		display:block;
-		float:left;
-		// design: 276x396
-		position:relative;
+		@include bp( $medium ) {
+			.bios__item:nth-child(1n+3) {
+				display:block;
+			}
+			.bios__item:nth-child(1n+4) {
+				display:none;
+			}
+			&.toggled {
+				.bios__item:nth-child(1n+4) {
+					display:block;
+				}
+			}
+		}
+		@include bp( $wide ) {
+			.bios__item:nth-child(1n+4) {
+				display:block;
+			}
+			.bios__item:nth-child(1n+5) {
+				display:none;
+			}
+			&.toggled {
+				.bios__item:nth-child(1n+5) {
+					display:block;
+				}
+			}
+		}
+
 	}
 
-	&__image {
+	&__item { // design: 276x396
+		margin-bottom:4.4rem;
+		display:block;
+		position:relative;
+		overflow:hidden;
+		flex-basis:100%;
+		@include bp( $thin ) {
+			padding:0 2rem;
+			flex-basis:50%;
+		}
+		@include bp( $medium ) {
+			flex-basis:33%;
+		}
+		@include bp( $wide ) {
+			flex-basis:25%;
+		}
+	}
+
+	&__image { // width and padding-bottom together maintain 276x273 aspect ratio
 		width:100%;
-		max-width:27.6rem;;
+		padding-bottom:101%;
 		overflow:hidden;
 		background:$gray;
 		text-align:center;
+		position:relative;
 		img {
-			width:auto; // design: 276x273
-			height:27.3rem;
-			// going by width instead of height makes smaller portraits look half-decent (generally)
-			// and doesn't affect correctly-proportioned portraits
+			min-width:100%;
+			min-height:100%;
+			width:auto;
+			height:auto;
+			position:absolute;
+			left:50%;
+			top:50%;
+			transform:translate(-50%, -50%);
 		}
 	}
 
 	&__text {
+		position:relative;
 		width:100%;
 		background:$navy;
 		color:#fff;
-		margin-top:-1.2rem;
+		margin-top:-1px;
 		text-align:center;
-		padding:3rem 1rem;
+		padding:1rem;
 		height:14.3rem;
-		position:absolute;
-		bottom:0;
 
 		&:hover {
 			background: $blue;
 		}
+
+		&__inner {
+			position:relative;
+			top:50%;
+			transform:translateY(-50%);
+		}
+
 	}
 
 	&__name {

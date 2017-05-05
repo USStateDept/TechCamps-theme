@@ -117,20 +117,16 @@
 	.hero__text-box {
 		background:$navy;
 		@include grid-push( 0 );
-	}
-
-	.button {
-		margin-right:1rem;
-		background:$blue;
-		&:hover,
-		&:focus {
-			background:$bright-blue;
-		}
-		width:20rem;
-		margin-bottom:2rem;
-		@include bp( $thin ) {
-			width:auto;
-			margin-bottom:0;
+		.button {
+			margin-right:1rem;
+			width:20rem;
+			margin-bottom:2rem;
+			@include bp( $thin ) {
+				width:auto;
+				margin-bottom:0;
+			}
+			@extend .button--secondary;
+			@extend .button--on-dark;
 		}
 	}
 

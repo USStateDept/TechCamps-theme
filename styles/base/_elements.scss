@@ -71,8 +71,15 @@ cite {
 // buttons
 //
 
+// four styles:
+// navy button on light bg - turns blue on hover
+// navy button on dark bg - turns white on hover w/navy text
+// blue button on light bg - turns navy on hover
+// blue button on dark bg - turns white on hover w/blue text
+
 .button,
-button, .frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
+button,
+.frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
 	@include secondary-text();
 	font-size:1.4rem;
 	display:inline-block;
@@ -82,19 +89,58 @@ button, .frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_butt
 	color:#fff;
 	padding:2.5rem 3rem;
 	transition:background 0.2s;
+	text-align:center;
+	position:relative;
+	z-index:1;
+	&:after {
+		content:'';
+		background:$blue;
+		position:absolute;
+		top:0;
+		right:0;
+		left:0;
+		bottom:0;
+		width:0;
+		transition:width 0.3s;
+		z-index:-1;
+	}
 	&:hover,
 	&:focus {
-		background:$dark-blue;
+		// background:$blue;
 		color:#fff;
+		&:after {
+			width:100%;
+		}
 	}
-	&.secondary {
+	&--secondary {
 		background:$blue;
 		&:hover,
 		&:focus {
-			background:$dark-blue;
+			// background:$navy;
 			color:#fff;
 		}
+		&:after {
+			background:$navy;
+		}
 	}
+	&--on-dark {
+		transition:background 0.2s, color 0.2s;
+		&:hover,
+		&:focus {
+			// background:#fff;
+			color:$navy;
+		}
+		&.button--secondary {
+			&:hover,
+			&:focus {
+				color:$blue;
+			}
+		}
+		&:after {
+			background:#fff;
+		}
+	}
+
 }
 
 .frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
@@ -119,6 +165,13 @@ button, .frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_butt
 		&:before {
 			font-size:3rem;
 			padding-right:1.2rem;
+		}
+		&:hover,
+		&:focus {
+			transition:opacity 0.2s;
+			&:before {
+				opacity:0.85;
+			}
 		}
 	}
 

@@ -10,8 +10,21 @@
 	color:#fff;
 	margin:0 0 7.5rem;
 
+	.button {
+		font-size:1.6rem;
+		@extend .button--secondary;
+		@extend .button--on-dark;
+	}
+
 	&--secondary {
 		background:$blue;
+
+		.button {
+			color:#fff;
+			background:$navy;
+			@extend .button--on-dark;
+		}
+
 	}
 
 	&--highlight {
@@ -67,10 +80,6 @@
 		&:before {
 			color:#fff;
 		}
-	}
-
-	.button {
-		font-size:1.6rem;
 	}
 
 	.slack-logo {

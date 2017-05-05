@@ -148,7 +148,7 @@ get_header(); ?>
 						</div>
 						<div class="secondary-cta__general">
 							<h2 class="secondary-cta__title">Learn About our <?php echo esc_html( $secondary_plural ); ?></h2>
-							<a class="secondary-cta__button button" href="<?php echo esc_url( get_post_type_archive_link( $secondary_post_type ) ); ?>">
+							<a class="secondary-cta__button button button--on-dark button--secondary" href="<?php echo esc_url( get_post_type_archive_link( $secondary_post_type ) ); ?>">
 								View All <?php echo esc_html( $secondary_plural ); ?>
 							</a>
 						</div>
@@ -195,7 +195,7 @@ get_header(); ?>
 							?>
 
 						</ul>
-						<a href="/map" class="button">View Map of All Events and Outcomes</a>
+						<a href="<?php echo esc_url( get_permalink( techcamp_get_map_id() ) ); ?>" class="button button--on-dark">View Map</a>
 					</div>
 
 				</div>

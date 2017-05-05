@@ -101,9 +101,12 @@
 		var checklist = $( this ).next( '.resource-filters__checklist' );
 		if ( checklist.hasClass( 'toggled' ) ) {
 			checklist.removeClass( 'toggled' );
+			$( this ).removeClass( 'toggled' );
 		} else {
 			$( this ).closest( 'form' ).find( '.resource-filters__checklist' ).removeClass( 'toggled' );
+			$( this ).closest( 'form' ).find( '.resource-filters__label' ).removeClass( 'toggled' );
 			checklist.addClass( 'toggled' );
+			$( this ).addClass( 'toggled' );
 		}
 	} );
 

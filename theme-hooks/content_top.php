@@ -39,8 +39,16 @@ if ( is_home() || is_archive() ) {
 		<header class="archive-header page-header">
 			<?php if ( is_search() ) { ?>
 				<h1 class="archive-title">Search Results</h1>
-			<?php } else {
-				the_archive_title( '<h1 class="archive-title">', '</h1>' );
+			<?php } else { ?>
+				<?php if ( is_post_type_archive() ) {
+					$post_type  = get_queried_object();
+					$post_type  = $post_type->name;
+					$landing_id = (int) techcamp_get_landing_id( $post_type ); ?>
+					<div class="entry-header__crumb">
+						<a href="<?php echo esc_url( get_permalink( $landing_id ) ); ?>"><?php echo esc_html( get_the_title( $landing_id ) ); ?></a>
+					</div>
+				<?php } ?>
+				<?php the_archive_title( '<h1 class="archive-title">Search ', '</h1>' );
 				the_archive_description( '<div class="archive-description">', '</div>' );
 			} ?>
 		</header><!-- .page-header -->
