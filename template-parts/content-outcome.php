@@ -1,18 +1,10 @@
 <?php
 /**
- * Template part for displaying the event detail content.
+ * Template part for displaying the outcome detail content.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @todo Text strings - "Events", "Apply Now", content headings
- * @todo Logic for when "Apply Now" appears.
- * @todo Responsive images for speed. Specifically the big hero image.
- * @todo Breadcrumb hover effect.
- * @todo Meta links: Map page option?
- * @todo Should there be related events?
- * @todo Related Articles icon - external link? Should it be there?
- *
- * @package corona
+ * @package techcamp
  */
 ?>
 
@@ -31,7 +23,7 @@
 			<div class="detail-header__primary">
 
 				<div class="breadcrumbs detail-header__breadcrumbs">
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'outcome' ) ); ?>">Outcomes</a>
+					<a href="<?php echo esc_url( get_permalink( techcamp_get_landing_id( 'outcome' ) ) ); ?>">Outcomes</a>
 				</div>
 
 				<?php the_title( '<h1 class="entry-title detail-header__title">', '</h1>' ); ?>
@@ -49,9 +41,9 @@
 		<div class="detail-meta__container container">
 
 			<div class="detail-meta__data">
-				<?php echo get_the_term_list( get_the_ID(), 'topic', '<div class="detail-meta__topics">', '', '</div>' ); ?>
+				<?php techcamp_term_list( 'topic', 'header' ); ?>
 				<div class="detail-meta__location">
-					<span><?php echo esc_html( techcamp_location() ); ?></span> <a href="/map">View Map</a>
+					<span><?php echo esc_html( techcamp_location() ); ?></span> <a href="<?php echo esc_url( get_permalink( techcamp_get_map_id() ) ); ?>">View Map</a>
 				</div>
 				<?php if ( $funded_by = get_post_meta( get_the_ID(), 'funded_by', true ) ) { ?>
 					<div class="detail-meta__funded">
@@ -121,7 +113,7 @@
 				<!--
 				<div class="box">
 					<p>Keep up to date with TechCamp. Sign up for email updates.</p>
-					<a class="button secondary" href="#">Stay Connected</a>
+					<a class="button" href="#">Stay Connected</a>
 				</div>
 				-->
 
@@ -129,11 +121,10 @@
 				<div class="box box--slack">
 					<img class="slack-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/slack-logo.png" alt="Slack logo" />
 					<?php echo wp_kses_post( wpautop( techcamp_get_setting( 'slack_text', 'outcome' ) ) ); ?>
-					<a class="button secondary" href="https://slack.com/signin">Log In</a>
+					<a class="button" href="https://slack.com/signin">Log In</a>
 				</div>
 
-				<!-- Related Events? -->
-
+				<!-- Related TechCamps -->
 				<?php $rel_events = get_posts( array(
 					'posts_per_page'  => 3,
 					'post_type'       => 'event',
@@ -182,7 +173,7 @@
 				<?php $links = get_post_meta( get_the_ID(), 'external_links', true );
 				if ( $links ) { ?>
 					<div class="box box--external">
-						<h2 class="box__title"><?php echo esc_html( techcamp_get_setting( 'rel_links_label', 'event' ) ); ?></h2>
+						<h2 class="box__title"><?php echo esc_html( techcamp_get_setting( 'rel_links_label', 'outcome' ) ); ?></h2>
 						<ul class="box-list">
 							<?php foreach( $links as $link ) {
 								$link = wp_parse_args( $link, array(

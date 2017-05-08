@@ -161,13 +161,10 @@
 	}
 
 	.button {
-		background:$dark-blue;
 		margin-top:0.7rem;
 		font-size:1.6rem;
-		&:hover,
-		&:focus {
-			background:$blue;
-		}
+		@extend .button--secondary;
+		@extend .button--on-dark;
 	}
 
 }

@@ -59,7 +59,7 @@ get_header(); ?>
 						<?php }
 					} ?>
 				</div>
-				<a class="button home-topics__button" href="<?php echo esc_url( site_url() ); ?>/topics">View All Topics</a>
+				<a class="button button--on-dark home-topics__button" href="<?php echo esc_url( site_url() ); ?>/topics">View All Topics</a>
 
 			</div>
 		</div>

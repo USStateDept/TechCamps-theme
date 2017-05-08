@@ -37,6 +37,20 @@
 	&.has-image:not(.has-color) {
 		text-shadow:0.1rem 0.1rem 2rem #fff;
 	}
+	&__crumb {
+		max-width:85rem;
+		margin:0 auto;
+		@include secondary-text;
+		font-size:1.6rem;
+		a {
+			color:$navy;
+			&:hover,
+			&:focus {
+				color:$blue;
+			}
+		}
+	}
+
 }
 
 .main-basic {
@@ -50,23 +64,10 @@
 			padding:11.5rem 0 13.1rem;
 		}
 
-		&__crumb,
 		&__title,
 		&__meta {
 			max-width:85rem;
 			margin:0 auto;
-		}
-
-		&__crumb {
-			@include secondary-text;
-			font-size:1.6rem;
-			a {
-				color:$navy;
-				&:hover,
-				&:focus {
-					color:$blue;
-				}
-			}
 		}
 
 		&__title {
@@ -107,13 +108,17 @@
 				margin-right:7rem;
 			}
 			margin-bottom:2rem;
+			padding-left: 5rem;
+			position: relative;
 			&:before {
 				color:$blue;
 				font-size:3.2rem;
 				padding-right:1.4rem;
+				position: absolute;
 				display:inline-block;
-				width:6rem;
-				text-align:right;
+			    width: 5rem;
+			    text-align: center;
+			    left: 0;
 			}
 			a {
 				text-decoration:none;

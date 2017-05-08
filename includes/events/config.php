@@ -12,30 +12,30 @@ function techcamp_event_post_type() {
 
 	register_post_type( 'event', array(
 		'labels' => array(
-			'name'                  => 'Events',
-			'singular_name'         => 'Event',
-			'add_new_item'          => 'Add New Event',
-			'edit_item'             => 'Edit Event',
-			'new_item'              => 'New Event',
-			'view_item'             => 'View Event',
-			'search_items'          => 'Search Events',
-			'not_found'             => 'No events found.',
-			'not_found_in_trash'    => 'No events found in Trash.',
-			'parent_item_colon'     => 'Parent Event:',
-			'all_items'             => 'All Events',
-			'archives'              => 'Events',
-			'insert_into_item'      => 'Insert into event',
-			'uploaded_to_this_item' => 'Uploaded to this event',
-			'filter_items_list'     => 'Filter events list',
-			'items_list_navigation' => 'Events list navigation',
-			'items_list'            => 'Events list'
+			'name'                  => 'TechCamps',
+			'singular_name'         => 'TechCamp',
+			'add_new_item'          => 'Add New TechCamp',
+			'edit_item'             => 'Edit TechCamp',
+			'new_item'              => 'New TechCamp',
+			'view_item'             => 'View TechCamp',
+			'search_items'          => 'Search TechCamps',
+			'not_found'             => 'No TechCamps found.',
+			'not_found_in_trash'    => 'No TechCamps found in Trash.',
+			'parent_item_colon'     => 'Parent TechCamp:',
+			'all_items'             => 'All TechCamps',
+			'archives'              => 'TechCamps',
+			'insert_into_item'      => 'Insert into TechCamp',
+			'uploaded_to_this_item' => 'Uploaded to this TechCamp',
+			'filter_items_list'     => 'Filter TechCamps list',
+			'items_list_navigation' => 'TechCamps list navigation',
+			'items_list'            => 'TechCamps list'
 		),
 		'public'       => true,
 		'menu_icon'    => 'dashicons-calendar',
 		'hierarchical' => false,
 		'supports'     => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'page-attributes' ),
-		'has_archive'  => 'events/all',
-		'rewrite'      => array( 'slug' => 'events', 'with_front' => false )
+		'has_archive'  => 'techcamps/all',
+		'rewrite'      => array( 'slug' => 'techcamps', 'with_front' => false )
 	) );
 
 }
@@ -48,7 +48,7 @@ function techcamp_event_fields() {
 
 	$event_box = new_cmb2_box( array(
 		'id'           => 'event_box',
-		'title'        => __( 'Event Fields', 'techcamp' ),
+		'title'        => __( 'TechCamp Fields', 'techcamp' ),
 		'object_types' => array( 'event' )
 	) );
 

@@ -65,8 +65,8 @@ class TechCamp_Outcome_Settings extends TechCamp_Admin {
 
 		$cmb->add_field( array(
 			'id'         => 'rel_event_label',
-			'name'       => __( 'Related Event Label', 'techcamp' ),
-			'default'    => 'Event',
+			'name'       => __( 'Related TechCamp Label', 'techcamp' ),
+			'default'    => 'TechCamp',
 			'type'       => 'text',
 		) );
 
@@ -87,14 +87,14 @@ class TechCamp_Outcome_Settings extends TechCamp_Admin {
 		$cmb->add_field( array(
 			'id'         => 'photos_label',
 			'name'       => __( 'Photos Label', 'techcamp' ),
-			'default'    => 'Photos from Event',
+			'default'    => 'Photos from TechCamp',
 			'type'       => 'text',
 		) );
 
 		$cmb->add_field( array(
 			'id'         => 'videos_label',
 			'name'       => __( 'Videos Label', 'techcamp' ),
-			'default'    => 'Videos from Event',
+			'default'    => 'Videos from TechCamp',
 			'type'       => 'text',
 		) );
 

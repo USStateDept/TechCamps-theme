@@ -237,35 +237,37 @@ function techcamp_surfaced_posts( $context = '', $title = '', $posts = array(), 
 					setup_postdata( $post ); ?>
 					<div class="surfaced-posts__post">
 						<div class="surfaced-posts__post-inner">
-							<?php if ( has_post_thumbnail() ) {
-								the_post_thumbnail( 'surfaced-thumb', array(
-									'class' => 'surfaced-posts__image'
-								) );
-							} else { ?>
-								<img class="surfaced-posts__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/default-thumbnail.jpg" alt="" />
-							<?php } ?>
-							<div class="surfaced-posts__text">
-								<?php if ( get_post_type() === 'post' ) { ?>
-									<div class="surfaced-posts__date"><?php the_time( 'm.d.Y' ); ?></div>
-								<?php } ?>
-								<h3 class="surfaced-posts__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-								<?php if ( get_post_type() === 'outcome' ) {
-									$rel_event = get_posts( array(
-										'connected_type'   => 'events_and_outcomes',
-										'connected_items'  => $post,
-										'posts_per_page'   => 1,
-										'suppress_filters' => false,
+							<a class="surfaced-posts__link" href="<?php the_permalink(); ?>">
+								<?php if ( has_post_thumbnail() ) {
+									the_post_thumbnail( 'surfaced-thumb', array(
+										'class' => 'surfaced-posts__image'
 									) );
-									if ( $rel_event ) {
-										$rel_event = array_shift( $rel_event ); ?>
-										<p class="surfaced-posts__meta"><?php echo esc_html( apply_filters( 'the_title', $rel_event->post_title ) ); ?></p>
-									<?php }
-								} else if ( get_post_type() === 'event' ) {
-									?>
-									<p class="surfaced-posts__meta"><?php echo esc_html( techcamp_location() ); ?></p>
-									<?php
-								} ?>
-							</div>
+								} else { ?>
+									<img class="surfaced-posts__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/default-thumbnail.jpg" alt="" />
+								<?php } ?>
+								<div class="surfaced-posts__text">
+									<?php if ( get_post_type() === 'post' ) { ?>
+										<div class="surfaced-posts__date"><?php the_time( 'm.d.Y' ); ?></div>
+									<?php } ?>
+									<h3 class="surfaced-posts__title"><?php the_title(); ?></h3>
+									<?php if ( get_post_type() === 'outcome' ) {
+										$rel_event = get_posts( array(
+											'connected_type'   => 'events_and_outcomes',
+											'connected_items'  => $post,
+											'posts_per_page'   => 1,
+											'suppress_filters' => false,
+										) );
+										if ( $rel_event ) {
+											$rel_event = array_shift( $rel_event ); ?>
+											<p class="surfaced-posts__meta"><?php echo esc_html( apply_filters( 'the_title', $rel_event->post_title ) ); ?></p>
+										<?php }
+									} else if ( get_post_type() === 'event' ) {
+										?>
+										<p class="surfaced-posts__meta"><?php echo esc_html( techcamp_location() ); ?></p>
+										<?php
+									} ?>
+								</div>
+							</a>
 						</div>
 					</div>
 				<?php }
@@ -452,7 +454,7 @@ function techcamp_get_region_link( $term, $post_type = '' ) {
  * Echo the term list for a specific post using the post-type-specific links above.
  * Assumes a global post is present.
  */
-function techcamp_term_list( $taxonomy = '' ) {
+function techcamp_term_list( $taxonomy = '', $context = 'footer' ) {
 
 	global $post;
 	if ( ! $post ) {
@@ -474,13 +476,21 @@ function techcamp_term_list( $taxonomy = '' ) {
 		return;
 	}
 
-	?>
-	<ul class="entry-footer__list entry-footer__list--<?php echo esc_attr( $taxonomy ); ?>">
-		<?php foreach( $terms as $term ) { ?>
-			<li><a href="<?php echo esc_url( techcamp_get_term_link( $term, $taxonomy, get_post_type() ) ); ?>"><?php echo esc_html( $term->name ); ?></a></li>
-		<?php } ?>
-	</ul>
-	<?php
+	if ( $context === 'header' ) { ?>
+
+		<div class="detail-meta__topics">
+			<?php foreach( $terms as $term ) { ?>
+				<a href="<?php echo esc_url( techcamp_get_term_link( $term, $taxonomy, get_post_type() ) ); ?>"><?php echo esc_html( $term->name ); ?></a>
+			<?php } ?>
+		</div>
+
+	<?php } else { ?>
+		<ul class="entry-footer__list entry-footer__list--<?php echo esc_attr( $taxonomy ); ?>">
+			<?php foreach( $terms as $term ) { ?>
+				<li><a href="<?php echo esc_url( techcamp_get_term_link( $term, $taxonomy, get_post_type() ) ); ?>"><?php echo esc_html( $term->name ); ?></a></li>
+			<?php } ?>
+		</ul>
+	<?php }
 
 }
 
@@ -513,4 +523,42 @@ function techcamp_get_setting( $key = '', $post_type = '' ) {
 
 	return $values[$key];
 
+}
+
+/**
+ * Get the map page.
+ */
+function techcamp_get_map_id() {
+	$map_pages = get_posts( array(
+		'posts_per_page'   => 1,
+		'post_type'        => 'page',
+		'meta_key'         => '_wp_page_template',
+		'meta_value'       => 'page-templates/map.php',
+		'suppress_filters' => false,
+		'fields'           => 'ids',
+	) );
+	if ( $map_pages ) {
+		$map_page = array_shift( $map_pages );
+		return $map_page;
+	}
+	return false;
+}
+
+/**
+ * Get the landing page for the given post type.
+ */
+function techcamp_get_landing_id( $post_type ) {
+	$landing_pages = get_posts( array(
+		'posts_per_page'   => 1,
+		'post_type'        => 'page',
+		'meta_key'         => 'landing_type',
+		'meta_value'       => sanitize_key( $post_type ),
+		'suppress_filters' => false,
+		'fields'           => 'ids',
+	) );
+	if ( $landing_pages ) {
+		$landing_page = array_shift( $landing_pages );
+		return $landing_page;
+	}
+	return false;
 }

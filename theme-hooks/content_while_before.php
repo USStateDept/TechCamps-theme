@@ -46,9 +46,9 @@ global $wp_query; ?>
 			<span class="archive-total__count"><?php echo esc_html( $range ); ?></span>
 			of
 			<span class="archive-total__count"><?php echo (int) $total; ?></span>
-			Articles
+			Blog Articles
 		<?php } else { ?>
-			No Articles Found
+			No Blog Articles Found
 		<?php } ?>
 		<?php if ( is_category() || is_tag() || is_tax() ) { ?>
 			in <?php single_term_title(); ?>

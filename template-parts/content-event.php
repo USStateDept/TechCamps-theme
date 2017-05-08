@@ -1,15 +1,10 @@
 <?php
 /**
- * Template part for displaying the event detail content.
+ * Template part for displaying the techcamp detail content.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @todo Text strings - "Events", "Apply Now", content headings
- * @todo Responsive images for speed. Specifically the big hero image.
- * @todo Meta links: Map page option?
- * @todo Related Articles icon - external link? Should it be there?
- *
- * @package corona
+ * @package techcamp
  */
 ?>
 
@@ -28,7 +23,7 @@
 			<div class="detail-header__primary">
 
 				<div class="breadcrumbs detail-header__breadcrumbs">
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'event' ) ); ?>">Events</a>
+					<a href="<?php echo esc_url( get_permalink( techcamp_get_landing_id( 'event' ) ) ); ?>">TechCamps</a>
 				</div>
 
 				<?php the_title( '<h1 class="entry-title detail-header__title">', '</h1>' ); ?>
@@ -46,9 +41,9 @@
 		<div class="detail-meta__container container">
 
 			<div class="detail-meta__data">
-				<?php echo get_the_term_list( get_the_ID(), 'topic', '<div class="detail-meta__topics">', '', '</div>' ); ?>
+				<?php techcamp_term_list( 'topic', 'header' ); ?>
 				<div class="detail-meta__location">
-					<span><?php echo esc_html( techcamp_location() ); ?></span> <a href="/map">View Map</a>
+					<span><?php echo esc_html( techcamp_location() ); ?></span> <a href="<?php echo esc_url( get_permalink( techcamp_get_map_id() ) ); ?>">View Map</a>
 				</div>
 				<div class="detail-meta__date">
 					<?php echo esc_html( techcamp_event_date() ); ?>
@@ -99,12 +94,12 @@
 				<div class="box box--slack">
 					<img class="slack-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/slack-logo.png" alt="Slack logo" />
 					<?php echo wp_kses_post( wpautop( techcamp_get_setting( 'slack_text', 'event' ) ) ); ?>
-					<a class="button secondary" href="https://slack.com/signin">Log In</a>
+					<a class="button" href="https://slack.com/signin">Log In</a>
 				</div>
 				<!--
 				<div class="box">
 					<p>Keep up to date with TechCamp. Sign up for email updates.</p>
-					<a class="button secondary" href="#">Stay Connected</a>
+					<a class="button" href="#">Stay Connected</a>
 				</div>
 				-->
 			</aside>
@@ -119,12 +114,12 @@
 		'connected_items' => get_post(),
 		'no_found_rows'   => true
 	) );
-	if ( $trainers ) { ?>
+	if ( $trainers ) {
+		$trainer_count = count( $trainers ); ?>
 		<div class="bios">
 			<div class="bios__container container">
 				<h2 class="bios__title"><?php echo esc_html( techcamp_get_setting( 'trainers_label', 'event' ) ); ?></h2>
-				<div class="bios__controls">
-					<?php $trainer_count = count( $trainers ); ?>
+				<div class="bios__controls bios__controls--amount-<?php echo (int) $trainer_count; ?>">
 					<span class="bios__count"><?php echo (int) $trainer_count; ?> <?php echo _n( 'Bio', 'Bios', $trainer_count ); ?></span>
 					<a class="bios__more" href="#" data-alt="View Less">View All</a>
 				</div>
@@ -132,17 +127,21 @@
 					<?php foreach( $trainers as $post ) {
 						setup_postdata( $post ); ?>
 						<li class="bios__item">
-							<div class="bios__image">
-								<?php if ( has_post_thumbnail() ) { ?>
-									<?php the_post_thumbnail( 'portrait' ); ?>
-								<?php } else { ?>
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bio.png" alt="Silhouette" />
-								<?php } ?>
-							</div>
-							<div class="bios__text">
-								<h3 class="bios__name"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-								<span class="bios__position"><?php echo esc_html( get_post_meta( get_the_ID(), 'position', true ) ); ?></span>
-								<span class="bios__organization"><?php echo esc_html( get_post_meta( get_the_ID(), 'organization', true ) ); ?></span>
+							<div class="bios__inner">
+								<div class="bios__image">
+									<?php if ( has_post_thumbnail() ) { ?>
+										<?php the_post_thumbnail( 'portrait' ); ?>
+									<?php } else { ?>
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bio.png" alt="Silhouette" />
+									<?php } ?>
+								</div>
+								<div class="bios__text">
+									<div class="bios__text__inner">
+										<h3 class="bios__name"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+										<span class="bios__position"><?php echo esc_html( get_post_meta( get_the_ID(), 'position', true ) ); ?></span>
+										<span class="bios__organization"><?php echo esc_html( get_post_meta( get_the_ID(), 'organization', true ) ); ?></span>
+									</div>
+								</div>
 							</div>
 						</li>
 					<?php }
@@ -194,7 +193,7 @@
 										if ( $ext === 'pptx' ) $ext = 'ppt';
 										if ( $ext === 'docx' ) $ext = 'doc';
 									?>
-									<a href="<?php echo esc_url( $url ); ?>" class="flat-list__link"><?php the_title(); ?></a>
+									<a target="_blank" href="<?php echo esc_url( $url ); ?>" class="flat-list__link"><?php the_title(); ?></a>
 									<?php if ( $ext ) { ?><span class="flat-list__icon <?php echo esc_attr( $ext ); ?>"><span class="element-invisible"><?php echo esc_html( $ext ); ?></span></span><?php } ?>
 								</li>
 							<?php }
@@ -227,7 +226,7 @@
 								$quote = rtrim( $quote, '.:,;?') . '...';
 							}
 						?>
-						<a class="button" href="https://twitter.com/intent/tweet?text=<?php echo urlencode( '"' . $quote . '"' ); ?>&amp;url=<?php echo urlencode( esc_url( get_permalink() ) ); ?>">Tweet This</a>
+						<a class="button button--on-dark" href="https://twitter.com/intent/tweet?text=<?php echo urlencode( '"' . $quote . '"' ); ?>&amp;url=<?php echo urlencode( esc_url( get_permalink() ) ); ?>">Tweet This</a>
 					</div>
 				<?php } ?>
 

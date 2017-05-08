@@ -1,6 +1,6 @@
 <?php
 /**
- * Event settings page.
+ * TechCamp settings page.
  */
 class TechCamp_Event_Settings extends TechCamp_Admin {
 
@@ -10,7 +10,7 @@ class TechCamp_Event_Settings extends TechCamp_Admin {
 	function __construct() {
 		$this->key = 'event_settings';
 		$this->metabox_id = 'event_settings_metabox';
-		$this->title = 'Event Settings';
+		$this->title = 'TechCamp Settings';
 		$this->parent = 'edit.php?post_type=event';
 	}
 
@@ -43,8 +43,8 @@ class TechCamp_Event_Settings extends TechCamp_Admin {
 
 		$cmb->add_field( array(
 			'id'         => 'featured_event',
-			'name'       => __( 'Featured Event', 'techcamp' ),
-			'desc'       => __( 'Make sure the selected event has a featured image.', 'techcamp' ),
+			'name'       => __( 'Featured TechCamp', 'techcamp' ),
+			'desc'       => __( 'Make sure the selected TechCamp has a featured image.', 'techcamp' ),
 			'type'       => 'select',
 			'options_cb' => array( $this, 'get_events' ),
 		) );
@@ -65,7 +65,7 @@ class TechCamp_Event_Settings extends TechCamp_Admin {
 		$cmb->add_field( array(
 			'id'         => 'description_label',
 			'name'       => __( 'Description Label', 'techcamp' ),
-			'default'    => 'Description / Overview of Event',
+			'default'    => 'Description / Overview of TechCamp',
 			'type'       => 'text',
 		) );
 
@@ -93,8 +93,8 @@ class TechCamp_Event_Settings extends TechCamp_Admin {
 		$cmb->add_field( array(
 			'id'         => 'slack_text',
 			'name'       => __( 'Slack Text', 'techcamp' ),
-			'desc'       => __( 'Introductory text to the Slack link in the sidebar of event detail pages.', 'techcamp' ),
-			'default'    => 'Did you attend this TechCamp? Attendees to this event can log in and continue the conversation.',
+			'desc'       => __( 'Introductory text to the Slack link in the sidebar of TechCamp detail pages.', 'techcamp' ),
+			'default'    => 'Did you attend this TechCamp? Attendees can log in and continue the conversation.',
 			'type'       => 'textarea',
 		) );
 
@@ -122,14 +122,14 @@ class TechCamp_Event_Settings extends TechCamp_Admin {
 		$cmb->add_field( array(
 			'id'         => 'photos_label',
 			'name'       => __( 'Photos Label', 'techcamp' ),
-			'default'    => 'Photos from Event',
+			'default'    => 'Photos from this TechCamp',
 			'type'       => 'text',
 		) );
 
 		$cmb->add_field( array(
 			'id'         => 'videos_label',
 			'name'       => __( 'Videos Label', 'techcamp' ),
-			'default'    => 'Videos from Event',
+			'default'    => 'Videos from this TechCamp',
 			'type'       => 'text',
 		) );
 

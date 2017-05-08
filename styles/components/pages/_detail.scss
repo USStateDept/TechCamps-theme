@@ -142,13 +142,25 @@
 	&__topics {
 		@include icon-before( 'tag' );
 		margin-bottom:3.6rem;
+	    position: relative;
+	    padding-left: 5rem;
 		&:before {
 			padding-right:1.2rem;
+		    top: -1rem;
+		    position: absolute;
+		    left: 0;
+		    @include bp( $thin ) {
+			    top: -0.6rem;
+		    }
 		}
-		a:first-child {
-			&:before {
-				display:none;
+		a{
+			padding-left: 0!important;
+			&:first-child {
+				&:before {
+					display:none;
+				}
 			}
+
 		}
 	}
 
@@ -193,7 +205,6 @@
 			color:$blue;
 			font-size:3.4rem;
 		}
-
 		a {
 			display:block;
 			margin-bottom:1rem;
