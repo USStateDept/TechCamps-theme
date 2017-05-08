@@ -142,7 +142,7 @@
 // Small uppercase text
 @mixin secondary-text() {
 	text-transform:uppercase;
-	font-family:"Open Sans", sans-serif;
+	font-family:$base-font;
 	font-weight:600;
 	line-height:1;
 	font-size:1.8rem;

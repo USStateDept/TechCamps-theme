@@ -90,6 +90,7 @@
 		} else {
 			$( this ).addClass( 'active' );
 			form.addClass( 'toggled' );
+			form.children( '.top-search__input' ).focus();
 		}
 	} );
 

@@ -3,7 +3,11 @@
 // @todo - replace this with adding events/outcomes to json file whenever they are saved.
 // will speed up load w/no stress to server.
 
-include( '../../../wp-load.php' );
+if ( file_exists( '../../../wp/wp-load.php' ) ) {
+	include( '../../../wp/wp-load.php' );
+} else {
+	include( '../../../wp-load.php' );
+}
 
 header( 'Content-Type: application/json' );
 
@@ -80,6 +84,7 @@ foreach( $markers as $id ) {
 			'coordinates' => $coordinates
 		),
 		'properties'      => array(
+			'id'          => $id,
 			'name'        => get_the_title( $id ),
 			'desc'        => get_post_meta( $id, 'short_description', true ),
 			'date'        => $date,

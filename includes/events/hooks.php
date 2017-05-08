@@ -160,8 +160,7 @@ function techcamp_print_redirect( $template ) {
 add_action( 'template_include', 'techcamp_print_redirect' );
 
 /**
- * For TechCamp-centric searches, add the 'keyword' query var to the query,
- * either as 's' or as a topic/region search.
+ * For TechCamp-centric searches, add the 'keyword' query var to the query.
  *
  * This also works for Outcomes.
  */
@@ -177,31 +176,32 @@ function techcamp_event_search( $query ) {
 
 	$keyword = techcamp_get_search_query();
 
-	// if topic
-	if ( strpos( $keyword, 'Topic: ' ) === 0 ) {
-		$keyword = str_replace( 'Topic: ', '', $keyword );
-		$query->set( 'tax_query', array(
-			array(
-				'taxonomy' => 'topic',
-				'terms'    => array( $keyword ),
-				'field'    => 'name',
-			)
-		) );
-
-	// if region
-	} else if ( strpos( $keyword, 'Region: ' ) === 0 ) {
-		$keyword = str_replace( 'Region: ', '', $keyword );
-		$query->set( 'tax_query', array(
-			array(
-				'taxonomy' => 'country',
-				'terms'    => array( $keyword ),
-				'field'    => 'name',
-			)
-		) );
-
-	} else {
-		$query->set( 's', $keyword );
-	}
+	$query->set( 's', $keyword );
 
 }
 add_action( 'pre_get_posts', 'techcamp_event_search' );
+
+/**
+ * Run the Event/Outcome search through Relevanssi. This needs to run after
+ * the query has been set up.
+ */
+function techcamp_test_relevanssi() {
+
+	if ( !function_exists( 'relevanssi_do_query' ) ) {
+		return;
+	}
+
+	global $wp_query;
+
+	if ( is_admin() || !$wp_query->is_main_query() ) {
+		return;
+	}
+
+	if ( !is_post_type_archive( array( 'event', 'outcome' ) ) ) {
+		return;
+	}
+
+	relevanssi_do_query( $wp_query );
+
+}
+add_action( 'wp', 'techcamp_test_relevanssi' );

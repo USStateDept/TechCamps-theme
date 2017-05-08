@@ -7,7 +7,12 @@
 <?php tha_entry_before();
 
 $include_thumb = !is_post_type_archive( 'resource' ) && get_post_type() !== 'bio';
-$thumb_class = $include_thumb ? 'has-thumb' : 'no-thumb'; ?>
+$thumb_class = $include_thumb ? 'has-thumb' : 'no-thumb';
+
+if ( is_search() && !has_post_thumbnail() ) {
+	$include_thumb = false;
+	$thumb_class = 'no-thumb';
+} ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'entry archive-entry ' . $thumb_class ); ?>>
 
@@ -15,11 +20,13 @@ $thumb_class = $include_thumb ? 'has-thumb' : 'no-thumb'; ?>
 
 	<?php if ( $include_thumb ) { ?>
 		<div class="archive-entry__thumb">
-			<?php if ( has_post_thumbnail() ) {
-				the_post_thumbnail( 'archive-thumb' );
-			} else { ?>
-				<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/world-archive.png" alt="" />
-			<?php } ?>
+			<a href="<?php the_permalink(); ?>">
+				<?php if ( has_post_thumbnail() ) {
+					the_post_thumbnail( 'archive-thumb' );
+				} else { ?>
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/world-archive.png" alt="" />
+				<?php } ?>
+			</a>
 		</div>
 	<?php } ?>
 
@@ -31,11 +38,13 @@ $thumb_class = $include_thumb ? 'has-thumb' : 'no-thumb'; ?>
 		<header class="archive-entry__header">
 			<?php if ( get_post_type() === 'bio' ) { ?>
 				<div class="archive-entry__portrait">
-					<?php if ( has_post_thumbnail() ) {
-						the_post_thumbnail( 'portrait' );
-					} else { ?>
-						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bio.png" alt="Silhouette" />
-					<?php } ?>
+					<a href="<?php the_permalink(); ?>">
+						<?php if ( has_post_thumbnail() ) {
+							the_post_thumbnail( 'icon' );
+						} else { ?>
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bio.png" alt="Silhouette" />
+						<?php } ?>
+					</a>
 				</div>
 			<?php } ?>
 			<h3 class="archive-entry__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>

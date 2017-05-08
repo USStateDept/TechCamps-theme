@@ -65,6 +65,7 @@ $social_menu = wp_nav_menu( array(
 		</div>
 		<div class="mobile-toggle top-bar__mobile-toggle" aria-controls="mobile-expand" aria-expanded="false">
 			<button class="hamburger hamburger--3dy" type="button">
+				<span class="element-invisible">Toggle Menu</span>
 				<span class="hamburger-box">
 					<span class="hamburger-inner"></span>
 				</span>

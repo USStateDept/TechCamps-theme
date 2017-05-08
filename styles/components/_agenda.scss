@@ -1,12 +1,10 @@
 .agenda {
 	position:relative;
 	padding-bottom:8rem;
-	border-bottom:2px solid $dark-gray;
-	margin-bottom:6rem;
 
 	h3,
 	h4 {
-		font-family:"Open Sans", sans-serif;
+		font-family:$base-font;
 		font-weight:600;
 		margin-bottom:4rem;
 	}

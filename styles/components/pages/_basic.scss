@@ -24,6 +24,7 @@
 		}
 	}
 	&.has-color {
+		background-color:$orange;
 		&.orange:before { background-color:$orange; }
 		&.blue:before   { background-color:$blue; }
 		&.green:before  { background-color:$green; }
@@ -51,6 +52,12 @@
 		}
 	}
 
+}
+
+.entry-title,
+.archive-entry__title,
+.featured-items__title {
+	word-wrap:break-word;
 }
 
 .main-basic {

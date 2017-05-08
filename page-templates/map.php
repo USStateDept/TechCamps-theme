@@ -18,6 +18,15 @@ get_header(); ?>
 
 		<?php tha_content_top(); ?>
 
+		<!-- Google maps marker keyboard accessibility -->
+		<div class="map-tabs">
+			<?php $json = file_get_contents( get_stylesheet_directory_uri() . '/map-data.json.php' );
+			$json = json_decode( $json );
+			foreach( $json->features as $marker ) { ?>
+				<a class="element-invisible map-tab" id="map-tab-<?php echo (int) $marker->properties->id; ?>" data-id="<?php echo (int) $marker->properties->id; ?>" href="#marker-<?php echo (int) $marker->properties->id; ?>"><?php echo esc_html( $marker->properties->name ); ?></a>
+			<?php } ?>
+		</div>
+
 		<div id="map" class="map"></div>
 		<div class="legend">
 			<dl class="legend__definitions container">

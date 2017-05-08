@@ -38,7 +38,7 @@ a {
 //
 
 blockquote {
-	font-family:Glegoo, serif;
+	font-family:$heading-font;
 	font-size:4.4rem;
 	line-height:1.4;
 	font-weight:700;
@@ -64,7 +64,7 @@ cite {
 	font-size:1.6rem;
 	font-weight:600;
 	color:$near-black;
-	font-family:"Open Sans", sans-serif;
+	font-family:$base-font;
 }
 
 //
@@ -77,9 +77,7 @@ cite {
 // blue button on light bg - turns navy on hover
 // blue button on dark bg - turns white on hover w/blue text
 
-.button,
-button,
-.frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
+@mixin basic-button {
 	@include secondary-text();
 	font-size:1.4rem;
 	display:inline-block;
@@ -112,6 +110,22 @@ button,
 			width:100%;
 		}
 	}
+}
+
+.button,
+button,
+.frm_style_formidable-style-2.with_frm_style .frm_submit button.frm_button_submit {
+	@include basic-button;
+}
+
+button.hamburger {
+	background:none;
+	&:after {
+		display:none;
+	}
+}
+
+.button {
 	&--secondary {
 		background:$blue;
 		&:hover,
@@ -205,26 +219,9 @@ ol li {
 // tables
 //
 
-/* .table-wrapper {
-	overflow:auto;
-	position:relative;
-	&:after {
-		content:'';
-		display:block;
-		// position:fixed;
-		height:100%;
-		top:0;
-		bottom:0;
-		right:0;
-		width:2rem;
-		z-index:1;
-		background:linear-gradient(to left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-	}
-} */
-
 table {
+	margin:0;
 	border-bottom:0.6rem solid $light-gray;
-	margin:2rem 0 7rem;
 	text-indent:0;
 	font-size:1.7rem;
 	line-height:1.4;
@@ -267,6 +264,59 @@ tbody th {
 
 tr:nth-child(odd) {
 	background:$light-gray;
+}
+
+// responsive tables
+@media only screen and (max-width: 767px) {
+
+	// CSS only Responsive Tables
+	// http://dbushell.com/2016/03/04/css-only-responsive-tables/
+	// by David Bushell
+	table {
+		display:inline-block;
+		vertical-align:top;
+		max-width:100%;
+		overflow-x:auto;
+		// optional - looks better for small cell values
+		white-space:nowrap;
+		border-collapse:collapse;
+		border-spacing:0;
+	}
+
+	table {
+		-webkit-overflow-scrolling: touch;
+		background:radial-gradient(left, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 0 center,
+				   radial-gradient(right, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 100% center;
+		background-size:10px 100%, 10px 100%;
+		background-attachment:scroll, scroll;
+		background-repeat:no-repeat;
+	}
+
+	// change these gradients from white to your background colour if it differs
+	table td:first-child {
+		background-image:linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+		background-repeat:no-repeat;
+		background-size:20px 100%;
+	}
+
+	// gradient on the last cells to hide the right shadow
+	table td:last-child {
+		background-image:linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+		background-repeat:no-repeat;
+		background-position:100% 0;
+		background-size:20px 100%;
+	}
+
+	tr:nth-child(odd) {
+		background:none;
+	}
+
+	table th,
+	table td {
+		padding:2rem 2.4rem;
+		border:1px solid #d9d7ce;
+	}
+
 }
 
 //
