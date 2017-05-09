@@ -60,7 +60,7 @@
 	&__subhead {
 		font-size:2rem;
 		line-height:2;
-		font-family:"Open Sans", sans-serif;
+		font-family:$base-font;
 		color:#fff;
 		letter-spacing:0;
 		line-height:1.5;
@@ -242,6 +242,11 @@
 
 	&__primary {
 		margin-bottom:4rem;
+
+		.event-resources {
+			padding-top: 6rem;
+			border-top:2px solid $dark-gray;
+		}
 	}
 
 	@include bp( $medium ) {

@@ -330,7 +330,7 @@ class TechCamp_Resource_Library {
 						</div>
 					</div>
 
-					<input class="button button--on-dark button--secondary resource-filters__apply" type="submit" value="Search" />
+					<button class="button button--on-dark button--secondary resource-filters__apply" type="submit">Search</button>
 				</form>
 
 				<?php $values = array_filter( $values );

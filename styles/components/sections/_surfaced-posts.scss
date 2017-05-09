@@ -27,30 +27,15 @@
   		display: block;
 		@include bp( $thin ) {
 			margin:7rem -2rem;
-	  		display: -webkit-box;
-		    display: -webkit-flex;
-		    display: -ms-flexbox;
 		    display: flex;
-		    -webkit-flex: 0 1 auto;
-		    -ms-flex: 0 1 auto;
-		    flex: 0 1 auto;
-		    -webkit-box-orient: horizontal;
-		    -webkit-box-direction: normal;
-		    -webkit-flex-direction: row;
-		    -ms-flex-direction: row;
 		    flex-direction: row;
-		    -webkit-flex-wrap: wrap;
-		    -ms-flex-wrap: wrap;
-		    flex-wrap: wrap;
+		    height: auto;
 		}
 	}
 
 	&__post {
 		@include bp( $thin ) {
 			@include grid-column( 6 );
-			-webkit-flex: 1;
-			-ms-flex: 1 ;
-			flex: 1 ;
 			&:last-child {
 				display:none;
 			}
@@ -58,16 +43,20 @@
 		@include bp( $medium ) {
 			@include grid-column( 4 );
 			&:last-child {
-				display:block;
+				display:flex;
+			    flex: 1;
 			}
 		}
-		height: auto;
 		position: relative;
+	    display: flex; 
+	    flex: 1;
+
 	}
 
 	&__post-inner {
 		margin:0 0 4rem;
-		height: 100%;
+	    display: flex; 
+	    flex: 1;
 	    overflow: hidden;
 	    background: $white;
 		@include bp( $thin ) {
@@ -113,8 +102,28 @@
 		font-weight:600;
 		font-size:1.5rem;
 		margin:0;
-		position:absolute;
-		bottom:3rem;
+		margin-top:1rem;
+
+		&--date {
+			@include icon-before( 'calendar' );
+		}
+
+		&--location {
+			@include icon-before( 'pin' );
+		}
+
+		&--date,
+		&--location {
+			padding-left:3rem;
+			&:before {
+				text-align:center;
+				color:$gray-text;
+				display:inline-block;
+				width:3rem;
+				margin-left:-3rem;
+			}
+		}
+
 	}
 
 	&__date {
@@ -132,6 +141,7 @@
 
 .main-basic + .surfaced-posts,
 .main-singular + .surfaced-posts {
+	background-color:$blue;
 	background-image:url( 'images/globe-bg.png' );
 	background-size:cover;
 

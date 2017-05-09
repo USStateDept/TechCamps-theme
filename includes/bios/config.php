@@ -88,5 +88,14 @@ function techcamp_bio_fields() {
 		),
 	) );
 
+	$bio_box->add_field( array(
+		'id'   => 'resource_type',
+		'name' => 'Resource Type',
+		'type' => 'taxonomy_select',
+		'taxonomy'       => 'resource_type',
+		'remove_default' => true,
+		'default'        => 'trainer-bio',
+	) );
+
 }
 add_action( 'cmb2_admin_init', 'techcamp_bio_fields' );

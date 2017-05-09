@@ -114,12 +114,17 @@ get_header(); ?>
 				</div>
 			</div>
 
-			<?php $recent_posts = get_posts( array(
+			<?php $args = array(
 				'post_type'        => $post_type,
 				'posts_per_page'   => 3,
 				'suppress_filters' => false,
 				'post__not_in'     => array( $featured_post_id ),
-			) );
+			);
+			if ( $post_type === 'event' ) {
+				$args['meta_key'] = 'start_date';
+				$args['orderby']  = 'meta_value';
+			}
+			$recent_posts = get_posts( $args );
 			techcamp_surfaced_posts(
 				$post_type,
 				'Most Recent ' . $post_type_label,

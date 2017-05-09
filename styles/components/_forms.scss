@@ -5,13 +5,13 @@
 		display:inline-block;
 
 		.frm_primary_label {
-			font-family:"Open Sans", sans-serif;
+			font-family:$base-font;
 			font-weight:600;
 			font-size:1.6rem;
 		}
 
 		.frm_description {
-			font-family:"Open Sans", sans-serif;
+			font-family:$base-font;
 			font-size:1.4rem;
 		}
 
@@ -84,6 +84,28 @@
 		}
 	}
 
+}
+
+// success/error messages
+.frm_forms.with_frm_style .frm_message,
+.frm_forms.with_frm_style .frm_error_style {
+	background:$green;
+	border-radius:0;
+	border:0;
+	padding:2rem 3rem;
+	font-size:1.6rem;
+	color:#fff;
+	p {
+		color:#fff;
+		margin:0;
+	}
+}
+.frm_forms.with_frm_style .frm_error_style {
+	background:$red;
+}
+.frm_forms.with_frm_style .frm_blank_field label,
+.frm_forms.with_frm_style .frm_error {
+	color:$red;
 }
 
 // email signup on landing pages

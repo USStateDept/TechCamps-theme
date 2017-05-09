@@ -43,7 +43,7 @@
 	}
 
 	p {
-		font-family:Glegoo, serif;
+		font-family:$heading-font;
 		font-size:2rem;
 		@include bp( $thin ) {
 			font-size:2.5rem;
@@ -113,7 +113,7 @@
 	}
 
 	&__title {
-		font-family:Glegoo, serif;
+		font-family:$heading-font;
 		font-size:2.5rem;
 		text-decoration:none;
 		line-height:1.2;

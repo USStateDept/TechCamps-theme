@@ -263,7 +263,8 @@ function techcamp_surfaced_posts( $context = '', $title = '', $posts = array(), 
 										<?php }
 									} else if ( get_post_type() === 'event' ) {
 										?>
-										<p class="surfaced-posts__meta"><?php echo esc_html( techcamp_location() ); ?></p>
+										<p class="surfaced-posts__meta surfaced-posts__meta--location"><?php echo esc_html( techcamp_location() ); ?></p>
+										<p class="surfaced-posts__meta surfaced-posts__meta--date"><?php echo esc_html( techcamp_event_date() ); ?></p>
 										<?php
 									} ?>
 								</div>
@@ -300,6 +301,10 @@ function techcamp_get_post_type_label( $post_type = '', $label_type = 'plural' )
 
 	if ( $label === 'Post' ) {
 		$label = 'Blog';
+	}
+
+	if ( $label === 'Bio' ) {
+		$label = 'Trainer';
 	}
 
 	/* if ( $label === 'Page' ) {
@@ -382,12 +387,12 @@ function techcamp_get_search_suggestions() {
 
 	foreach( $topics as $topic ) {
 		$topic = wp_specialchars_decode( $topic );
-		$list[] = array( 'value' => 'Topic: ' . $topic, 'data' => 'Topic' );
+		$list[] = array( 'value' => $topic, 'data' => 'Topic' );
 	}
 
 	foreach( $regions as $region ) {
 		$region = wp_specialchars_decode( $region );
-		$list[] = array( 'value' => 'Region: ' . $region, 'data' => 'Region' );
+		$list[] = array( 'value' => $region, 'data' => 'Region' );
 	}
 
 	return $list;

@@ -214,15 +214,14 @@
 		height:100%;
 		color: #ffffff;
 		font-size:1.4rem;
-		font-family:"Open Sans", sans-serif;
+		font-family:$base-font;
 		border:0;
 		height:5.2rem;
 		padding:0 2rem;
 		padding-right:8.6rem;
 		width:20rem;
 		vertical-align:baseline;
-		//border-bottom:1px solid $gray;
-		//float: left;
+		-webkit-appearance: none;
 		background-color: #37517c;
 
 		@include bp( $wide ) {
@@ -345,16 +344,18 @@
 		.top-search__toggle,
 		.top-bar__menu .contact a {
 			height:5.3rem;
-			color:#fff;
+			color:$navy;
 			overflow:hidden;
 			padding:1.5rem 1.5rem 1.4rem;
+			text-indent:-999rem;
 			&:before {
+				display:block;
 				color:$navy;
 				padding-right:0;
+				margin-bottom:1.7rem;
 			}
 			&:hover,
 			&:focus {
-				color:#fff;
 				&:before {
 					color:$blue;
 				}

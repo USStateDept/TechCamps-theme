@@ -81,7 +81,7 @@
 	width:100%;
 	height:650px;
 	margin:0 auto 0;
-	font-family:"Open Sans", sans-serif;
+	font-family:$base-font;
 
 	a {
 		color:#292f48;
@@ -97,11 +97,11 @@
 	&__head,
 	&__desc,
 	&__more {
-		font-family:"Open Sans", sans-serif;
+		font-family:$base-font;
 	}
 
 	.attachment-map-thumb {
-		float: none;
+		display: none;
 		padding:3% 5% 6% 3%;
 		width:100%;
 		height:auto;
@@ -109,6 +109,7 @@
 		@include bp($thin){
 			width: 35%;
 			float: left;
+			display: block;
 		}
 	}
 
@@ -125,12 +126,12 @@
 
 	&__head {
 		font-weight:700;
-		font-family:Glegoo, serif;
-		font-size:2.4rem;
-		line-height:1.4;
+		font-family:$heading-font;
 		letter-spacing:-0.04rem;
 		margin-top:0;
 		margin-bottom:1rem;
+		font-size:2rem;
+		line-height:1;
 		a {
 			color:$blue;
 			&:hover,
@@ -138,13 +139,23 @@
 				color:$bright-blue;
 			}
 		}
+
+		@include bp($thin){
+			font-size:2.4rem;
+			line-height:1.4;
+		}
 	}
 
 	&__desc {
-		font-size:1.6rem;
+		font-size:1.4rem;
 		font-weight:400;
 		color:$navy;
-		line-height:1.6;
+		line-height:1.4;
+
+		@include bp($thin){
+			font-size:1.6rem;
+			line-height:1.6;
+		}
 	}
 
 	&__date {
@@ -161,6 +172,13 @@
 		@include secondary-text;
 		font-size:1.5rem;
 		letter-spacing:0;
+	}
+
+	.close-link,
+	.read-more-link {
+		display:block;
+		font-size:1.6rem;
+		font-weight:700;
 	}
 
 }
