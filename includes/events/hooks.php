@@ -201,7 +201,11 @@ function techcamp_test_relevanssi() {
 		return;
 	}
 
-	relevanssi_do_query( $wp_query );
+	$keyword = isset( $_GET['keyword'] ) ? sanitize_text_field( $_GET['keyword'] ) : false;
+
+	if ( $keyword ) {
+		relevanssi_do_query( $wp_query );
+	}
 
 }
 add_action( 'wp', 'techcamp_test_relevanssi' );

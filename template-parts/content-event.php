@@ -94,7 +94,6 @@
 				<div class="box box--slack">
 					<img class="slack-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/slack-logo.png" alt="Slack logo" />
 					<?php echo wp_kses_post( wpautop( techcamp_get_setting( 'slack_text', 'event' ) ) ); ?>
-					<a class="button" href="https://slack.com/signin">Log In</a>
 				</div>
 				<!--
 				<div class="box">

@@ -62,15 +62,15 @@ get_header(); ?>
 				<div class="featured-items">
 					<div class="featured-items__container container">
 						<div class="featured-items__item">
-							<?php if ( has_post_thumbnail() ) {
-								the_post_thumbnail( 'featured', array(
-									'class' => 'featured-items__image'
-								) );
-							} else { ?>
-								<img class="featured-items__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/default-featured.jpg" alt="" />
-							<?php } ?>
-
-
+							<a class="featured-items__image-link" href="<?php the_permalink(); ?>">
+								<?php if ( has_post_thumbnail() ) {
+									the_post_thumbnail( 'featured', array(
+										'class' => 'featured-items__image'
+									) );
+								} else { ?>
+									<img class="featured-items__image default" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/default-featured.jpg" alt="" />
+								<?php } ?>
+							</a>
 							<div class="featured-items__text">
 								<div class="featured-items__box">
 									<h2 class="featured-items__label">
@@ -181,6 +181,32 @@ get_header(); ?>
 						<ul class="explore-sections__list">
 
 							<?php
+
+							$terms = array();
+							if ( $post_type === 'outcome' ) {
+								// there doesn't seem to be a more efficient way to do this
+								$outcomes = get_posts( array(
+									'posts_per_page' => 100,
+									'post_type'      => 'outcome',
+									'fields'         => 'ids',
+								) );
+								foreach( $outcomes as $outcome ) {
+									$ots = wp_get_object_terms( $outcome, 'country' );
+									foreach ( $ots as $term ) {
+										if ( !in_array( $term->term_id, $terms ) ) {
+											$terms[] = $term->term_id;
+										}
+									}
+								}
+								// get region parent
+								foreach( $terms as $term_id ) {
+									$parents = get_ancestors( $term_id, 'country', 'taxonomy' );
+									if ( $parents ) {
+										$terms = array_merge( $terms, $parents );
+									}
+								}
+							}
+
 							// hook to adjust classes
 							add_filter( 'category_css_class', 'techcamp_category_css_class' );
 
@@ -188,10 +214,11 @@ get_header(); ?>
 							add_filter( 'term_link', 'techcamp_override_term_link_for_' . $post_type, 10, 3 );
 
 							wp_list_categories( array(
-								'depth'     => 2,
-								'hide_emty' => true,
-								'taxonomy'  => 'country',
-								'title_li'  => '',
+								'depth'      => 2,
+								'hide_empty' => true,
+								'taxonomy'   => 'country',
+								'title_li'   => '',
+								'include'    => $terms ? $terms : null,
 							) );
 
 							// clean up

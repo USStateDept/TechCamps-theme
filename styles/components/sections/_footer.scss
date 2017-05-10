@@ -6,6 +6,10 @@
 	li {
 		@include list-reset;
 	}
+	text-align:center;
+	@include bp( $thin ) {
+		text-align:left;
+	}
 }
 
 .footer-top,
@@ -78,7 +82,7 @@
 		padding:2.4rem 0 0;
 		margin-left:-2rem;
 		clear:both;
-		@include bp( 1200px ) {
+		@include bp( 1205px ) {
 			padding-left:1rem;
 			margin-left:0;
 			clear:none;
@@ -120,7 +124,10 @@
 		}
 		margin-top:1.7rem;
 		li {
-			font-size:2.6rem;
+			font-size:3.2rem;
+			@include bp( $thin ) {
+				font-size:2.6rem;
+			}
 			@include bp( $wide ) {
 				font-size:3.6rem;
 			}
@@ -138,15 +145,21 @@
 	line-height:2.8rem;
 	width:100%;
 	padding:3rem 0;
-	overflow:hidden;
 	@include grid-container;
 
 	&:before {
 		content:'';
 		display:block;
 		height:0.4rem;
-		margin:0 2rem 5rem;
 		background:$navy-dark;
+		margin:0 -3rem 5rem;
+		@include bp( $thin ) {
+			margin:0 2rem 5rem;
+		}
+	}
+
+	.footer-1 {
+		overflow:hidden;
 	}
 
 	.widget {
@@ -156,7 +169,11 @@
 		}
 		img {
 			max-width:22rem;
-			margin-top:0.7rem;
+			margin-top:-1rem;
+			margin-bottom:1rem;
+			@include bp( $thin ) {
+				margin:0;
+			}
 		}
 	}
 
@@ -165,14 +182,21 @@
 		font-size:1.6rem;
 		@extend .button--secondary;
 		@extend .button--on-dark;
+		margin-top:-1rem;
+		@include bp( $thin ) {
+			margin-top:0;
+		}
 	}
 
 }
 
 .footer-bottom {
 	background:$navy-dark;
-	padding:3rem;
 	margin:0 -3rem;
+	padding:5rem 3rem;
+	@include bp( $thin ) {
+		padding:3rem;
+	}
 
 	&__secondary {
 		margin-top:4rem;

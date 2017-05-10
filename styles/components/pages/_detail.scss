@@ -72,20 +72,23 @@
 .single-outcome .detail-header {
 
 	// give title more space - outcome titles are long-ish
-
 	@include bp( $thin ) {
-
 		&__primary {
 			@include grid-column( 8 );
 		}
+		&__title {
+			font-size:5rem;
+			line-height:1.15;
+		}
 
+	}
+	@include bp( $medium ) {
 		&__title {
 			font-size:7rem;
 			line-height:1.1;
 		}
 
 	}
-
 }
 
 .single-outcome .detail-content {

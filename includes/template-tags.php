@@ -432,9 +432,7 @@ function techcamp_get_term_link( $term, $taxonomy = '', $post_type = '' ) {
 		if ( is_object( $term ) ) {
 			$term = $term->name;
 		}
-		$taxonomy = get_taxonomy( $taxonomy );
-		$tax_name = $taxonomy->labels->singular_name;
-		$full_url = add_query_arg( 'keyword', urlencode( $tax_name . ': ' . $term ), $archive_url );
+		$full_url = add_query_arg( 'keyword', urlencode( $term ), $archive_url );
 	}
 
 	return esc_url_raw( $full_url );
