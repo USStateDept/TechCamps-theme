@@ -224,7 +224,10 @@
 .entry-content {
 
 	h2 {
-		font-size:3.6rem;
+		font-size:2.8rem;
+		@include bp( $thin ) {
+			font-size:3.4rem;
+		}
 		line-height:1.4;
 		font-weight:700;
 		color:$navy;
@@ -328,8 +331,10 @@
 		&:before {
 			position:absolute;
 			left:0;
-			top:50%;
-			transform:translateY(-50%);
+			top:-1rem;
+			@include bp( $thin ) {
+				top:-0.4rem;
+			}
 		}
 
 		&--related {
@@ -343,8 +348,6 @@
 			@include icon( 'tag' );
 			&:before {
 				font-size:3.4rem;
-				top:0;
-				transform:none;
 			}
 		}
 
@@ -357,7 +360,8 @@
 				background-repeat:no-repeat;
 				background-size:contain;
 				width:3.4rem;
-				height:1.95rem;
+				height:2.95rem;
+				margin-top:0.8rem;
 			}
 		}
 

@@ -37,6 +37,7 @@
 	&__portrait {
 		@include bp( 600px ) {
 			width:50%;
+			height:100%;
 			float:left;
 			position:absolute;
 			top:0;

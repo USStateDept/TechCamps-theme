@@ -18,7 +18,9 @@
 		font-weight:700;
 		margin-bottom:3rem;
 		line-height: 1em;
+		font-size:2.8rem;
 		@include bp( $thin ) {
+			font-size:3.4rem;
 			margin-bottom:6.4rem;
 		}
 	}

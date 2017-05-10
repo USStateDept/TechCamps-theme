@@ -15,7 +15,10 @@
 	@include clearfix;
 
 	&__heading {
-		font-size:3rem;
+		font-size:2.8rem;
+		@include bp( $thin ) {
+			font-size:3.4rem;
+		}
 		line-height:1.15;
 		font-weight:700;
 	}
@@ -48,14 +51,14 @@
 			}
 		}
 		position: relative;
-	    display: flex; 
+	    display: flex;
 	    flex: 1;
 
 	}
 
 	&__post-inner {
 		margin:0 0 4rem;
-	    display: flex; 
+	    display: flex;
 	    flex: 1;
 	    overflow: hidden;
 	    background: $white;
@@ -92,7 +95,7 @@
 		line-height:1.5;
 		color:$navy;
 		text-decoration:none;
-		font-weight:400;
+		font-weight:700;
 		font-size:2.5rem;
 		word-break: break-word;
 	}
@@ -142,7 +145,7 @@
 .main-basic + .surfaced-posts,
 .main-singular + .surfaced-posts {
 	background-color:$blue;
-	background-image:url( 'images/globe-bg.png' );
+	background-image:url( 'images/globe-bg.jpg' );
 	background-size:cover;
 
 	.button {
