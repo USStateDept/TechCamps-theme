@@ -121,6 +121,13 @@ get_header(); ?>
 				'post__not_in'     => array( $featured_post_id ),
 			);
 			if ( $post_type === 'event' ) {
+				$args['meta_query'] = array(
+					array(
+						'key'     => 'start_date',
+						'compare' => '<=',
+						'value'   => time(),
+					),
+				);
 				$args['meta_key'] = 'start_date';
 				$args['orderby']  = 'meta_value';
 			}

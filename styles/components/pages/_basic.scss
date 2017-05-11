@@ -245,6 +245,15 @@
 	margin:0;
 }
 
+.content-container {
+	overflow:hidden;
+}
+
+.page-template-hero-page .content-container {
+	background-color:#fff;
+	background-image:linear-gradient( to bottom, rgba(246,246,246,1), rgba(246,246,246,0) 10% );
+}
+
 .resource-content {
 
 	&__subhead {

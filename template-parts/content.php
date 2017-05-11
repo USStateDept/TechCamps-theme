@@ -29,7 +29,7 @@
 				<?php if ( is_singular( 'post' ) ) { ?>
 					<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>">Blog</a>
 				<?php } else if ( is_singular( 'bio' ) ) { ?>
-					<a href="<?php echo esc_url( techcamp_get_setting( 'archive_url', 'bio' ) ); ?>"><?php echo esc_html( techcamp_get_setting( 'archive_label', 'bio' ) ); ?></a>
+					<?php echo esc_html( techcamp_get_setting( 'archive_label', 'bio' ) ); ?>
 				<?php } else if ( is_singular( 'resource' ) ) { ?>
 					<a href="<?php echo get_post_type_archive_link( 'resource' ); ?>">Resources</a>
 				<?php } else {
@@ -58,24 +58,22 @@
 
 		<?php if ( is_singular( 'resource' ) ) {
 
-			$subhead = get_post_meta( get_the_ID(), 'subhead', true );
-			$desc = techcamp_process_wysiwyg( 'short_description' ); ?>
+			$subhead = get_post_meta( get_the_ID(), 'subhead', true ); ?>
 
 			<div class="resource-content">
 				<?php if ( $subhead ) { ?>
 					<h2 class="resource-content__subhead"><?php echo esc_html( $subhead ); ?></h2>
 				<?php } ?>
-				<?php if ( $desc ) { ?>
-					<div class="resource-content__desc">
-						<?php echo wp_kses_post( $desc ); ?>
-					</div>
+				<div class="resource-content__desc">
+					<?php the_content(); ?>
+				</div>
+				<?php $resource_url = get_post_meta( get_the_ID(), 'resource_url', true );
+				if( $resource_url ) { ?>
+					<p class="resource-content__link">
+						<?php $ext = pathinfo( $resource_url, PATHINFO_EXTENSION ); ?>
+						<a class="button button--icon button--icon-<?php echo sanitize_key( $ext ); ?>" target="_blank" href="<?php echo esc_url( $resource_url ); ?>">Download <?php echo strtoupper( esc_html( $ext ) ); ?> File</a>
+					</p>
 				<?php } ?>
-				<p class="resource-content__link">
-					<?php
-					$resource_url = get_post_meta( get_the_ID(), 'resource_url', true );
-					$ext = pathinfo( $resource_url, PATHINFO_EXTENSION ); ?>
-					<a class="button button--icon button--icon-<?php echo sanitize_key( $ext ); ?>" target="_blank" href="<?php echo esc_url( $resource_url ); ?>">Download <?php echo strtoupper( esc_html( $ext ) ); ?> File</a>
-				</p>
 			</div>
 
 		<?php } else { ?>

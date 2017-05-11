@@ -98,7 +98,7 @@ function techcamp_taxonomies() {
 		'rewrite'           => array( 'slug' => 'participating-regions' )
 	) );
 
-	register_taxonomy( 'resource_type', array( 'resource', 'bio' ), array(
+	register_taxonomy( 'resource_type', array( 'resource' ), array(
 		'labels' => array(
 			'name'                       => 'Resource Types',
 			'singular_name'              => 'Resource Type',

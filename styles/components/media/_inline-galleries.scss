@@ -1,0 +1,24 @@
+.gallery {
+	margin:0 -1rem;
+	@include bp( $thin ) {
+		margin:0 -2rem;
+	}
+}
+
+.gallery-item {
+	padding:1rem;
+	@include bp( $thin ) {
+		padding:2rem;
+	}
+
+	a,
+	img {
+		display:block;
+	}
+
+	img {
+		width:100%;
+		height:auto;
+	}
+
+}

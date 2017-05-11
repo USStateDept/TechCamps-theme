@@ -33,6 +33,32 @@
 	$( 'table' ).wrap( '<div class="table-wrapper"></div>' );
 
 	/**
+	 * Resource pagination.
+	 */
+	$( '.post-type-archive-resource a.page-numbers' ).each( function() {
+		var href = $( this ).attr( 'href' );
+		$( this ).attr( 'href', href + '#resource-filters' );
+	} );
+
+	/**
+	 * Determine if inline images should be wide and overflow the content.
+	 */
+	$( '.alignnone, .aligncenter' ).each( function() {
+
+		// could be a .wp-caption container or the image itself
+		var container = $( this );
+
+		// check size
+		var width = $( this ).width();
+
+		// if at least 850px, it's a good candidate
+		if ( width >= 850 ) {
+			container.addClass( 'alignwide' );
+		}
+
+	} );
+
+	/**
 	 * Generic toggler.
 	 */
 	$( '.toggler, .bios__more' ).click( function( e ) {
@@ -114,7 +140,7 @@
 	/**
 	 * Establish the correct aspect ratio for Flickr embeds.
 	 */
-	$( '.flickr-gallery__item a[data-flickr-embed="true"] > img' ).each( function() {
+	/* $( '.flickr-gallery__item a[data-flickr-embed="true"] > img' ).each( function() {
 		var iframe = $( this );
 		var width  = iframe.attr( 'width' );
 		var height = iframe.attr( 'height' );
@@ -124,7 +150,7 @@
 			.find( '.ratio-hack' )
 			.css( 'padding-top', aspectRatio + '%' );
 
-	} );
+	} ); */
 
 	/**
 	 * Set up the type-ahead autocomplete fields on landing pages.

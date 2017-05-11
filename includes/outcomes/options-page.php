@@ -58,7 +58,7 @@ class TechCamp_Outcome_Settings extends TechCamp_Admin {
 		$cmb->add_field( array(
 			'id'         => 'slack_text',
 			'name'       => __( 'Slack Text', 'techcamp' ),
-			'desc'       => __( 'Introductory text to the Slack link in the sidebar of outcome detail pages.', 'techcamp' ),
+			'desc'       => __( 'Text/HTML for the Slack box in the sidebar of outcome detail pages.', 'techcamp' ),
 			'default'    => 'Attending a TechCamp and looking to connect? Log in and continue the conversation.',
 			'type'       => 'textarea',
 		) );

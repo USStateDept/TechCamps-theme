@@ -120,8 +120,14 @@ function techcamp_outcome_fields() {
 
 	$outcome_box->add_field( array(
 		'id'   => 'images',
-		'name' => __( 'Flickr image gallery embed', 'techcamp' ),
+		'name' => __( 'Image Embed', 'techcamp' ),
 		'type' => 'textarea_code'
+	) );
+
+	$outcome_box->add_field( array(
+		'id'   => 'images_upload',
+		'name' => __( 'Image Upload', 'techcamp' ),
+		'type' => 'wysiwyg'
 	) );
 
 	$outcome_box->add_field( array(

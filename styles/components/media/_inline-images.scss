@@ -1,73 +1,115 @@
-.size-full,
-.size-inline,
-.wp-caption {
-	width:100%;
+.alignleft,
+.alignright,
+.aligncenter,
+.alignnone {
+	width:auto;
+	max-width:100%;
+	height:auto;
+	margin-bottom:4rem;
+	display:block;
+
+	// images w/captions will be nested
+	img {
+		width:100%;
+		height:auto;
+		display:block;
+	}
+}
+
+.aligncenter,
+.alignnone {
+	clear:both;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.alignleft {
+	display:block;
+	float:left;
+	margin-right:4rem;
+	@include bp( $thin ) {
+		margin-right:6rem;
+	}
 	@include bp( $medium ) {
-		width:93rem;
 		margin-left:-4rem;
+	}
+	@include bp( $wide ) {
+		margin-left:-8rem;
+	}
+}
+
+.alignright {
+	display:block;
+	float:right;
+	margin-left:4rem;
+	@include bp( $thin ) {
+		margin-left:6rem;
+	}
+	@include bp( $medium ) {
 		margin-right:-4rem;
 	}
 	@include bp( $wide ) {
-		width:107rem;
+		margin-right:-8rem;
+	}
+}
+
+// wide images: when images are size-full or size-inline and are 850px+,
+// this class gets added.
+//
+// make the image bigger than the content.
+//
+// the !importants are because sometimes wp adds the width as an inline style.
+.alignwide {
+
+	@include bp( $medium ) {
+		max-width:none;
+		margin-left:-4rem;
+		margin-right:-4rem;
+		width:calc( 100% + 8rem ) !important;
+	}
+
+	@include bp( $wide ) {
 		margin-left:-11rem;
 		margin-right:-11rem;
+		width:calc( 100% + 22rem ) !important;
 	}
-	height:auto;
-	margin-top:5rem;
-	margin-bottom:5rem;
+
 }
 
-.wp-caption img.size-full,
-.wp-caption img.size-inline {
-	margin:0;
-}
-
-.wp-caption .wp-caption-text {
+// caption styles
+.wp-caption-text {
 	text-align:left;
 	background:$light-gray;
 	font-family:"Source Serif Pro", serif;
 	font-size:1.5rem;
 	padding:2.6rem 2.6rem;
+	width:100%;
+	margin:0;
+	letter-spacing:-0.04rem;
+	color:$near-black;
 	@include bp( $thin ) {
 		font-size:1.6rem;
 		padding:2.6rem 4.8rem;
 	}
-	width:100%;
-	@include bp( $medium ) {
-		width:93rem;
-	}
-	@include bp( $wide ) {
-		width:107rem;
-	}
-	margin:0;
-	letter-spacing:-0.04rem;
-	color:$near-black;
 }
 
-.single-bio .entry-content .wp-post-image {
-	width:100%;
-	height:auto;
-	margin:0 0 4rem;
-	@include bp( 425px ) {
-		width:auto;
-		max-width:50%;
-		float:right;
-		margin:0 0 3rem 3rem;
-	}
-	@include bp( $thin ) {
-		margin:0 0 6rem 6rem;
-	}
-}
-
+// avoid pulling images out of containers in events/outcomes
 .single-outcome, .single-event {
 
-	.size-full,
-	.size-inline,
-	.wp-caption,
-	.wp-caption .wp-caption-text {
-		width:100%;
+	.alignleft {
+		margin-left:0;
+	}
+
+	.alignright {
+		margin-right:0;
+	}
+
+	.alignwide {
+		max-width:100%;
 		margin-left:0;
 		margin-right:0;
+		width:100% !important;
 	}
 
 }
