@@ -39,11 +39,11 @@ class TechCamp_Bio_Settings extends TechCamp_Admin {
 			'type'       => 'text',
 		) );
 
-		$cmb->add_field( array(
+		/* $cmb->add_field( array(
 			'id'         => 'archive_url',
 			'name'       => __( 'Breadcrumb URL', 'techcamp' ),
 			'type'       => 'text_url',
-		) );
+		) ); */
 
 		$cmb->add_field( array(
 			'id'         => 'contact_label',

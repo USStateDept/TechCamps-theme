@@ -127,20 +127,22 @@
 						setup_postdata( $post ); ?>
 						<li class="bios__item">
 							<div class="bios__inner">
-								<div class="bios__image">
-									<?php if ( has_post_thumbnail() ) { ?>
-										<?php the_post_thumbnail( 'portrait' ); ?>
-									<?php } else { ?>
-										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bio.png" alt="Silhouette" />
-									<?php } ?>
-								</div>
-								<div class="bios__text">
-									<div class="bios__text__inner">
-										<h3 class="bios__name"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-										<span class="bios__position"><?php echo esc_html( get_post_meta( get_the_ID(), 'position', true ) ); ?></span>
-										<span class="bios__organization"><?php echo esc_html( get_post_meta( get_the_ID(), 'organization', true ) ); ?></span>
+								<a href="<?php the_permalink(); ?>">
+									<div class="bios__image">
+										<?php if ( has_post_thumbnail() ) { ?>
+											<?php the_post_thumbnail( 'portrait' ); ?>
+										<?php } else { ?>
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bio.png" alt="Silhouette" />
+										<?php } ?>
 									</div>
-								</div>
+									<div class="bios__text">
+										<div class="bios__text__inner">
+											<h3 class="bios__name"><?php the_title(); ?></h3>
+											<span class="bios__position"><?php echo esc_html( get_post_meta( get_the_ID(), 'position', true ) ); ?></span>
+											<span class="bios__organization"><?php echo esc_html( get_post_meta( get_the_ID(), 'organization', true ) ); ?></span>
+										</div>
+									</div>
+								</a>
 							</div>
 						</li>
 					<?php }
@@ -298,22 +300,25 @@
 	</div><!-- .detail-content -->
 
 	<?php
-	$photos = get_post_meta( get_the_ID(), 'images', true );
-	$videos = get_post_meta( get_the_ID(), 'videos', true );
-	if ( $photos || $videos ) { ?>
+	$photos  = get_post_meta( get_the_ID(), 'images', true );
+	$photos2 = techcamp_process_wysiwyg( 'images_upload' );
+	$videos  = get_post_meta( get_the_ID(), 'videos', true );
+	if ( $photos || $photos2 || $videos ) { ?>
 
 		<div class="detail-bottom detail-media">
 			<div class="container">
-				<?php if ( $photos ) { ?>
+				<?php if ( $photos || $photos2 ) { ?>
 					<h2><?php echo esc_html( techcamp_get_setting( 'photos_label', 'event' ) ); ?></h2>
-					<div class="flickr-gallery">
-						<div class="flickr-gallery__container">
-							<div class="flickr-gallery__item">
-								<?php echo $photos; ?>
-							</div>
-							<div class="ratio-hack"></div>
+					<?php if ( $photos ) { ?>
+						<div class="images-gallery">
+							<?php echo $photos; ?>
 						</div>
-					</div>
+					<?php } ?>
+					<?php if ( $photos2 ) { ?>
+						<div class="images-gallery">
+							<?php echo $photos2; ?>
+						</div>
+					<?php } ?>
 				<?php } ?>
 				<?php if ( $videos ) { ?>
 				<div class="videos">

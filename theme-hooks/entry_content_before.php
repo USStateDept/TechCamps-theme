@@ -28,9 +28,9 @@
 					</div>
 				<?php } ?>
 
-				<div class="bio-card__contact">
-					<?php $contact = get_post_meta( get_the_ID(), 'contact', true );
-					if ( $contact ) { ?>
+				<?php $contact = get_post_meta( get_the_ID(), 'contact', true );
+				if ( $contact ) { ?>
+					<div class="bio-card__contact">
 						<ul>
 						<?php foreach( $contact as $link ) {
 							if ( is_email( $link ) ) { ?>
@@ -60,9 +60,8 @@
 							<?php } ?>
 						<?php } ?>
 						</ul>
-					<?php } ?>
-
-				</div>
+					</div>
+				<?php } ?>
 
 			</div>
 

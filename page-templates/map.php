@@ -33,19 +33,19 @@ get_header(); ?>
 				<dt class="legend__techcamp">
 					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/marker-techcamp.svg" alt="Blue TechCamp Marker" />
 				</dt>
-				<dd>TechCamps</dd>
+				<dd><?php echo esc_html( techcamp_get_setting( 'map_legend_techcamps' ) ); ?></dd>
 				<dt class="legend__outcome">
 					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/marker-outcome.svg" alt="Green Outcome Marker" />
 				</dt>
-				<dd>Featured Outcomes</dd>
+				<dd><?php echo esc_html( techcamp_get_setting( 'map_legend_outcomes' ) ); ?></dd>
 				<dt class="legend__region">
 					<span class="element-invisible">Dark Blue</span>
 				</dt>
-				<dd>Host Regions</dd>
+				<dd><?php echo esc_html( techcamp_get_setting( 'map_legend_regions' ) ); ?></dd>
 				<dt class="legend__participator">
 					<span class="element-invisible">Light Blue</span>
 				</dt>
-				<dd>Participating Regions</dd>
+				<dd><?php echo esc_html( techcamp_get_setting( 'map_legend_participators' ) ); ?></dd>
 			</dl>
 		</div>
 

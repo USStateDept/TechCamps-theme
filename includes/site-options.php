@@ -36,6 +36,46 @@ class TechCamp_Site_Settings extends TechCamp_Admin {
 		// Set our CMB2 fields
 
 		$cmb->add_field( array(
+			'id'   => 'map_legend',
+			'name' => 'Map Legend Settings',
+			'type' => 'title',
+		) );
+
+		$cmb->add_field( array(
+			'id'   => 'map_legend_techcamps',
+			'name' => 'TechCamps Label',
+			'type' => 'text',
+			'default' => 'TechCamps',
+		) );
+
+		$cmb->add_field( array(
+			'id'   => 'map_legend_outcomes',
+			'name' => 'Outcomes Label',
+			'type' => 'text',
+			'default' => 'Featured Outcomes',
+		) );
+
+		$cmb->add_field( array(
+			'id'   => 'map_legend_regions',
+			'name' => 'Host Countries Label',
+			'type' => 'text',
+			'default' => 'Host Regions',
+		) );
+
+		$cmb->add_field( array(
+			'id'   => 'map_legend_participators',
+			'name' => 'Participating Countries Label',
+			'type' => 'text',
+			'default' => 'Participating Regions',
+		) );
+
+		$cmb->add_field( array(
+			'id'   => 'email_signup_group',
+			'name' => 'Email Form Settings',
+			'type' => 'title',
+		) );
+
+		$cmb->add_field( array(
 			'id'   => 'enable_email_signup',
 			'name' => 'Enable Email Form',
 			'desc' => 'Enable email signup form (will display on Event and Outcome landing pages)',
@@ -55,6 +95,12 @@ class TechCamp_Site_Settings extends TechCamp_Admin {
 			'name' => 'Email Form Shortcode',
 			'desc' => 'Enter the Formidable shortcode for the Email Signup form. Only needed if the email form is enabled.',
 			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
+			'id'   => 'miscellaneous_settings_group',
+			'name' => 'Miscellaneous Settings',
+			'type' => 'title',
 		) );
 
 		$cmb->add_field( array(

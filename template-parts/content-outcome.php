@@ -117,11 +117,9 @@
 				</div>
 				-->
 
-				<!-- Slack -->
 				<div class="box box--slack">
 					<img class="slack-logo" src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/images/slack-logo.png" alt="Slack logo" />
 					<?php echo wp_kses_post( wpautop( techcamp_get_setting( 'slack_text', 'outcome' ) ) ); ?>
-					<a class="button" href="https://slack.com/signin">Log In</a>
 				</div>
 
 				<!-- Related TechCamps -->
@@ -194,22 +192,25 @@
 	</div><!-- .detail-content -->
 
 	<?php
-	$photos = get_post_meta( get_the_ID(), 'images', true );
-	$videos = get_post_meta( get_the_ID(), 'videos', true );
-	if ( $photos || $videos ) { ?>
+	$photos  = get_post_meta( get_the_ID(), 'images', true );
+	$photos2 = techcamp_process_wysiwyg( 'images_upload' );
+	$videos  = get_post_meta( get_the_ID(), 'videos', true );
+	if ( $photos || $photos2 || $videos ) { ?>
 
 		<div class="detail-bottom detail-media">
 			<div class="container">
-				<?php if ( $photos ) { ?>
+				<?php if ( $photos || $photos2 ) { ?>
 					<h2><?php echo esc_html( techcamp_get_setting( 'photos_label', 'outcome' ) ); ?></h2>
-					<div class="flickr-gallery">
-						<div class="flickr-gallery__container">
-							<div class="flickr-gallery__item">
-								<?php echo $photos; ?>
-							</div>
-							<div class="ratio-hack"></div>
+					<?php if ( $photos ) { ?>
+						<div class="images-gallery">
+							<?php echo $photos; ?>
 						</div>
-					</div>
+					<?php } ?>
+					<?php if ( $photos2 ) { ?>
+						<div class="images-gallery">
+							<?php echo $photos2; ?>
+						</div>
+					<?php } ?>
 				<?php } ?>
 				<?php if ( $videos ) { ?>
 				<div class="videos">

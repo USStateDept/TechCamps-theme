@@ -51,7 +51,7 @@ class TechCamp_Resource_Library {
 				'post_type' => 'event',
 			),
 			'regions'       => array(
-				'label'     => 'Region',
+				'label'     => 'Country',
 				'type'      => 'connection_taxonomy',
 				'taxonomy'  => 'country',
 			),
@@ -68,8 +68,8 @@ class TechCamp_Resource_Library {
 	}
 
 	/**
-	 * Modify the query for the resources archive page to include bios
-	 * and respect the results of the search form.
+	 * Modify the query for the resources archive page to respect the
+	 * results of the search form.
 	 *
 	 * Hooks to parse_query and not pre_get_posts as a requirement of
 	 * using the Posts to Posts plugin.
@@ -91,8 +91,8 @@ class TechCamp_Resource_Library {
 		// get what the user searched for
 		self::$values = self::get_values();
 
-		// add bios to the main query no matter what
-		$query->set( 'post_type', array( 'resource', 'bio' ) );
+		// add bios to the main query
+		// $query->set( 'post_type', array( 'resource', 'bio' ) );
 
 		// remove empty values
 		$searched = array_filter( self::$values );
@@ -220,7 +220,7 @@ class TechCamp_Resource_Library {
 			'no_found_rows'    => true,
 			'fields'           => 'ids',
 			'posts_per_page'   => 500,
-			'post_type'        => array( 'resource', 'bio' ),
+			'post_type'        => 'resource', // array( 'resource', 'bio' ),
 			'connected_type'   => 'resource_connections',
 			'connected_items'  => $events,
 		) );
@@ -289,9 +289,19 @@ class TechCamp_Resource_Library {
 
 									case 'taxonomy' :
 									case 'connection_taxonomy' :
-										$terms = get_terms( array(
-											'taxonomy' => $field['taxonomy'],
-										) );
+
+										// countries are special
+										if ( $field['taxonomy'] === 'country' ) {
+											$terms = get_terms( array(
+												'taxonomy'  => $field['taxonomy'],
+												'childless' => 'true,'
+											) );
+										} else {
+											$terms = get_terms( array(
+												'taxonomy' => $field['taxonomy'],
+											) );
+										}
+
 										foreach( $terms as $term ) {
 											$data[$term->term_id] = $term->name;
 										}

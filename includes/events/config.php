@@ -162,8 +162,14 @@ function techcamp_event_fields() {
 
 	$event_box->add_field( array(
 		'id'   => 'images',
-		'name' => __( 'Flickr image gallery embed', 'techcamp' ),
+		'name' => __( 'Image Embed', 'techcamp' ),
 		'type' => 'textarea_code'
+	) );
+
+	$event_box->add_field( array(
+		'id'   => 'images_upload',
+		'name' => __( 'Image Upload', 'techcamp' ),
+		'type' => 'wysiwyg'
 	) );
 
 	$event_box->add_field( array(

@@ -182,10 +182,29 @@ function techcamp_event_search( $query ) {
 add_action( 'pre_get_posts', 'techcamp_event_search' );
 
 /**
+ * Sort TechCamps by date the event occurred.
+ */
+function techcamp_event_order( $query ) {
+
+	if ( is_admin() || !$query->is_main_query() ) {
+		return;
+	}
+
+	if ( !is_post_type_archive( array( 'event' ) ) ) {
+		return;
+	}
+
+	$query->set( 'meta_key', 'start_date' );
+	$query->set( 'orderby', 'meta_value' );
+
+}
+add_action( 'pre_get_posts', 'techcamp_event_order' );
+
+/**
  * Run the Event/Outcome search through Relevanssi. This needs to run after
  * the query has been set up.
  */
-function techcamp_test_relevanssi() {
+function techcamp_event_outcome_relevanssi() {
 
 	if ( !function_exists( 'relevanssi_do_query' ) ) {
 		return;
@@ -208,4 +227,4 @@ function techcamp_test_relevanssi() {
 	}
 
 }
-add_action( 'wp', 'techcamp_test_relevanssi' );
+add_action( 'wp', 'techcamp_event_outcome_relevanssi' );

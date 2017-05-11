@@ -109,6 +109,10 @@
 		a {
 			@include secondary-text;
 			font-size:1.4rem;
+			&:hover,
+			&:focus {
+				text-decoration:underline;
+			}
 		}
 	}
 

@@ -114,6 +114,27 @@ function techcamp_landing_page_fields() {
 }
 add_action( 'cmb2_admin_init', 'techcamp_landing_page_fields' );
 
+/**
+ * Register a metabox and fields for hero pages.
+ */
+function techcamp_hero_page_fields() {
+
+	$hero_box = new_cmb2_box( array(
+		'id'           => 'hero_box',
+		'title'        => __( 'Hero Page Fields', 'techcamp' ),
+		'object_types' => array( 'page' ),
+		'show_on'      => array( 'key' => 'page-template', 'value' => 'page-templates/hero-page.php' ),
+	) );
+
+	$hero_box->add_field( array(
+		'id'      => 'hero_text',
+		'name'    => __( 'Hero Text', 'techcamp' ),
+		'type'    => 'textarea',
+		'default' => '<h1>Page title here</h1>' . "\r\n" . '<p>Description here</p>',
+	) );
+
+}
+add_action( 'cmb2_admin_init', 'techcamp_hero_page_fields' );
 
 /**
  * Register a metabox and fields for basic pages.
