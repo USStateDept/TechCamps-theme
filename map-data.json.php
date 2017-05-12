@@ -1,8 +1,5 @@
 <?php
 
-// @todo - replace this with adding events/outcomes to json file whenever they are saved.
-// will speed up load w/no stress to server.
-
 if ( file_exists( '../../../wp/wp-load.php' ) ) {
 	include( '../../../wp/wp-load.php' );
 } else {

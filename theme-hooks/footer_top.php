@@ -1,7 +1,10 @@
 <div class="footer-top container">
 
 	<div class="footer-top__primary">
-		<img class="footer-top__logo" src="<?php echo esc_attr( get_stylesheet_directory_uri() ); ?>/images/logo-white.png" alt="TechCamp Logo" />
+		<!-- <img class="footer-top__logo" src="<?php echo esc_attr( get_stylesheet_directory_uri() ); ?>/images/logo-white.png" alt="TechCamp Logo" /> -->
+		<div class="footer-top__logo">
+			<?php get_template_part( 'template-parts/logo.svg' ); ?>
+		</div>
 		<?php wp_nav_menu( array(
 			'theme_location'  => 'footer-navigation',
 			'container_class' => 'footer-top__menu',

@@ -129,11 +129,13 @@
 		if ( checklist.hasClass( 'toggled' ) ) {
 			checklist.removeClass( 'toggled' );
 			$( this ).removeClass( 'toggled' );
+			$( this ).attr( 'aria-expanded', false );
 		} else {
 			$( this ).closest( 'form' ).find( '.resource-filters__checklist' ).removeClass( 'toggled' );
-			$( this ).closest( 'form' ).find( '.resource-filters__label' ).removeClass( 'toggled' );
+			$( this ).closest( 'form' ).find( '.resource-filters__label' ).removeClass( 'toggled' ).attr( 'aria-expanded', false );
 			checklist.addClass( 'toggled' );
 			$( this ).addClass( 'toggled' );
+			$( this ).attr( 'aria-expanded', true );
 		}
 	} );
 

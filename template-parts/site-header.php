@@ -12,11 +12,19 @@
 	<div class="title-area">
 
 		<?php if ( get_header_image() ) : ?>
-			<h1 class="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-					<?php get_template_part( 'template-parts/logo.svg' ); ?>
-				</a>
-			</h1>
+			<?php if ( is_front_page() ) { ?>
+				<h1 class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php get_template_part( 'template-parts/logo.svg' ); ?>
+					</a>
+				</h1>
+			<?php } else { ?>
+				<div class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php get_template_part( 'template-parts/logo.svg' ); ?>
+					</a>
+				</div>
+			<?php } ?>
 		<?php endif; ?>
 
 		<?php $description = get_bloginfo( 'description', 'display' );

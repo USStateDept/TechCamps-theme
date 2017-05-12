@@ -49,9 +49,12 @@ get_header(); ?>
 							<input type="submit" class="explore-search__submit" value="Go" />
 						</div>
 					</form>
-					<div class="explore-search__map">
-						<a class="explore-search__map-link" href="<?php echo site_url( 'map' ); ?>">View Map</a>
-					</div>
+					<?php $map_id = techcamp_get_map_id();
+					if ( $map_id ) { ?>
+						<div class="explore-search__map">
+							<a class="explore-search__map-link" href="<?php echo esc_url( get_permalink( $map_id ) ); ?>">View Map</a>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 
@@ -234,7 +237,10 @@ get_header(); ?>
 							?>
 
 						</ul>
-						<a href="<?php echo esc_url( get_permalink( techcamp_get_map_id() ) ); ?>" class="button button--on-dark">View Map</a>
+						<?php $map_id = techcamp_get_map_id();
+						if ( $map_id ) { ?>
+							<a href="<?php echo esc_url( get_permalink( $map_id ) ); ?>" class="button button--on-dark">View Map</a>
+						<?php } ?>
 					</div>
 
 				</div>
