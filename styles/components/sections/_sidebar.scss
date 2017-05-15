@@ -58,13 +58,13 @@
 	}
 
 	blockquote {
-	    font-size: 1.8rem;
+		font-size: 1.8rem;
 		@include bp( $thin ) {
 			font-size:2.5rem;
 		}
 		font-weight:400;
 		margin-left:0;
-	    padding-left: 2.8rem;
+		padding-left: 2.8rem;
 		&:before {
 			position:absolute;
 			left:-2rem;
@@ -74,6 +74,18 @@
 				left:-5.3rem;
 				opacity:1;
 			}
+		}
+
+		@include bp( $thin ) {
+			padding-left:0.5rem;
+		}
+
+	}
+
+	blockquote + .button {
+		margin-left:2.6rem;
+		@include bp( $thin ) {
+			margin-left:0;
 		}
 	}
 
@@ -85,7 +97,11 @@
 			color:#fff;
 			position: absolute;
 			left: -1rem;
-
+			@include bp( $thin ) {
+				left:-3.5rem;
+				margin-right:0;
+				padding-right:0;
+			}
 		}
 	}
 

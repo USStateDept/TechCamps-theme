@@ -32,6 +32,7 @@ function techcamp_setup() {
 	add_image_size( 'archive-thumb-2x',  1232, 592, true );
 	add_image_size( 'surfaced-thumb',    391, 300, true );			// thumbnail in footer surfaced posts
 	add_image_size( 'surfaced-thumb-2x', 782, 600, true );
+	add_image_size( 'banner',            1400, 579, true );			// page header banner images behind color overlay
 
 	register_nav_menu( 'header-social',     'Header Social' );
 	register_nav_menu( 'header-utility',    'Header Utility' );

@@ -106,6 +106,9 @@
 
 	&__submit {
 		background-color:$navy;
+		&:after {
+			display:none;
+		}
 		position:absolute;
 		right:0;
 		top:0;
@@ -287,7 +290,12 @@ $two-col: (
 		overflow:hidden;
 		border-radius:50%;
 		background:$gray;
-		display:inline-block;
+		display:block;
+		margin-bottom:1rem;
+		@include bp( $thin ) {
+			display:inline-block;
+			margin-bottom:0;
+		}
 		vertical-align:middle;
 		margin-right:1.5rem;
 		a {

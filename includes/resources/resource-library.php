@@ -321,7 +321,7 @@ class TechCamp_Resource_Library {
 								} ?>
 
 								<div class="resource-filters__dropdown">
-									<a href="#" class="resource-filters__label"><?php echo esc_html( $field['label'] ); ?></a>
+									<a href="#" aria-haspopup="true" aria-expanded="false" class="resource-filters__label"><?php echo esc_html( $field['label'] ); ?></a>
 									<div class="resource-filters__checklist">
 										<?php foreach( $data as $id => $label ) { ?>
 											<label class="resource-filters__checkline" for="<?php echo esc_attr( $key . '-' . $id ); ?>">

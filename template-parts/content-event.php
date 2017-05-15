@@ -17,7 +17,7 @@
 	<?php $color_scheme = get_post_meta( get_the_ID(), 'color_scheme', true ); ?>
 
 	<header class="entry-header detail-header has-color <?php echo esc_attr( $color_scheme ); ?> <?php echo esc_attr( techcamp_thumbnail_class() ); ?>"
-		style="background-image:url('<?php echo esc_url( techcamp_thumbnail_url() ); ?>">
+		style="background-image:url('<?php echo esc_url( techcamp_thumbnail_url() ); ?>');">
 
 		<div class="container detail-header__container">
 			<div class="detail-header__primary">
@@ -43,7 +43,11 @@
 			<div class="detail-meta__data">
 				<?php techcamp_term_list( 'topic', 'header' ); ?>
 				<div class="detail-meta__location">
-					<span><?php echo esc_html( techcamp_location() ); ?></span> <a href="<?php echo esc_url( get_permalink( techcamp_get_map_id() ) ); ?>">View Map</a>
+					<span><?php echo esc_html( techcamp_location() ); ?></span>
+					<?php $map_id = techcamp_get_map_id();
+					if ( $map_id ) { ?>
+						<a href="<?php echo esc_url( get_permalink( $map_id ) ); ?>">View Map</a>
+					<?php } ?>
 				</div>
 				<div class="detail-meta__date">
 					<?php echo esc_html( techcamp_event_date() ); ?>
@@ -138,8 +142,15 @@
 									<div class="bios__text">
 										<div class="bios__text__inner">
 											<h3 class="bios__name"><?php the_title(); ?></h3>
-											<span class="bios__position"><?php echo esc_html( get_post_meta( get_the_ID(), 'position', true ) ); ?></span>
-											<span class="bios__organization"><?php echo esc_html( get_post_meta( get_the_ID(), 'organization', true ) ); ?></span>
+											<?php
+											// limit to a reasonable amount
+											$pos = get_post_meta( get_the_ID(), 'position', true );
+											$pos = wp_trim_words( $pos, 8 );
+											$org = get_post_meta( get_the_ID(), 'organization', true );
+											$org = wp_trim_words( $org, 8 );
+											?>
+											<span class="bios__position"><?php echo esc_html( $pos ); ?></span>
+											<span class="bios__organization"><?php echo esc_html( $org ); ?></span>
 										</div>
 									</div>
 								</a>

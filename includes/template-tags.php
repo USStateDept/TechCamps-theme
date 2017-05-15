@@ -54,7 +54,7 @@ function techcamp_thumbnail_url( $post = null ) {
 		return '';
 	}
 
-	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'full' );
+	$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'banner' );
 	if ( $image ) {
 		$image_url = isset( $image[0] ) ? $image[0] : '';
 		return $image_url;

@@ -4,8 +4,8 @@
   "description": " A base Wordpress installation",
   "main": "index.php",
   "scripts": {
-    "sass": "node-sass --output-style compressed style.scss > style.css",
-    "autoprefixer": "postcss -m -u autoprefixer --autoprefixer.browsers '> 1%, last 3 IE versions' style.css -o style.css",
+    "sass": "node-sass --omit-source-map-url --output-style compressed style.scss > style.css",
+    "autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers '> 1%, last 3 IE versions' style.css -o style.css",
     "css": "npm run sass && npm run autoprefixer",
     "eslint": "eslint js/src/*.js --quiet",
     "uglify": "uglifyjs js/src/*.js -o js/dist/script.js",

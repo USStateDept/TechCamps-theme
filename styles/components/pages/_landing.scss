@@ -105,7 +105,7 @@
 .explore-links {
 	background-image:url( 'images/people-bg.jpg' );
 	background-size:cover;
-	padding:8rem 0;
+	padding:8rem 0 6.5rem;
 	@include bp( $wide ) {
 		padding:10rem 0;
 	}
@@ -119,6 +119,7 @@
 		@include bp( $thin ) {
 			text-align:center;
 		}
+		margin-bottom:2rem;
 		color:#fff;
 		font-size:2.8rem;
 		@include bp( $thin ) {
@@ -129,12 +130,16 @@
 	}
 
 	&__list-container {
-		margin-top:6rem;
+		margin-top:2rem; // + 2rem padding of top item
+		@include bp( $wide ) {
+			margin-top:3rem;
+		}
 		overflow:hidden;
 	}
 
 	&__list {
 		margin-top:-0.2rem;
+		margin-bottom:0;
 		padding:0;
 		@include bp( $thin ) {
 			columns:3;
@@ -333,7 +338,10 @@
 .explore-sections { // combine with explore-links? very similar
 	background-image:url( 'images/globe-bg.jpg' );
 	background-size:cover;
-	padding:10rem 3rem;
+	padding:8rem 3rem;
+	@include bp( $wide ) {
+		padding:10rem 3rem;
+	}
 	text-align:center;
 
 	&__container {
@@ -354,6 +362,7 @@
 	&__list {
 		padding:0;
 		text-align:left;
+		margin-bottom:2rem;
 		@include bp( $thin ) {
 			columns:3;
 			column-gap:8rem;
@@ -361,7 +370,10 @@
 	}
 
 	&__list-container {
-		margin-top:6rem;
+		margin-top:3.5rem;
+		@include bp( $wide ) {
+			margin-top:5rem;
+		}
 		overflow:hidden;
 	}
 
@@ -407,7 +419,7 @@
 	}
 
 	.button {
-		margin:4rem auto 0;
+		margin:0 auto;
 		line-height:1.4;
 	}
 

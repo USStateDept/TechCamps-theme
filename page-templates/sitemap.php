@@ -28,22 +28,22 @@ get_header(); ?>
 				) ); ?>
 			</ul>
 
-			<?php $types = array( 'event', 'outcome', 'post', array( 'bio', 'resource' ) );
+			<?php $types = array( 'event', 'outcome', 'post', 'resource' );
 			foreach( $types as $type ) {
-				$posts = get_posts( array(
+				$args = array(
 					'post_type'        => $type,
 					'suppress_filters' => false,
 					'posts_per_page'   => 10,
-				) );
+				);
+				if ( $type === 'event' ) {
+					$args['meta_key'] = 'start_date';
+					$args['orderby']  = 'meta_value';
+				}
+				$posts = get_posts( $args );
 				if ( $posts ) {
-					if ( $type === array( 'bio', 'resource' ) ) {
-						$label = 'Resources & Bios';
-						$archive = get_post_type_archive_link( 'resource' );
-					} else {
-						$label = techcamp_get_post_type_label( $type );
-						$archive = get_post_type_archive_link( $type );
-					} ?>
-					<h2>Recent <?php echo esc_html( $label ); ?></h2>
+					$label = techcamp_get_post_type_label( $type );
+					$archive = get_post_type_archive_link( $type ); ?>
+					<h2><?php echo esc_html( $label ); ?></h2>
 					<ul>
 						<?php foreach( $posts as $post ) {
 							setup_postdata( $post ); ?>

@@ -67,11 +67,26 @@
 	padding:5rem 0 4rem;
 
 	&__logo {
+		max-width:229px;
+		max-height:50px;
+		margin:0 auto;
+		@include bp( $thin ) {
+			margin:0;
+		}
 		@include bp( $medium ) {
 			float:left;
 		}
-		max-width:229px;
-		height:auto;
+
+		.logo-svg {
+			width:100%;
+			height:auto;
+			max-width:229px;
+		}
+
+		.logo-svg .st0,
+		.logo-svg .st1 {
+			fill:#fff;
+		}
 	}
 
 	&__menu {
