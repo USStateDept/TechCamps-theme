@@ -4,10 +4,10 @@
 .surfaced-posts {
 	padding:6rem 3rem;
 	@include bp( $thin ) {
-		padding:12rem 3rem;
+		padding:10rem 3rem;
 	}
 	@include bp( $medium ) {
-		padding:12rem 3rem;
+		padding:10rem 3rem;
 	}
 	text-align:center;
 	background:$off-white;

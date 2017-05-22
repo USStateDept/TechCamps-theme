@@ -53,6 +53,8 @@ get_header(); ?>
 		<div class="entry-content">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<?php the_content(); ?>
+
+			<small>Countries include dependencies and areas of special sovereignty.</small>
 		</div>
 
 		<?php tha_content_bottom(); ?>

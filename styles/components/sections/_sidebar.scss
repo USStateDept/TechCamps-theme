@@ -8,12 +8,16 @@
 		padding:10.5rem 11.1rem;
 	}
 	color:#fff;
-	margin:0 0 7.5rem;
+	margin:7.5rem 0;
 
 	.button {
 		font-size:1.6rem;
 		@extend .button--secondary;
 		@extend .button--on-dark;
+	}
+
+	&:first-child {
+		margin: 0;
 	}
 
 	&--secondary {
@@ -34,6 +38,7 @@
 	&--slack {
 		background-image:url( 'images/spiral-bg.png' );
 		background-size:cover;
+		margin: 0;
 	}
 
 	&__title {

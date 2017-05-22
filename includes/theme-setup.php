@@ -28,8 +28,8 @@ function techcamp_setup() {
 	add_image_size( 'portrait-2x',       552, 546, true );;
 	add_image_size( 'map-thumb',         200, 200, true );			// inside map info boxes
 	add_image_size( 'map-thumb-2x',      400, 400, true );
-	add_image_size( 'archive-thumb',     616, 296, true );			// thumbnail in archive pages
-	add_image_size( 'archive-thumb-2x',  1232, 592, true );
+	add_image_size( 'archive-thumb',     600, 300, true );			// thumbnail in archive pages
+	add_image_size( 'archive-thumb-2x',  1200, 600, true );
 	add_image_size( 'surfaced-thumb',    391, 300, true );			// thumbnail in footer surfaced posts
 	add_image_size( 'surfaced-thumb-2x', 782, 600, true );
 	add_image_size( 'banner',            1400, 579, true );			// page header banner images behind color overlay

@@ -30,12 +30,7 @@
 	li {
 		@include remove-uli;
 		margin:3rem 0;
-		line-height:1.8;
-
-		// extra spacing after initial time
-		strong:first-of-type {
-			padding-right:1rem;
-		}
+		line-height:1.8;		
 
 		ul,
 		ol {

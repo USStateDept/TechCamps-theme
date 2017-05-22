@@ -407,11 +407,12 @@
 .entry-content .flat-list {
 	padding-left:0;
 	text-indent:0;
+	margin: 0;
 
 	&__item {
 		@include remove-uli;
 		@include secondary-text;
-		margin:4rem 0;
+		margin-top: 4rem;
 		line-height:1.5;
 	}
 
