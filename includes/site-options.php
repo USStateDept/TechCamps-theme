@@ -36,6 +36,12 @@ class TechCamp_Site_Settings extends TechCamp_Admin {
 		// Set our CMB2 fields
 
 		$cmb->add_field( array(
+			'id'   => 'gtm_id',
+			'name' => 'Tag Manager ID',
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
 			'id'   => 'map_legend',
 			'name' => 'Map Legend Settings',
 			'type' => 'title',
@@ -59,14 +65,14 @@ class TechCamp_Site_Settings extends TechCamp_Admin {
 			'id'   => 'map_legend_regions',
 			'name' => 'Host Countries Label',
 			'type' => 'text',
-			'default' => 'Host Regions',
+			'default' => 'Host Countries',
 		) );
 
 		$cmb->add_field( array(
 			'id'   => 'map_legend_participators',
 			'name' => 'Participating Countries Label',
 			'type' => 'text',
-			'default' => 'Participating Regions',
+			'default' => 'Participating Countries',
 		) );
 
 		$cmb->add_field( array(

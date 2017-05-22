@@ -233,6 +233,7 @@ $two-col: (
 	box-shadow:0 0 1.8rem -0.2rem $dark-gray;
 	padding:0;
 	margin:4rem 0;
+	position: relative;
 	&:first-child {
 		margin-top:0;
 	}
@@ -247,7 +248,7 @@ $two-col: (
 		padding:2rem 3rem;
 		position: relative;
 		@include bp( $thin ) {
-			padding:2rem 5.4rem;
+			padding:2rem 4rem;
 		}
 	}
 
@@ -257,17 +258,20 @@ $two-col: (
 		background:$blue;
 		color:#fff;
 		float:left;
-		margin:-2rem 0 0rem -3rem;
 		padding:2.4rem 3rem;
-		@include bp( $medium ) {
-			margin:-2rem 0 0rem -5.4rem;
-			padding:2.4rem 5.4rem;
+		@include bp( $thin ) {
+			padding:2.4rem 4rem;
 		}
 		position:absolute;
-		box-shadow:0.5rem 0.5rem 2rem -0.5rem $near-black;
+		top:0; left: 0;
 
 		+ .archive-entry__text > .archive-entry__header {
-			margin-top:4.2rem;
+			margin-top:6.2rem;
+
+			@include bp( $thin ) {
+				margin-top:5.2rem;
+			}
+
 		}
 	}
 
