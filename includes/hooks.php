@@ -117,6 +117,31 @@ function techcamp_remove_admin_menu_items(){
 add_action( 'admin_menu', 'techcamp_remove_admin_menu_items' );
 
 /**
+ * Add Google Analytics code to the header.
+ */
+function techcamp_analytics() {
+	$id = techcamp_get_setting( 'ga_id' );
+	if ( !$id ) {
+		return;
+	} ?>
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '<?php echo esc_html( $id ); ?>', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+	<?php
+}
+add_action( 'tha_head_bottom', 'techcamp_analytics' );
+
+/**
  * Add Google Tag Manager to the header.
  */
 function techcamp_gtm_head() {
@@ -152,3 +177,22 @@ function techcamp_gtm_body() {
 	<?php
 }
 add_action( 'tha_body_top', 'techcamp_gtm_body' );
+
+/**
+ * Remove ampersands from Relevanssi searches (1/2).
+ */
+function techcamp_remove_ampersands( $a ) {
+	$a = str_replace( '&amp;', 'AMPERSAND', $a );
+	$a = str_replace( '&', 'AMPERSAND', $a );
+	return $a;
+}
+add_filter( 'relevanssi_remove_punctuation', 'techcamp_remove_ampersands', 9 );
+
+/**
+ * Re-add ampersands to Relevanssi searches (2/2).
+ */
+function techcamp_add_ampersands( $a ) {
+	$a = str_replace( 'AMPERSAND', '&', $a );
+	return $a;
+}
+add_filter( 'relevanssi_remove_punctuation', 'techcamp_add_ampersands', 20 );
