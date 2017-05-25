@@ -363,7 +363,7 @@ function techcamp_get_search_query() {
 
 	$query = isset( $_GET['keyword'] ) ? sanitize_text_field( $_GET['keyword'] ) : '';
 	if ( $query ) {
-		return $query;
+		return stripslashes( $query );
 	}
 
 	return get_search_query();

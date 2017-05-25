@@ -36,6 +36,12 @@ class TechCamp_Site_Settings extends TechCamp_Admin {
 		// Set our CMB2 fields
 
 		$cmb->add_field( array(
+			'id'   => 'ga_id',
+			'name' => 'Google Analytics ID',
+			'type' => 'text',
+		) );
+
+		$cmb->add_field( array(
 			'id'   => 'gtm_id',
 			'name' => 'Tag Manager ID',
 			'type' => 'text',
