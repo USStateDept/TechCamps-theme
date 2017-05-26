@@ -6,23 +6,21 @@
 		position:absolute;
 		width:100%;
 		height:auto;
-		@include bp( $thin ) {
-			width:100%;
+		@include bp( $medium ) {
+			position:relative;
+			float:left;
+			width:65%;
 			height:auto;
 		}
-		@include bp( $medium ) {
-			position:absolute;
-			width:auto;
-			height:100%;
-		}
-		@include bp( 1800px ) {
-			width:53%;
+		@include bp( $wide ) {
+			width:60%;
 			height:auto;
 		}
 	}
 
 	&__container {
 		@include grid-container;
+		position:relative;
 	}
 
 	&__text-box {
@@ -30,50 +28,53 @@
 		color:#fff;
 		position:relative;
 		z-index:1;
+		@include grid-column( 12 );
+		padding:3rem;
+		margin-top:67%;
+		margin-bottom:4rem;
+		@include bp( $thin ) {
+			padding:5rem 5rem 4rem;
+		}
+		@include bp( $medium ) {
+			@include grid-column( 6 );
+			@include grid-push( 6 );
+			position:absolute;
+			right:4.4rem;
+			top:50%;
+			transform:translateY(-50%);
+			margin:0;
+			padding:6rem 6rem 4rem;
+		}
+		@include bp( $wide ) {
+			padding:9rem;
+		}
+		@include bp( 1500px ) {
+			padding:11rem;
+		}
+
 		h1, h2, h3, h4, h5, h6, p {
 			color:#fff;
 		}
 		h1, h2 {
 			line-height:1.1;
 			font-weight:700;
-			letter-spacing:-0.3rem;
+			letter-spacing:-0.1rem;
+			font-size:4rem;
+			@include bp( $thin ) {
+				letter-spacing:-0.3rem;
+				font-size:5rem;
+			}
+			@include bp( $wide ) {
+				font-size:6rem;
+			}
+			@include bp( 1500px ) {
+				font-size:7.9rem;
+			}
 		}
 		p {
 			font-weight:300;
-		}
-
-		// sizes
-		@include grid-column( 12 );
-		padding:3rem;
-		margin-top:67%;
-		margin-bottom:29%;
-		h1, h2 {
-			font-size:5rem;
-		}
-		p {
 			font-size:1.8rem;
-		}
-		@include bp( $thin ) {
-			margin-top:34%;
-			margin-bottom:22%;
-			padding:7rem;
-			@include grid-column( 10 );
-		}
-		@include bp( $medium ) {
-			@include grid-column( 7 );
-			@include grid-push( 5 );
-			padding:11rem 7rem;
-			margin-top:12.5rem;
-			margin-bottom:17.7rem;
-		}
-		@include bp( $wide ) {
-			@include grid-column( 6 );
-			@include grid-push( 6 );
-			padding:11rem;
-			h1, h2 {
-				font-size:7.9rem;
-			}
-			p {
+			@include bp( 1500px ) {
 				font-size:2rem;
 			}
 		}
@@ -91,6 +92,7 @@
 		display:block;
 		width:47.6rem;
 		height:50.4rem;
+		opacity:0.8;
 	}
 
 }
@@ -98,7 +100,9 @@
 .hero--home {
 
 	.hero__image {
-		right:0;
+		@include bp( $medium ) {
+			float:right;
+		}
 	}
 
 	&:before {
@@ -121,12 +125,16 @@
 			margin-right:1rem;
 			width:100%;
 			margin-bottom:2rem;
-			@include bp( $thin ) {
+			@include bp( $wide ) {
 				width:auto;
 				margin-bottom:0;
 			}
 			@extend .button--secondary;
 			@extend .button--on-dark;
+		}
+		@include bp( $medium ) {
+			right:auto;
+			left:0;
 		}
 	}
 
