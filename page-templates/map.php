@@ -20,10 +20,26 @@ get_header(); ?>
 
 		<!-- Google maps marker keyboard accessibility -->
 		<div class="map-tabs">
-			<?php $json = file_get_contents( get_stylesheet_directory_uri() . '/map-data.json.php' );
-			$json = json_decode( $json );
-			foreach( $json->features as $marker ) { ?>
-				<a class="element-invisible map-tab" id="map-tab-<?php echo (int) $marker->properties->id; ?>" data-id="<?php echo (int) $marker->properties->id; ?>" href="#marker-<?php echo (int) $marker->properties->id; ?>"><?php echo esc_html( $marker->properties->name ); ?></a>
+			<?php $markers = get_posts( array(
+				'post_type'        => array( 'event', 'outcome' ),
+				'posts_per_page'   => 500,
+				'suppress_filters' => false,
+				'fields'           => 'ids',
+				'meta_query'       => array(
+					'relation'    => 'OR',
+					array(
+						'key'     => 'exclude_from_map',
+						'compare' => '!=',
+						'value'   => '1'
+					),
+					array(
+						'key'     => 'exclude_from_map',
+						'compare' => 'NOT EXISTS'
+					)
+				)
+			) );
+			foreach( $markers as $marker ) { ?>
+				<a class="element-invisible map-tab" id="map-tab-<?php echo (int) $marker; ?>" data-id="<?php echo (int) $marker; ?>" href="#marker-<?php echo (int) $marker; ?>"><?php echo esc_html( get_the_title( $marker ) ); ?></a>
 			<?php } ?>
 		</div>
 
