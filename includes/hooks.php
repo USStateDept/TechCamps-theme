@@ -162,6 +162,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 add_action( 'tha_head_bottom', 'techcamp_gtm_head' );
 
 /**
+ * Add DAP code to the header.
+ */
+function techcamp_dap_head() {
+	?>
+<!-- Digital Analytics Program -->
+<script async type="text/javascript" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOS&siteplatform=TechCamp" id="_fed_an_ua_tag"></script>
+<!-- End Digital Analytics Program -->
+
+	<?php
+}
+add_action( 'tha_head_bottom', 'techcamp_dap_head' );
+
+/**
  * Add Google Tag Manager to the footer.
  */
 function techcamp_gtm_body() {
