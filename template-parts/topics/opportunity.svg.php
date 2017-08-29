@@ -3,7 +3,7 @@
 <style type="text/css">
 	.opportunity-svg .st0{fill:none;stroke:#3C70B2;stroke-width:3.24;stroke-linecap:square;stroke-miterlimit:10;}
 	.opportunity-svg .st1{clip-path:url(#XMLID_67_);}
-	.opportunity-svg .st2{fill:#3C70B2;}
+	.opportunity-svg .st2{fill:none;}
 	.white-icons .opportunity-svg .st0{stroke:#FFFFFF;}
 	.white-icons .opportunity-svg .st2{fill:#FFFFFF;}
 </style>
