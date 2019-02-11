@@ -32,5 +32,8 @@
 	}
 	.storify a {
 		@include icon( 'storify' );
-	}
+  }
+  .flickr a {
+    @include icon( 'flickr' );
+  }
 }
