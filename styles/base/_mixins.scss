@@ -89,7 +89,9 @@
 		content: "\e909";
 	} @else if $icon == pin {
 		content: "\e908";
-	} @else if $icon == quote {
+  } @else if $icon == flickr {
+    content: "\eaa4";
+  } @else if $icon == quote {
 		content: "\e90a";
 	} @else if $icon == external {
 		content: "\e90b";
