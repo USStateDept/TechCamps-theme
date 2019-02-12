@@ -1,251 +1,251 @@
 // Mobile-first breakpoints
 @mixin bp($point) {
-	@media ( 'min-width:' + $point ) {
-		@content;
-	}
+  @media ( 'min-width:' + $point ) {
+    @content;
+  }
 }
 
 // Make an element visually hidden, but accessible
 @mixin element-invisible {
-	// scss-lint:disable ImportantRule
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
+  // scss-lint:disable ImportantRule
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 // Turn off the element-invisible effect
 @mixin element-invisible-off {
-	// scss-lint:disable ImportantRule
-	position: static !important;
-	clip: auto;
-	height: auto;
-	width: auto;
-	overflow: auto;
+  // scss-lint:disable ImportantRule
+  position: static !important;
+  clip: auto;
+  height: auto;
+  width: auto;
+  overflow: auto;
 }
 
 // Make an element visually hidden by default, but visible when focused
 @mixin element-focusable {
-	@include element-invisible;
-	&:active,
-	&:focus {
-		@include element-invisible-off;
-	}
+  @include element-invisible;
+  &:active,
+  &:focus {
+    @include element-invisible-off;
+  }
 }
 
 // Basic clearfix
 @mixin clearfix() {
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 // Basic vertical align
 @mixin vertical-align() {
-	position:relative;
-	top:50%;
-	transform:translateY(-50%);
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
 }
 
 // Basic icon setup
 @mixin icon-styles() {
-	font-family: 'techcamp-icons' !important; // prevent issues with browser extensions that change fonts
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased; // better rendering
-	-moz-osx-font-smoothing: grayscale; // better rendering
+  font-family: 'techcamp-icons' !important; // prevent issues with browser extensions that change fonts
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased; // better rendering
+  -moz-osx-font-smoothing: grayscale; // better rendering
 }
 
 // Icon codes matched to readable names
 @mixin icon-code( $icon: '' ) {
-	@if $icon == facebook {
-		content: "\e901";
-	} @else if $icon == twitter {
-		content: "\e900";
-	} @else if $icon == youtube {
-		content: "\f16a";
-	} @else if $icon == medium {
-		content: "\e904";
-	} @else if $icon == storify {
-		content: "\e905";
-	} @else if $icon == calendar {
-		content: "\e9080";
-	} @else if $icon == related {
-		content: "\e906";
-	} @else if $icon == tag {
-		content: "\e907";
-	} @else if $icon == contact {
-		content: "\e902";
-	} @else if $icon == search {
-		content: "\e903";
-	} @else if $icon == envelope {
-		content: "\e909";
-	} @else if $icon == pin {
-		content: "\e908";
+  @if $icon == facebook {
+    content: "\e901";
+  } @else if $icon == twitter {
+    content: "\e900";
+  } @else if $icon == youtube {
+    content: "\f16a";
+  } @else if $icon == medium {
+    content: "\e904";
+  } @else if $icon == storify {
+    content: "\e905";
+  } @else if $icon == calendar {
+    content: "\e9080";
+  } @else if $icon == related {
+    content: "\e906";
+  } @else if $icon == tag {
+    content: "\e907";
+  } @else if $icon == contact {
+    content: "\e902";
+  } @else if $icon == search {
+    content: "\e903";
+  } @else if $icon == envelope {
+    content: "\e909";
+  } @else if $icon == pin {
+    content: "\e908";
   } @else if $icon == flickr {
     content: "\eaa4";
   } @else if $icon == quote {
-		content: "\e90a";
-	} @else if $icon == external {
-		content: "\e90b";
-	} @else if $icon == file-doc {
-		content: "\e90c";
-	} @else if $icon == file-ppt {
-		content: "\e90d";
-	} @else if $icon == file-pdf {
-		content: "\e90e";
-	} @else if $icon != '' {
-		content: $icon;
-	}
+    content: "\e90a";
+  } @else if $icon == external {
+    content: "\e90b";
+  } @else if $icon == file-doc {
+    content: "\e90c";
+  } @else if $icon == file-ppt {
+    content: "\e90d";
+  } @else if $icon == file-pdf {
+    content: "\e90e";
+  } @else if $icon != '' {
+    content: $icon;
+  }
 }
 
 // Display an icon when the whole element is the icon
 @mixin icon-font( $icon: '' ) {
-	@include icon-styles;
-	&:before {
-		@include icon-code( $icon );
-	}
+  @include icon-styles;
+  &:before {
+    @include icon-code( $icon );
+  }
 }
 
 // Display an icon when you just want the icon before a populated element
 @mixin icon( $icon: '' ) {
-	&:before {
-		@include icon-styles;
-		@include icon-code( $icon );
-		vertical-align:middle;
-	}
+  &:before {
+    @include icon-styles;
+    @include icon-code( $icon );
+    vertical-align:middle;
+  }
 }
 @mixin icon-before( $icon: '' ) {
-	@include icon( $icon );
-	&:before {
-		padding-right:0.5rem;
-		font-size:2.1rem;
-		color:#fff;
-	}
+  @include icon( $icon );
+  &:before {
+    padding-right:0.5rem;
+    font-size:2.1rem;
+    color:#fff;
+  }
 }
 @mixin icon-after( $icon: '' ) {
-	&:after {
-		@include icon-styles;
-		@include icon-code( $icon );
-		vertical-align:middle;
-		padding-left:0.5rem;
-		font-size:2.1rem;
-		color:#fff;
-	}
+  &:after {
+    @include icon-styles;
+    @include icon-code( $icon );
+    vertical-align:middle;
+    padding-left:0.5rem;
+    font-size:2.1rem;
+    color:#fff;
+  }
 }
 
 // Small uppercase text
 @mixin secondary-text() {
-	text-transform:uppercase;
-	font-family:$base-font;
-	font-weight:600;
-	line-height:1;
-	font-size:1.8rem;
-	letter-spacing:0.05rem;
-	text-decoration:none;
+  text-transform:uppercase;
+  font-family:$base-font;
+  font-weight:600;
+  line-height:1;
+  font-size:1.8rem;
+  letter-spacing:0.05rem;
+  text-decoration:none;
 }
 
 @mixin list-reset() {
-	margin:0;
-	padding:0;
-	text-indent:0;
-	&:before {
-		display:none;
-	}
+  margin:0;
+  padding:0;
+  text-indent:0;
+  &:before {
+    display:none;
+  }
 }
 
 @mixin toggler() {
-	@include secondary-text;
-	margin:4rem 0;
-	display:inline-block;
-	// float:right;
-	font-size:1.6rem;
-	color:$blue;
-	line-height:1.9rem;
-	&:after {
-		margin-top:-0.2rem;
-		margin-left:1rem;
-		content:'+';
-		background:$blue;
-		color:#fff;
-		font-size:2rem;
-		width:1.9rem;
-		height:1.9rem;
-		text-align:center;
-		vertical-align:middle;
-		display:inline-block;
-		transition:background 0.2s;
-	}
-	&:hover,
-	&:focus {
-		color:$bright-blue;
-		&:after {
-			background:$bright-blue;
-		}
-	}
+  @include secondary-text;
+  margin:4rem 0;
+  display:inline-block;
+  // float:right;
+  font-size:1.6rem;
+  color:$blue;
+  line-height:1.9rem;
+  &:after {
+    margin-top:-0.2rem;
+    margin-left:1rem;
+    content:'+';
+    background:$blue;
+    color:#fff;
+    font-size:2rem;
+    width:1.9rem;
+    height:1.9rem;
+    text-align:center;
+    vertical-align:middle;
+    display:inline-block;
+    transition:background 0.2s;
+  }
+  &:hover,
+  &:focus {
+    color:$bright-blue;
+    &:after {
+      background:$bright-blue;
+    }
+  }
 
-	&.toggled {
-		&:after {
-			content:'-';
-			line-height: .8em
-		}
-	}
+  &.toggled {
+    &:after {
+      content:'-';
+      line-height: .8em
+    }
+  }
 }
 
 @mixin uli {
-	&:before {
-		content:'\2022';
-		display:inline;
-		padding-right:1.8rem;
-		font-size:2.4rem;
-		line-height:1;
-		vertical-align:middle;
-		color:$blue;
-	}
+  &:before {
+    content:'\2022';
+    display:inline;
+    padding-right:1.8rem;
+    font-size:2.4rem;
+    line-height:1;
+    vertical-align:middle;
+    color:$blue;
+  }
 }
 
 @mixin remove-uli {
-	margin-left:0;
-	padding-left:0;
-	text-indent:0;
-	&:before {
-		display:none;
-	}
+  margin-left:0;
+  padding-left:0;
+  text-indent:0;
+  &:before {
+    display:none;
+  }
 }
 
 @mixin oli {
-	display:block;
-	&:before {
-		content: counter(number);
-		counter-increment:number;
-		font-weight:bold;
-		color:$blue;
-		padding-right:1.8rem;
-	}
+  display:block;
+  &:before {
+    content: counter(number);
+    counter-increment:number;
+    font-weight:bold;
+    color:$blue;
+    padding-right:1.8rem;
+  }
 }
 
 @mixin remove-oli {
-	margin-left:0;
-	padding-left:0;
-	text-indent:0;
-	&:before {
-		display:none;
-	}
+  margin-left:0;
+  padding-left:0;
+  text-indent:0;
+  &:before {
+    display:none;
+  }
 }
 
 @mixin border-underline( $color:#fff ) {
-	text-decoration:none;
-	border-bottom:2px solid transparent;
-	transition:border 0.2s;
-	&:hover,
-	&:focus {
-		border-bottom:2px solid $color;
-	}
+  text-decoration:none;
+  border-bottom:2px solid transparent;
+  transition:border 0.2s;
+  &:hover,
+  &:focus {
+    border-bottom:2px solid $color;
+  }
 }
